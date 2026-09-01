@@ -92,7 +92,7 @@ export function CartDrawer() {
                   Add a filter by size and tier, and it&apos;ll show up here.
                 </p>
                 <Link
-                  href="/air-filters"
+                  href="/shop"
                   onClick={closeDrawer}
                   className="mt-2 inline-flex items-center justify-center rounded-full bg-charcoal px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-charcoal-soft"
                 >

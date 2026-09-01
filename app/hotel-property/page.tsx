@@ -200,7 +200,7 @@ export default function HotelPropertyPage() {
                     subtitle="Property supply"
                     merv="MERV 13"
                     category="hotel"
-                    image="/images/hero/animated/2.png"
+                    image="/images/products/merv-8-angle.png"
                     size="sm"
                     floating={false}
                     showBadge={false}

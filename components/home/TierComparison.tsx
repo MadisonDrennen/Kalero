@@ -136,7 +136,7 @@ export function TierComparison() {
 
         <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row sm:justify-center sm:gap-4">
           <Link
-            href="/air-filters"
+            href="/shop"
             className="inline-flex h-11 items-center gap-1.5 rounded-full bg-charcoal px-6 text-sm font-medium text-white transition-colors hover:bg-charcoal-soft"
           >
             Compare Filters

@@ -39,7 +39,7 @@ export function HotelSupply() {
                   subtitle="Property supply program"
                   merv="MERV 13"
                   category="hotel"
-                  image="/images/hero/animated/2.png"
+                  image="/images/products/merv-8-angle.png"
                   size="md"
                   showBadge={false}
                 />

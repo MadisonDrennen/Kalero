@@ -43,7 +43,7 @@ export const concerns: Concern[] = [
     hex: "#37B2E6",
     softHex: "#DDF1FB",
     deepHex: "#0C74B0",
-    heroImage: "/images/hero/animated/Everyday/everyday_filter_1.png",
+    heroImage: "/images/products/merv-8-angle.png",
   },
   {
     slug: "pets-and-dander",
@@ -57,7 +57,7 @@ export const concerns: Concern[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
-    heroImage: "/images/hero/animated/Pet/pet_filter_1.png",
+    heroImage: "/images/products/merv-11-angle.png",
   },
   {
     slug: "allergies-and-pollen",
@@ -71,7 +71,7 @@ export const concerns: Concern[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
-    heroImage: "/images/hero/animated/Allergy/allergy_filter_10.png",
+    heroImage: "/images/products/merv-13-angle.png",
   },
   {
     slug: "smoke-and-pollution",
@@ -85,7 +85,7 @@ export const concerns: Concern[] = [
     hex: "#C1A1CC",
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
-    heroImage: "/images/hero/animated/Smoke/smoke_filter_3.png",
+    heroImage: "/images/products/merv-13-angle.png",
   },
   {
     slug: "odors-and-vocs",
@@ -99,7 +99,7 @@ export const concerns: Concern[] = [
     hex: "#C1A1CC",
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
-    heroImage: "/images/hero/animated/Carbon/carbon_filter_1.png",
+    heroImage: "/images/products/merv-13-angle.png",
   },
   {
     slug: "hotel-property",
@@ -113,7 +113,7 @@ export const concerns: Concern[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
-    heroImage: "/images/hero/animated/Hotel/hotel_filter_1.png",
+    heroImage: "/images/products/merv-11-angle.png",
   },
 ];
 

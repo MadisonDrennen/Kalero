@@ -32,10 +32,10 @@ export function FilterFinder() {
 
   const handleFind = () => {
     if (isStandard) {
-      router.push(`/air-filters/${slug}`);
+      router.push("/shop");
     } else {
       router.push(
-        `/custom-filters?width=${width}&height=${height}&depth=${depth}`,
+        "/shop",
       );
     }
   };

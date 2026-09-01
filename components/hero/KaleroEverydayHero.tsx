@@ -50,7 +50,7 @@ export function KaleroEverydayHero() {
 
           <div className="mt-9">
             <Link
-              href="/air-filters"
+              href="/shop"
               className="inline-flex h-12 items-center justify-center gap-2 bg-sky px-8 text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-sky-600"
             >
               Shop Filters

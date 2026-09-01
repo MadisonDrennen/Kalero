@@ -25,7 +25,7 @@ export function PopularSizes() {
             </h2>
           </div>
           <Link
-            href="/air-filters"
+            href="/shop"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-sky-700 transition-colors hover:text-sky-800"
           >
             View All Sizes
@@ -37,7 +37,7 @@ export function PopularSizes() {
           {popularSizes.map((s) => (
             <Link
               key={s.slug}
-              href={`/air-filters/${s.slug}`}
+              href="/shop"
               className="group flex flex-col items-center rounded-2xl border border-sky-100 bg-white px-4 py-5 text-center transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-soft"
             >
               <span className="font-display text-2xl font-bold text-charcoal">

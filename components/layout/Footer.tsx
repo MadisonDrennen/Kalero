@@ -5,11 +5,11 @@ import { AirflowLines } from "@/components/ui/AirflowLines";
 import { IridescentWave } from "@/components/ui/IridescentWave";
 
 const shopLinks = [
-  { href: "/air-filters", label: "Shop All" },
+  { href: "/shop", label: "Shop All" },
   { href: "/merv-8", label: "Standard · MERV 8" },
   { href: "/merv-11", label: "Pro · MERV 11" },
   { href: "/merv-13", label: "Max · MERV 13" },
-  { href: "/air-filters", label: "Shop by Size" },
+  { href: "/shop", label: "Shop by Size" },
   { href: "/custom-filters", label: "Custom Filters" },
 ];
 
@@ -108,12 +108,6 @@ export function Footer() {
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} KALERO Air, Inc.</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/privacy" className="hover:text-white">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-white">
-              Terms
-            </Link>
           </div>
         </div>
       </div>

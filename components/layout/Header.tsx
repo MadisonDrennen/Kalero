@@ -12,7 +12,7 @@ import { tiers } from "@/lib/tiers";
 import { useCart } from "@/lib/cart";
 
 const shopFiltersMenu = [
-  { href: "/air-filters", label: "Shop All Filters", eyebrow: "Everything" },
+  { href: "/shop", label: "Shop All Filters", eyebrow: "Everything" },
   { href: "/merv-8", label: "Standard · MERV 8", eyebrow: "Everyday" },
   { href: "/merv-11", label: "Pro · MERV 11", eyebrow: "Pets + Allergies" },
   { href: "/merv-13", label: "Max · MERV 13", eyebrow: "Maximum Filtration" },
@@ -181,7 +181,7 @@ export function Header() {
             Find Your Filter
           </Link>
           <Link
-            href="/air-filters"
+            href="/shop"
             onMouseEnter={() => setActiveMenu(null)}
             className="text-sm font-medium text-charcoal transition-colors hover:text-sky-700"
           >
@@ -259,7 +259,7 @@ export function Header() {
                   </div>
                   <div className="mt-4 flex items-center justify-between border-t border-sky-100 pt-3 text-xs">
                     <Link
-                      href="/air-filters"
+                      href="/shop"
                       onClick={() => setActiveMenu(null)}
                       className="link-underline font-medium text-sky-700"
                     >

@@ -8,24 +8,24 @@ import { products, productsByCategory, type CategoryKey } from "@/lib/products";
 
 const angleImages: Partial<Record<CategoryKey, { src: string; label: string }[]>> = {
   everyday: [
-    { src: "/images/Everyday Merv 8.png", label: "Front view" },
-    { src: "/images/Everyday Merv 8 2.png", label: "Airflow detail" },
-    { src: "/images/Everyday Merv 8 3.png", label: "In the vent" },
+    { src: "/images/products/merv-8-angle.png", label: "Front view" },
+    { src: "/images/products/merv-8-angle.png", label: "Airflow detail" },
+    { src: "/images/products/merv-8-angle.png", label: "In the vent" },
   ],
   pet: [
-    { src: "/images/Pet Product 1.png", label: "Front view" },
-    { src: "/images/Pet Product 3.png", label: "Airflow detail" },
-    { src: "/images/Pet Product 5.png", label: "In the vent" },
+    { src: "/images/products/merv-11-angle.png", label: "Front view" },
+    { src: "/images/products/merv-11-angle.png", label: "Airflow detail" },
+    { src: "/images/products/merv-11-angle.png", label: "In the vent" },
   ],
   allergy: [
-    { src: "/images/Allergy Product 1.png", label: "Front view" },
-    { src: "/images/Allergy Product 2.png", label: "Airflow detail" },
-    { src: "/images/Allergy Product 3.png", label: "In the vent" },
+    { src: "/images/products/merv-13-angle.png", label: "Front view" },
+    { src: "/images/products/merv-13-angle.png", label: "Airflow detail" },
+    { src: "/images/products/merv-13-angle.png", label: "In the vent" },
   ],
   hotel: [
-    { src: "/images/Hotel Product 1.png", label: "Front view" },
-    { src: "/images/Hotel Product 2.png", label: "Airflow detail" },
-    { src: "/images/Hotel Product 3.png", label: "In the vent" },
+    { src: "/images/products/merv-11-angle.png", label: "Front view" },
+    { src: "/images/products/merv-11-angle.png", label: "Airflow detail" },
+    { src: "/images/products/merv-11-angle.png", label: "In the vent" },
   ],
 };
 import { PageHeader } from "@/components/ui/PageHeader";
