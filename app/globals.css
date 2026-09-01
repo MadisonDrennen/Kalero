@@ -24,6 +24,11 @@
   }
 
   body {
+    /* Entry animations legitimately start off-canvas (the subscription card
+       slides in from x:30), which widened the page by 22px and gave the whole
+       site a horizontal scrollbar. `clip` rather than `hidden` so the sticky
+       header keeps working -- hidden would make body a scroll container. */
+    overflow-x: clip;
     background: var(--canvas);
     color: var(--charcoal);
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;

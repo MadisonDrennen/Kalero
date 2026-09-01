@@ -5,7 +5,7 @@ import { TierComparison } from "@/components/home/TierComparison";
 import { WhyKalero } from "@/components/home/WhyKalero";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Subscription } from "@/components/home/Subscription";
-import { Testimonials } from "@/components/home/Testimonials";
+// import { Testimonials } from "@/components/home/Testimonials"; // held back — see below
 import { AirGuidesTeaser } from "@/components/home/AirGuidesTeaser";
 import { EmailCapture } from "@/components/home/EmailCapture";
 import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
@@ -40,8 +40,13 @@ export default function Home() {
       {/* 8 — Subscription */}
       <Subscription />
 
-      {/* 9 — Social proof */}
-      <Testimonials />
+      {/* Testimonials are held back until there are real ones. The six in
+          lib/copy.ts are invented names and quotes under a heading that calls
+          them "reviews from real households" -- publishing those on a live
+          commercial site is a straightforward consumer-deception problem, and
+          the FTC's rule on fake reviews and testimonials carries penalties.
+          Put this back the day there are genuine customers to quote. */}
+      {/* <Testimonials /> */}
 
       <IridescentWave intensity="subtle" className="h-16 w-full sm:h-20" flip />
 
