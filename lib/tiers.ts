@@ -18,7 +18,7 @@ export type FilterTier = {
   hex: string;
   softHex: string;
   deepHex: string;
-  /** Default hero render for the tier. Points to a category folder proxy for now. */
+  /** The tier's packaging render. */
   heroImage: string;
 };
 
@@ -35,7 +35,7 @@ export const tiers: FilterTier[] = [
     hex: "#37B2E6",
     softHex: "#DDF1FB",
     deepHex: "#0C74B0",
-    heroImage: "/images/hero/animated/Everyday/everyday_filter_1.png",
+    heroImage: "/images/products/merv-8-pack.png",
   },
   {
     id: "pro",
@@ -58,7 +58,7 @@ export const tiers: FilterTier[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
-    heroImage: "/images/hero/animated/Pet/pet_filter_1.png",
+    heroImage: "/images/products/merv-11-pack.png",
   },
   {
     id: "max",
@@ -81,7 +81,7 @@ export const tiers: FilterTier[] = [
     hex: "#C1A1CC",
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
-    heroImage: "/images/hero/animated/Allergy/allergy_filter_10.png",
+    heroImage: "/images/products/merv-13-pack.png",
   },
 ];
 
