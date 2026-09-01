@@ -39,7 +39,16 @@ export function ProductCard({ product, showSubscribeLabel = true, className = ""
         ) : (
           <MervShield
             rating={product.merv.replace("MERV ", "")}
-            label="Standard"
+            /* The tier name, not a hardcoded "Standard" -- 11 is Pro and 13 is
+               Max. The brand kit calls this out as a fix-before-print item and
+               the same mistake was live here. */
+            label={
+              product.merv === "MERV 11"
+                ? "Pro"
+                : product.merv === "MERV 13"
+                  ? "Max"
+                  : "Standard"
+            }
             size="xs"
           />
         )}
