@@ -15,11 +15,45 @@ export const PACK_QUANTITIES: PackQty[] = [1, 2, 4, 6, 12];
 export const SUBSCRIBE_CADENCES: SubscribeCadenceDays[] = [30, 60, 90, 180];
 
 /**
+ * The packs offered as one-tap cards on the product page. Everything else in
+ * PACK_QUANTITIES stays reachable through the stepper beside them, so the
+ * 12-pack is available without a fifth card competing for attention.
+ */
+export const QUICK_PACK_QUANTITIES: PackQty[] = PACK_QUANTITIES.filter(
+  (q) => q <= 6,
+);
+
+/**
+ * Cadences offered on the product page. 180 days stays in SUBSCRIBE_CADENCES
+ * for the subscription manager, where a longer interval makes sense to pick
+ * deliberately.
+ */
+export const PDP_CADENCES: SubscribeCadenceDays[] = SUBSCRIBE_CADENCES.filter(
+  (d) => d <= 90,
+);
+
+/** Pre-selected when a customer switches to a subscription. */
+export const DEFAULT_CADENCE: SubscribeCadenceDays = 60;
+
+/**
  * Best-value pack — surfaced with a "Best value" chip in the pack selector.
  * Marked here rather than fabricated at render time so it can be turned off
  * per business decision later.
  */
 export const BEST_VALUE_PACK: PackQty = 4;
+
+/**
+ * Pack carrying the "Most popular" chip. Null until we have order data to back
+ * the claim — the chip simply doesn't render while this is null.
+ */
+export const MOST_POPULAR_PACK: PackQty | null = null;
+
+/**
+ * Per-filter price multiplier at each pack size, e.g. { 4: 0.92 } for an 8%
+ * multi-pack discount. Empty until business confirms the discount ladder, so
+ * per-filter pricing stays flat rather than implying a saving we don't offer.
+ */
+export const PACK_PRICE_MULTIPLIER: Partial<Record<PackQty, number>> = {};
 
 /**
  * Pricing matrix. All entries default to null until confirmed by business.

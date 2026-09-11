@@ -11,8 +11,7 @@ import {
 } from "react";
 import type { TierId } from "./tiers";
 import type { PackQty, PurchaseType, SubscribeCadenceDays } from "./variants";
-import { variantPrice } from "./variants";
-import { sizeBySlug } from "./sizes";
+import { lineItemPrice } from "./pricing";
 
 export type LineItem = {
   /** Deterministic id for update/remove ops. */
@@ -46,8 +45,10 @@ type CartActions = {
 type CartContextValue = CartState &
   CartActions & {
     itemCount: number;
-    /** Sum of confirmed prices only; null if no variants have confirmed pricing yet. */
+    /** What the cart currently comes to; null while nothing can be priced. */
     subtotal: number | null;
+    /** True only when every line has a confirmed variant price. */
+    pricingConfirmed: boolean;
   };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -159,18 +160,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
     [items],
   );
 
-  const subtotal = useMemo<number | null>(() => {
+  const { subtotal, pricingConfirmed } = useMemo(() => {
     let total = 0;
     let anyPriced = false;
+    let allConfirmed = items.length > 0;
     for (const item of items) {
-      const size = sizeBySlug(item.sizeSlug);
-      if (!size) continue;
-      const unit = variantPrice(size, item.tierId, item.packQty);
-      if (unit == null) continue;
+      const line = lineItemPrice(item);
+      if (!line.confirmed) allConfirmed = false;
+      if (line.total == null) continue;
       anyPriced = true;
-      total += unit * item.quantity;
+      total += line.total * item.quantity;
     }
-    return anyPriced ? total : null;
+    return {
+      subtotal: anyPriced ? Math.round(total * 100) / 100 : null,
+      pricingConfirmed: allConfirmed,
+    };
   }, [items]);
 
   const value: CartContextValue = {
@@ -178,6 +182,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     drawerOpen,
     itemCount,
     subtotal,
+    pricingConfirmed,
     add,
     updateQuantity,
     remove,

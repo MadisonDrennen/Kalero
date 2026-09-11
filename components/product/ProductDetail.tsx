@@ -1,472 +1,120 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown, Info, Leaf, Minus, Plus, Star } from "lucide-react";
+import { Check, Info, Leaf, Star } from "lucide-react";
 import { ProductRender } from "@/components/product/ProductRender";
+import { ProductGallery } from "@/components/product/ProductGallery";
+import { PurchaseConfigurator } from "@/components/product/PurchaseConfigurator";
+import { useProductConfig } from "@/components/product/useProductConfig";
 import { Stars } from "@/components/ui/Stars";
 import { Chip } from "@/components/ui/Chip";
-import { Button, LinkButton } from "@/components/ui/Button";
-import { AirflowLines } from "@/components/ui/AirflowLines";
-import { Placeholder } from "@/components/ui/Placeholder";
+import { LinkButton } from "@/components/ui/Button";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
 import { ScentBadge } from "@/components/ui/ScentBadge";
-import { ScentAddOn } from "@/components/scent/ScentAddOn";
 import { categoryByKey } from "@/lib/categories";
-import { STANDARD_SIZES, products, type Product } from "@/lib/products";
-import { isScentCompatible, scentStripPrice, type ScentKey } from "@/lib/scentStrips";
-
-type Mode = "onetime" | "subscribe";
+import { formatPrice } from "@/lib/pricing";
+import { products, type Product } from "@/lib/products";
+import { isScentCompatible } from "@/lib/scentStrips";
+import { tierById } from "@/lib/tiers";
 
 type Props = {
   product: Product;
 };
 
-const galleryBySlug: Record<string, { src: string; label: string }[]> = {
-  "everyday-defense": [
-    { src: "/images/products/merv-8-angle.png", label: "Front" },
-    { src: "/images/products/merv-8-angle.png", label: "Angle" },
-    { src: "/images/products/merv-8-angle.png", label: "Studio" },
-    { src: "/images/products/merv-8-angle.png", label: "Detail" },
-    { src: "/images/products/merv-8-angle.png", label: "In use" },
-  ],
-  "pet-defense": [
-    { src: "/images/products/merv-11-angle.png", label: "Front" },
-    { src: "/images/products/merv-11-angle.png", label: "Angle" },
-    { src: "/images/products/merv-11-angle.png", label: "Studio" },
-    { src: "/images/products/merv-11-angle.png", label: "Detail" },
-    { src: "/images/products/merv-11-angle.png", label: "In use" },
-  ],
-  "allergy-defense": [
-    { src: "/images/products/merv-13-angle.png", label: "Front" },
-    { src: "/images/products/merv-13-angle.png", label: "Angle" },
-    { src: "/images/products/merv-13-angle.png", label: "Studio" },
-    { src: "/images/products/merv-13-angle.png", label: "Detail" },
-  ],
-  "smoke-defense": [
-    { src: "/images/products/merv-13-angle.png", label: "Front" },
-    { src: "/images/products/merv-13-angle.png", label: "Angle" },
-  ],
-  "carbon-defense": [
-    { src: "/images/products/merv-13-angle.png", label: "Front" },
-    { src: "/images/products/merv-13-angle.png", label: "Angle" },
-    { src: "/images/products/merv-13-angle.png", label: "Studio" },
-    { src: "/images/products/merv-13-angle.png", label: "Detail" },
-  ],
-  "hotel-collection": [
-    { src: "/images/products/merv-11-angle.png", label: "Front" },
-    { src: "/images/products/merv-11-angle.png", label: "Angle" },
-    { src: "/images/products/merv-11-angle.png", label: "Studio" },
-    { src: "/images/products/merv-11-angle.png", label: "Detail" },
-    { src: "/images/products/merv-11-angle.png", label: "In use" },
-  ],
-};
-
 export function ProductDetail({ product }: Props) {
   const category = categoryByKey(product.category)!;
-  const [size, setSize] = useState<string>(STANDARD_SIZES[4]);
-  const [customSize, setCustomSize] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [mode, setMode] = useState<Mode>("subscribe");
-  const [cadence, setCadence] = useState<30 | 60 | 90>(60);
-  const [scentSelection, setScentSelection] = useState<{
-    scentKey: ScentKey | null;
-    quantity: number;
-  }>({ scentKey: null, quantity: 1 });
-  const gallery = useMemo(() => {
-    const base = galleryBySlug[product.slug] ?? [];
-    if (base.length > 0) return base;
-    if (product.image) return [{ src: product.image, label: "Front" }];
-    return [];
-  }, [product.slug, product.image]);
-  const [activeThumb, setActiveThumb] = useState(0);
-  const activeImage = gallery[activeThumb]?.src ?? product.image;
-
-  const unitPrice = useMemo(() => {
-    const base = product.priceFrom;
-    return mode === "subscribe"
-      ? Math.round(base * (1 - product.subscriptionSavings / 100) * 100) / 100
-      : base;
-  }, [mode, product]);
-
-  const scentTotal = useMemo(
-    () =>
-      scentSelection.scentKey === null
-        ? 0
-        : scentStripPrice * scentSelection.quantity,
-    [scentSelection],
-  );
-
-  const total = useMemo(
-    () => Math.round((unitPrice * quantity + scentTotal) * 100) / 100,
-    [unitPrice, quantity, scentTotal],
-  );
-
+  const config = useProductConfig(product);
+  const tier = tierById(config.tierId);
   const others = products.filter((p) => p.slug !== product.slug).slice(0, 3);
 
   return (
     <>
-      <section
-        className="relative isolate overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(180deg, ${product.color.soft} 0%, #FFFFFF 65%, #FFFFFF 100%)`,
-        }}
-      >
-        <div className="pointer-events-none absolute inset-0 opacity-50">
-          <AirflowLines className="h-full w-full" color={product.color.base} opacity={0.22} />
-        </div>
-
-        <div className="container-x relative pb-16 pt-10 sm:pt-14 lg:pt-16">
-          <nav className="mb-8 flex items-center gap-1.5 text-xs text-charcoal-light" aria-label="Breadcrumb">
+      <section className="relative isolate bg-white">
+        <div className="container-x relative pb-12 pt-6 sm:pt-8">
+          <nav
+            className="mb-5 flex items-center gap-1.5 text-[11px] text-charcoal-mid"
+            aria-label="Breadcrumb"
+          >
             <Link href="/" className="hover:text-charcoal">
               Home
             </Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link href="/shop" className="hover:text-charcoal">
               Shop
             </Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link href={`/shop/${category.slug}`} className="hover:text-charcoal">
               {category.title}
             </Link>
-            <span>/</span>
-            <span className="text-charcoal">{product.name}</span>
+            <span aria-hidden="true">/</span>
+            <span className="text-charcoal-mid">{product.name}</span>
           </nav>
 
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <div className="relative flex flex-col gap-4">
-              <div
-                className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-card ring-1 ring-sky-100 shadow-soft"
-                style={{
-                  background: `linear-gradient(180deg, ${product.color.soft} 0%, #FFFFFF 65%, #FFFFFF 100%)`,
-                }}
-              >
-                <div className="pointer-events-none absolute inset-x-4 top-4 h-1/2 bg-sky-glow opacity-70" />
-                {activeImage ? (
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeImage}
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0"
-                    >
-                      <NextImage
-                        src={activeImage}
-                        alt={product.name}
-                        fill
-                        sizes="(min-width: 1024px) 620px, (min-width: 640px) 90vw, 100vw"
-                        className="object-contain p-6 drop-shadow-[0_35px_60px_rgba(74,46,122,0.25)] sm:p-10"
-                        priority
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="relative"
-                  >
-                    <ProductRender
-                      name={product.name}
-                      subtitle={product.tagline}
-                      merv={
-                        product.merv === "Activated Carbon"
-                          ? "Carbon"
-                          : product.merv === "Rotating"
-                            ? "Drop"
-                            : product.merv
-                      }
-                      category={product.category}
-                      size="xl"
-                      priority
-                    />
-                  </motion.div>
-                )}
-              </div>
-              {gallery.length > 1 && (
-                <div
-                  className="-mx-2 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-2 pb-2 [&::-webkit-scrollbar]:hidden"
-                  style={{ scrollbarWidth: "none" }}
-                  aria-label="Product images"
-                >
-                  {gallery.map((thumb, i) => (
-                    <button
-                      key={thumb.src}
-                      type="button"
-                      aria-label={thumb.label}
-                      aria-pressed={i === activeThumb}
-                      onClick={() => setActiveThumb(i)}
-                      className={`relative aspect-square w-[calc((100%-2.25rem)/4)] shrink-0 snap-start overflow-hidden rounded-2xl bg-white ring-1 transition-all ${
-                        i === activeThumb
-                          ? "ring-2 ring-sky-500 shadow-soft"
-                          : "ring-sky-100 hover:ring-sky-300 hover:-translate-y-0.5"
-                      }`}
-                      style={
-                        i === activeThumb
-                          ? {
-                              background: `linear-gradient(180deg, ${product.color.soft} 0%, #FFFFFF 100%)`,
-                            }
-                          : undefined
-                      }
-                    >
-                      <NextImage
-                        src={thumb.src}
-                        alt={`${product.name} ${thumb.label.toLowerCase()}`}
-                        fill
-                        sizes="120px"
-                        className="object-contain p-2"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-              {gallery.length === 0 && (
-                <div className="grid grid-cols-4 gap-3">
-                  {Array.from({ length: 4 }).map(
-                    (_, i) => (
-                      <div
-                        key={`empty-${i}`}
-                        className="aspect-square overflow-hidden rounded-2xl ring-1 ring-sky-100"
-                      >
-                        <Placeholder
-                          label="Coming soon"
-                          ratio="square"
-                          tone={i % 2 === 0 ? "lavender" : "canvas"}
-                          className="rounded-2xl border-none ring-0 shadow-none"
-                        />
-                      </div>
-                    ),
-                  )}
-                </div>
-              )}
-            </div>
+          <div className="grid gap-8 lg:grid-cols-[47fr_53fr] lg:gap-12">
+            {/* LEFT — visuals */}
+            <ProductGallery product={product} tierId={config.tierId} />
 
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <Chip className={product.color.chip}>
-                  {product.merv === "Rotating" ? "Rotating drop" : product.merv}
+            {/* RIGHT — identity, then the one configurator */}
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <Chip
+                  className="border"
+                  style={{
+                    backgroundColor: `${tier.softHex}80`,
+                    color: tier.deepHex,
+                    borderColor: `${tier.hex}55`,
+                  }}
+                >
+                  MERV {tier.merv} {tier.name}
                 </Chip>
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-eyebrow"
+                  className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em]"
                   style={{ backgroundColor: category.softHex, color: category.deepHex }}
                 >
-                  <CategoryIcon icon={category.icon} size={12} color={category.deepHex} />
+                  <CategoryIcon icon={category.icon} size={11} color={category.deepHex} />
                   {category.title}
                 </span>
-                {mode === "subscribe" && (
-                  <Chip className="bg-sky-100 text-sky-700">
-                    Save {product.subscriptionSavings}% subscribing
-                  </Chip>
-                )}
                 {isScentCompatible(product) && <ScentBadge size="xs" />}
               </div>
 
-              <h1 className="mt-4 font-display text-display-xl font-semibold text-charcoal text-balance">
+              <h1 className="mt-3 font-display text-display-lg font-semibold text-charcoal text-balance">
                 {product.name}
               </h1>
-              <p className="mt-3 text-lg leading-relaxed text-charcoal-mid text-pretty">
+              <p className="mt-2 text-[15px] leading-relaxed text-charcoal-mid text-pretty">
                 {product.tagline}
               </p>
 
-              <div className="mt-5 flex items-center gap-4">
-                <Stars value={product.rating.value} count={product.rating.count} />
-                <span className="text-sm text-charcoal-light">|</span>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                <Stars value={product.rating.value} count={product.rating.count} size={13} />
                 <Link
                   href="#reviews"
-                  className="text-sm text-sky-700 hover:text-sky-800"
+                  className="text-[13px] text-sky-700 underline-offset-2 hover:underline"
                 >
                   Read reviews
                 </Link>
-              </div>
-
-              <div className="mt-8 rounded-card border border-sky-100 bg-white p-5">
-                <div className="flex items-baseline justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.16em] text-charcoal-light">
-                      {mode === "subscribe" ? "Per filter" : "One-time"}
-                    </p>
-                    <p className="mt-1 flex items-baseline gap-2">
-                      <span className="font-display text-3xl font-semibold text-charcoal">
-                        ${unitPrice.toFixed(2)}
+                <span
+                  className="ml-auto text-[13px] text-charcoal-mid"
+                  aria-live="polite"
+                >
+                  <span className="font-display text-lg font-semibold text-charcoal">
+                    {formatPrice(config.quote.perFilter)}
+                  </span>{" "}
+                  / filter
+                  {config.quote.subscriptionSavings != null &&
+                    config.quote.subscriptionSavings > 0 &&
+                    config.quote.listPerFilter != null && (
+                      <span className="ml-1.5 text-charcoal-mid line-through">
+                        {formatPrice(config.quote.listPerFilter)}
                       </span>
-                      {mode === "subscribe" && (
-                        <span className="text-sm text-charcoal-light line-through">
-                          ${product.priceFrom.toFixed(2)}
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                  <div className="text-right text-xs text-charcoal-light">
-                    Total: <span className="font-medium text-charcoal">${total.toFixed(2)}</span>
-                  </div>
-                </div>
-
-                <div className="mt-5">
-                  <label
-                    htmlFor={`${product.slug}-size`}
-                    className="text-sm font-medium text-charcoal"
-                  >
-                    Filter size
-                  </label>
-                  <div className="relative mt-2">
-                    <select
-                      id={`${product.slug}-size`}
-                      value={STANDARD_SIZES.includes(size as (typeof STANDARD_SIZES)[number]) ? size : "__custom"}
-                      onChange={(e) => {
-                        if (e.target.value === "__custom") return;
-                        setSize(e.target.value);
-                      }}
-                      className="w-full appearance-none rounded-xl border border-sky-200 bg-white px-4 py-3 pr-10 text-sm font-medium text-charcoal shadow-soft transition-all hover:border-sky-300 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
-                    >
-                      {STANDARD_SIZES.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
-                      ))}
-                      {!STANDARD_SIZES.includes(size as (typeof STANDARD_SIZES)[number]) && (
-                        <option value="__custom" disabled>
-                          Custom: {size}
-                        </option>
-                      )}
-                    </select>
-                    <ChevronDown
-                      size={16}
-                      strokeWidth={2}
-                      className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-charcoal-mid"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <details className="mt-3 text-sm text-charcoal-mid">
-                    <summary className="cursor-pointer text-sky-700 hover:text-sky-800">
-                      Enter a custom size
-                    </summary>
-                    <div className="mt-2 flex gap-2">
-                      <input
-                        type="text"
-                        placeholder="e.g. 12 × 24 × 1"
-                        value={customSize}
-                        onChange={(e) => setCustomSize(e.target.value)}
-                        className="flex-1 rounded-xl border border-sky-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => customSize && setSize(customSize)}
-                        className="rounded-xl bg-sky-500 px-3 py-2 text-xs font-medium text-white hover:bg-sky-600"
-                      >
-                        Use
-                      </button>
-                    </div>
-                  </details>
-                </div>
-
-                <div className="mt-5">
-                  <div className="grid grid-cols-2 gap-2 rounded-full bg-canvas p-1 ring-1 ring-sky-100">
-                    {(["onetime", "subscribe"] as const).map((m) => (
-                      <button
-                        key={m}
-                        type="button"
-                        onClick={() => setMode(m)}
-                        className={`relative rounded-full px-3 py-2 text-xs font-medium transition-colors sm:text-sm ${
-                          mode === m ? "text-charcoal" : "text-charcoal-light"
-                        }`}
-                      >
-                        {mode === m && (
-                          <motion.span
-                            layoutId={`toggle-${product.slug}`}
-                            className="absolute inset-0 rounded-full bg-white shadow-soft ring-1 ring-sky-100"
-                            transition={{ type: "spring", stiffness: 320, damping: 30 }}
-                          />
-                        )}
-                        <span className="relative">
-                          {m === "onetime"
-                            ? "One-time purchase"
-                            : `Subscribe & save ${product.subscriptionSavings}%`}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-
-                  {mode === "subscribe" && (
-                    <div className="mt-4">
-                      <p className="text-sm font-medium text-charcoal">Delivery cadence</p>
-                      <div className="mt-2 grid grid-cols-3 gap-2">
-                        {([30, 60, 90] as const).map((c) => (
-                          <button
-                            key={c}
-                            type="button"
-                            onClick={() => setCadence(c)}
-                            className={`rounded-2xl border px-3 py-3 text-center text-sm transition-all ${
-                              cadence === c
-                                ? "border-sky-500 bg-sky-50 text-charcoal"
-                                : "border-sky-100 bg-white text-charcoal-mid hover:border-sky-300"
-                            }`}
-                          >
-                            <span className="block font-display font-semibold">
-                              {c} days
-                            </span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {isScentCompatible(product) && (
-                  <div className="mt-5">
-                    <ScentAddOn
-                      value={scentSelection}
-                      onChange={setScentSelection}
-                    />
-                  </div>
-                )}
-
-                <div className="mt-5 flex items-center gap-4">
-                  <div className="flex items-center rounded-pill bg-canvas ring-1 ring-sky-100">
-                    <button
-                      type="button"
-                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      aria-label="Decrease quantity"
-                      className="flex h-10 w-10 items-center justify-center text-charcoal-mid hover:text-charcoal"
-                    >
-                      <Minus size={14} />
-                    </button>
-                    <span className="min-w-8 text-center text-sm font-medium text-charcoal">
-                      {quantity}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setQuantity((q) => Math.min(24, q + 1))}
-                      aria-label="Increase quantity"
-                      className="flex h-10 w-10 items-center justify-center text-charcoal-mid hover:text-charcoal"
-                    >
-                      <Plus size={14} />
-                    </button>
-                  </div>
-                  <Button size="lg" className="flex-1" arrow>
-                    Add to cart · ${total.toFixed(2)}
-                  </Button>
-                </div>
+                    )}
+                </span>
               </div>
 
-              <ul className="mt-6 grid gap-2 text-sm text-charcoal-mid sm:grid-cols-2">
-                {[
-                  "Free shipping on subscriptions",
-                  "Pause or cancel anytime",
-                  "Replacement reminders",
-                  `Ships in 3-5 business days`,
-                ].map((b) => (
-                  <li key={b} className="flex items-center gap-2">
-                    <Check size={14} className="text-sky-600" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-5">
+                <PurchaseConfigurator product={product} config={config} />
+              </div>
             </div>
           </div>
         </div>
@@ -672,19 +320,35 @@ export function ProductDetail({ product }: Props) {
         </div>
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-sky-100 bg-white/95 p-3 shadow-card backdrop-blur lg:hidden">
-        <div className="container-x flex items-center justify-between gap-3">
-          <div>
-            <p className="font-display text-sm font-semibold text-charcoal">{product.name}</p>
-            <p className="text-xs text-charcoal-light">
-              ${unitPrice.toFixed(2)} · {size}
-            </p>
+      {/* Appears once configuring has begun, so it never covers the page on arrival. */}
+      {config.touched && (
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#E8EEF3] bg-white/95 px-4 py-2.5 shadow-[0_-8px_30px_-18px_rgba(11,90,148,0.5)] backdrop-blur lg:hidden">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="truncate text-[13px] font-semibold text-charcoal">
+                {config.sizeLabel} · MERV {tier.merv}
+              </p>
+              <p className="text-[11px] text-charcoal-light">
+                {config.packQty} {config.packQty === 1 ? "filter" : "filters"}
+                {config.purchaseType === "subscribe"
+                  ? ` · every ${config.cadence} days`
+                  : " · one-time"}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={config.addToCart}
+              disabled={!config.canAddToCart}
+              className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-sky-500 px-5 text-sm font-semibold text-white transition-colors hover:bg-sky-600 disabled:bg-charcoal-light"
+            >
+              Add to cart
+              {config.quote.total != null && (
+                <span className="opacity-70">{formatPrice(config.quote.total)}</span>
+              )}
+            </button>
           </div>
-          <Button size="md" arrow>
-            Add to cart
-          </Button>
         </div>
-      </div>
+      )}
     </>
   );
 }

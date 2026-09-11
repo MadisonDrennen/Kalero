@@ -15,6 +15,7 @@ export function CartDrawer() {
     drawerOpen,
     itemCount,
     subtotal,
+    pricingConfirmed,
     updateQuantity,
     remove,
     closeDrawer,
@@ -155,10 +156,11 @@ export function CartDrawer() {
                       {subtotal == null ? "—" : `$${subtotal.toFixed(2)}`}
                     </span>
                   </div>
-                  {subtotal == null && (
-                    <p className="mt-2 text-[11px] text-charcoal-light">
-                      Pricing is being finalized. You&apos;ll see totals here once
-                      variants are priced.
+                  {!pricingConfirmed && (
+                    <p className="mt-2 text-[11px] text-charcoal-mid">
+                      {subtotal == null
+                        ? "Pricing is being finalized. You'll see totals here once variants are priced."
+                        : "Indicative total. Checkout opens once variant pricing is confirmed."}
                     </p>
                   )}
                   {businessConfig.shippingMessage && (
@@ -168,10 +170,10 @@ export function CartDrawer() {
                   )}
                   <button
                     type="button"
-                    disabled={subtotal == null}
+                    disabled={!pricingConfirmed}
                     className="mt-4 flex h-12 w-full items-center justify-center rounded-full bg-charcoal text-sm font-semibold text-white transition-colors hover:bg-charcoal-soft disabled:cursor-not-allowed disabled:bg-charcoal/40"
                   >
-                    {subtotal == null ? "Checkout unavailable" : "Checkout"}
+                    {pricingConfirmed ? "Checkout" : "Checkout unavailable"}
                   </button>
                   <Link
                     href="/cart"

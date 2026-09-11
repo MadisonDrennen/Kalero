@@ -12,6 +12,8 @@ export type FilterTier = {
   merv: MervRating;
   tagline: string;
   positioning: string;
+  /** Two or three words for the tier cards in the PDP configurator. */
+  shortBenefit: string;
   bestFor: string[];
   captures: string[];
   colorToken: "merv-standard" | "merv-pro" | "merv-max";
@@ -20,6 +22,8 @@ export type FilterTier = {
   deepHex: string;
   /** The tier's packaging render. */
   heroImage: string;
+  /** The filter itself, three-quarter view. */
+  angleImage: string;
 };
 
 export const tiers: FilterTier[] = [
@@ -28,6 +32,7 @@ export const tiers: FilterTier[] = [
     name: "Standard",
     merv: 8,
     tagline: "Everyday clean air.",
+    shortBenefit: "Everyday dust",
     positioning: "Everyday protection for cleaner home air.",
     bestFor: ["Everyday homes", "Baseline filtration", "Households without pets"],
     captures: ["Household dust", "Pollen", "Lint", "Larger airborne particles"],
@@ -36,12 +41,14 @@ export const tiers: FilterTier[] = [
     softHex: "#DDF1FB",
     deepHex: "#0C74B0",
     heroImage: "/images/products/merv-8-pack.png",
+    angleImage: "/images/products/merv-8-angle.png",
   },
   {
     id: "pro",
     name: "Pro",
     merv: 11,
     tagline: "More protection for the home you live in.",
+    shortBenefit: "Pets + allergies",
     positioning: "Extra protection for pets, pollen, and everyday allergens.",
     bestFor: [
       "Homes with pets",
@@ -59,12 +66,14 @@ export const tiers: FilterTier[] = [
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
     heroImage: "/images/products/merv-11-pack.png",
+    angleImage: "/images/products/merv-11-angle.png",
   },
   {
     id: "max",
     name: "Max",
     merv: 13,
     tagline: "When cleaner air matters most.",
+    shortBenefit: "Smoke + bacteria",
     positioning: "Our strongest filtration for homes where air quality matters most.",
     bestFor: [
       "Homes near wildfire smoke",
@@ -82,6 +91,7 @@ export const tiers: FilterTier[] = [
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
     heroImage: "/images/products/merv-13-pack.png",
+    angleImage: "/images/products/merv-13-angle.png",
   },
 ];
 
@@ -89,6 +99,19 @@ export function tierById(id: TierId): FilterTier {
   const t = tiers.find((x) => x.id === id);
   if (!t) throw new Error(`Unknown tier id: ${id}`);
   return t;
+}
+
+/**
+ * The tier a legacy product record starts on in the configurator.
+ *
+ * Products carrying a MERV rating open on their own tier. Specialty filters
+ * (Activated Carbon, rotating seasonal drops) have no MERV equivalent, so they
+ * open on Pro — the middle choice, which neither under- nor over-sells them.
+ */
+export function tierForProduct(merv: string): TierId {
+  const m = /^MERV (\d+)$/.exec(merv);
+  const t = m ? tiers.find((x) => x.merv === Number(m[1])) : undefined;
+  return t?.id ?? "pro";
 }
 
 export function tierByMerv(merv: MervRating): FilterTier {

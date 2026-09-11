@@ -145,6 +145,13 @@ export const sizes: FilterSize[] = [
 
 export const popularSizes = sizes.filter((s) => s.popular);
 
+/**
+ * Pre-selected on the product page. The most common US residential size, so
+ * most visitors never touch the size picker at all. Falls back gracefully when
+ * a product isn't offered in it.
+ */
+export const DEFAULT_SIZE_SLUG = "20x25x1";
+
 /** Legacy alias — keeps STANDARD_SIZES imports working during migration. */
 export const STANDARD_SIZES = sizes.map(formatSize);
 
