@@ -17,8 +17,8 @@ export type Category = {
   icon: "dust" | "paw" | "flower" | "flame" | "leaf" | "sparkles";
   /**
    * Whether this line is on sale yet. Launch is the three MERV tiers only --
-   * Everyday, Pet and Allergy -- so Hotel and Seasonal are defined but not
-   * shown. One flag rather than a `!== "hotel"` in every grid: the last time a
+   * Everyday (8), Pet (11) and Allergy (13) -- so Smoke, Carbon, Hotel and
+   * Seasonal are defined but not shown. One flag rather than a `!== "hotel"` in every grid: the last time a
    * category was hidden it took four separate filters, and any surface that
    * forgot one leaked it.
    */
@@ -114,7 +114,7 @@ export const categories: Category[] = [
     softHex: "#E6E2EF",
     deepHex: "#4E4278",
     icon: "flame",
-    live: true,
+    live: false,
   },
   {
     key: "carbon",
@@ -132,7 +132,7 @@ export const categories: Category[] = [
     softHex: "#E7E5EB",
     deepHex: "#2B2B33",
     icon: "sparkles",
-    live: true,
+    live: false,
   },
   {
     key: "seasonal",

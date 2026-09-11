@@ -6,6 +6,18 @@
 export type TierId = "standard" | "pro" | "max";
 export type MervRating = 8 | 11 | 13;
 
+/** Kept to a closed set so a tier cannot name an icon the card cannot draw. */
+export type HandledIcon =
+  | "dust"
+  | "pets"
+  | "pollen"
+  | "allergens"
+  | "dander"
+  | "smoke"
+  | "smog"
+  | "bacteria"
+  | "odors";
+
 export type FilterTier = {
   id: TierId;
   name: string;
@@ -14,12 +26,25 @@ export type FilterTier = {
   positioning: string;
   /** Two or three words for the tier cards in the PDP configurator. */
   shortBenefit: string;
+  /**
+   * What this tier is for, as four scannable chips. Separate from `bestFor`,
+   * which is prose for the product page -- these are one or two words each
+   * because they sit under an icon.
+   */
+  handles: { icon: HandledIcon; label: string }[];
   bestFor: string[];
   captures: string[];
   colorToken: "merv-standard" | "merv-pro" | "merv-max";
   hex: string;
   softHex: string;
+  /** For tier-coloured text and icons on white. */
   deepHex: string;
+  /**
+   * For white text on a solid tier fill -- buttons. Not the same job as
+   * deepHex: mint at #4E9770 reads fine as text on white but only reaches
+   * 3.5:1 behind white, under the 4.5:1 floor, so the fill is darker.
+   */
+  actionHex: string;
   /** The tier's packaging render. */
   heroImage: string;
   /** The filter itself, three-quarter view. */
@@ -35,6 +60,12 @@ export const tiers: FilterTier[] = [
     merv: 8,
     tagline: "Everyday clean air.",
     shortBenefit: "Everyday dust",
+    handles: [
+      { icon: "dust", label: "Dust" },
+      { icon: "pets", label: "Pets" },
+      { icon: "pollen", label: "Pollen" },
+      { icon: "allergens", label: "Everyday allergens" },
+    ],
     positioning: "Everyday protection for cleaner home air.",
     bestFor: ["Everyday homes", "Baseline filtration", "Households without pets"],
     captures: ["Household dust", "Pollen", "Lint", "Larger airborne particles"],
@@ -42,6 +73,7 @@ export const tiers: FilterTier[] = [
     hex: "#37B2E6",
     softHex: "#DDF1FB",
     deepHex: "#0C74B0",
+    actionHex: "#0C74B0",
     heroImage: "/images/products/merv-8-4pack.jpg",
     angleImage: "/images/products/merv-8-box.png",
     filterImage: "/images/products/merv-8-filter.jpg",
@@ -52,6 +84,12 @@ export const tiers: FilterTier[] = [
     merv: 11,
     tagline: "More protection for the home you live in.",
     shortBenefit: "Pets + allergies",
+    handles: [
+      { icon: "pets", label: "Pets" },
+      { icon: "allergens", label: "Allergies" },
+      { icon: "pollen", label: "Pollen" },
+      { icon: "dander", label: "Dander" },
+    ],
     positioning: "Extra protection for pets, pollen, and everyday allergens.",
     bestFor: [
       "Homes with pets",
@@ -68,6 +106,7 @@ export const tiers: FilterTier[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
+    actionHex: "#3D7B5A",
     heroImage: "/images/products/merv-11-4pack.jpg",
     angleImage: "/images/products/merv-11-box.png",
     filterImage: "/images/products/merv-11-filter.jpg",
@@ -78,6 +117,12 @@ export const tiers: FilterTier[] = [
     merv: 13,
     tagline: "When cleaner air matters most.",
     shortBenefit: "Smoke + bacteria",
+    handles: [
+      { icon: "smoke", label: "Smoke" },
+      { icon: "smog", label: "Smog" },
+      { icon: "bacteria", label: "Bacteria" },
+      { icon: "odors", label: "Odors" },
+    ],
     positioning: "Our strongest filtration for homes where air quality matters most.",
     bestFor: [
       "Homes near wildfire smoke",
@@ -94,6 +139,7 @@ export const tiers: FilterTier[] = [
     hex: "#C1A1CC",
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
+    actionHex: "#7E3E98",
     heroImage: "/images/products/merv-13-4pack.jpg",
     angleImage: "/images/products/merv-13-box.png",
     filterImage: "/images/products/merv-13-filter.jpg",
