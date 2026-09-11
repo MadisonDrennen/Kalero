@@ -24,6 +24,8 @@ export type FilterTier = {
   heroImage: string;
   /** The filter itself, three-quarter view. */
   angleImage: string;
+  /** The filter out of its carton, showing the tier's media colour. */
+  filterImage: string;
 };
 
 export const tiers: FilterTier[] = [
@@ -40,8 +42,9 @@ export const tiers: FilterTier[] = [
     hex: "#37B2E6",
     softHex: "#DDF1FB",
     deepHex: "#0C74B0",
-    heroImage: "/images/products/merv-8-pack.png",
-    angleImage: "/images/products/merv-8-angle.png",
+    heroImage: "/images/products/merv-8-4pack.jpg",
+    angleImage: "/images/products/merv-8-box.png",
+    filterImage: "/images/products/merv-8-filter.jpg",
   },
   {
     id: "pro",
@@ -65,8 +68,9 @@ export const tiers: FilterTier[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
-    heroImage: "/images/products/merv-11-pack.png",
-    angleImage: "/images/products/merv-11-angle.png",
+    heroImage: "/images/products/merv-11-4pack.jpg",
+    angleImage: "/images/products/merv-11-box.png",
+    filterImage: "/images/products/merv-11-filter.jpg",
   },
   {
     id: "max",
@@ -90,8 +94,9 @@ export const tiers: FilterTier[] = [
     hex: "#C1A1CC",
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
-    heroImage: "/images/products/merv-13-pack.png",
-    angleImage: "/images/products/merv-13-angle.png",
+    heroImage: "/images/products/merv-13-4pack.jpg",
+    angleImage: "/images/products/merv-13-box.png",
+    filterImage: "/images/products/merv-13-filter.jpg",
   },
 ];
 

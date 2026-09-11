@@ -106,7 +106,7 @@ export default function SubscriptionsPage() {
       {/* HERO */}
       <section className="relative isolate overflow-hidden bg-sky-100">
         <Image
-          src="/images/New Subsriptions Hero Image.png"
+          src="/images/products/lifestyle-home.jpg"
           alt=""
           fill
           sizes="100vw"

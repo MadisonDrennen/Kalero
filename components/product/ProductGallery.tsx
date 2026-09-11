@@ -10,7 +10,9 @@ import { tierById, tiers, type TierId } from "@/lib/tiers";
 type Shot = { src: string; label: string };
 
 /** Every tier render, so another tier's artwork never trails into this one. */
-const TIER_ART = new Set(tiers.flatMap((t) => [t.angleImage, t.heroImage]));
+const TIER_ART = new Set(
+  tiers.flatMap((t) => [t.angleImage, t.filterImage, t.heroImage]),
+);
 
 /**
  * Product visuals for the hero.
@@ -30,8 +32,9 @@ export function ProductGallery({
 
   const shots = useMemo<Shot[]>(() => {
     const list: Shot[] = [
-      { src: tier.angleImage, label: "Filter" },
-      { src: tier.heroImage, label: "Packaging" },
+      { src: tier.angleImage, label: "Packaging" },
+      { src: tier.filterImage, label: "The filter" },
+      { src: tier.heroImage, label: "Four pack" },
     ];
     // A product's own render is usually just one of the tier renders; only add
     // it when it's genuinely a different shot.

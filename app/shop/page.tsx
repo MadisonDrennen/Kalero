@@ -10,12 +10,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { productBySlug } from "@/lib/products";
 
 const concernImage: Record<string, string> = {
-  "everyday-dust": "/images/products/merv-8-angle.png",
-  "pets-and-dander": "/images/products/merv-11-angle.png",
-  "allergies-and-pollen": "/images/products/merv-13-angle.png",
-  "smoke-and-pollution": "/images/products/merv-13-angle.png",
-  "odors-and-vocs": "/images/products/merv-13-angle.png",
-  "hotel-collection": "/images/products/merv-11-angle.png",
+  "everyday-dust": "/images/products/merv-8-box.png",
+  "pets-and-dander": "/images/products/merv-11-box.png",
+  "allergies-and-pollen": "/images/products/merv-13-box.png",
+  "smoke-and-pollution": "/images/products/merv-13-box.png",
+  "odors-and-vocs": "/images/products/merv-13-box.png",
+  "hotel-collection": "/images/products/merv-11-box.png",
 };
 
 export const metadata: Metadata = {

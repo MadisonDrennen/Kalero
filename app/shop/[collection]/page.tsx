@@ -6,26 +6,32 @@ import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { categories, categoryBySlug } from "@/lib/categories";
 import { products, productsByCategory, type CategoryKey } from "@/lib/products";
 
+/**
+ * Three genuinely different views per collection: the carton, the filter out of
+ * it, and the four pack. This used to be the same render three times under
+ * three labels ("Front view", "Airflow detail", "In the vent"), which promised
+ * angles the photography never had.
+ */
 const angleImages: Partial<Record<CategoryKey, { src: string; label: string }[]>> = {
   everyday: [
-    { src: "/images/products/merv-8-angle.png", label: "Front view" },
-    { src: "/images/products/merv-8-angle.png", label: "Airflow detail" },
-    { src: "/images/products/merv-8-angle.png", label: "In the vent" },
+    { src: "/images/products/merv-8-box.png", label: "Packaging" },
+    { src: "/images/products/merv-8-filter.jpg", label: "The filter" },
+    { src: "/images/products/merv-8-4pack.jpg", label: "Four pack" },
   ],
   pet: [
-    { src: "/images/products/merv-11-angle.png", label: "Front view" },
-    { src: "/images/products/merv-11-angle.png", label: "Airflow detail" },
-    { src: "/images/products/merv-11-angle.png", label: "In the vent" },
+    { src: "/images/products/merv-11-box.png", label: "Packaging" },
+    { src: "/images/products/merv-11-filter.jpg", label: "The filter" },
+    { src: "/images/products/merv-11-4pack.jpg", label: "Four pack" },
   ],
   allergy: [
-    { src: "/images/products/merv-13-angle.png", label: "Front view" },
-    { src: "/images/products/merv-13-angle.png", label: "Airflow detail" },
-    { src: "/images/products/merv-13-angle.png", label: "In the vent" },
+    { src: "/images/products/merv-13-box.png", label: "Packaging" },
+    { src: "/images/products/merv-13-filter.jpg", label: "The filter" },
+    { src: "/images/products/merv-13-4pack.jpg", label: "Four pack" },
   ],
   hotel: [
-    { src: "/images/products/merv-11-angle.png", label: "Front view" },
-    { src: "/images/products/merv-11-angle.png", label: "Airflow detail" },
-    { src: "/images/products/merv-11-angle.png", label: "In the vent" },
+    { src: "/images/products/merv-11-box.png", label: "Packaging" },
+    { src: "/images/products/merv-11-filter.jpg", label: "The filter" },
+    { src: "/images/products/merv-11-4pack.jpg", label: "Four pack" },
   ],
 };
 import { PageHeader } from "@/components/ui/PageHeader";

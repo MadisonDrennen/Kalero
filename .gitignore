@@ -39,3 +39,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 ui-ux-pro-max-skill-main 2 copy/
+
+# Full-resolution originals. The web copies live in public/images/products,
+# compressed; these stay out of the repo and off the deploy.
+/source-images
