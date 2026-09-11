@@ -152,6 +152,76 @@ export const popularSizes = sizes.filter((s) => s.popular);
  */
 export const DEFAULT_SIZE_SLUG = "20x25x1";
 
+/**
+ * The homepage "Most popular sizes" module, by filter depth.
+ *
+ * Deliberately separate from the `sizes` catalogue above. That one is the
+ * variant model — every size we actually build a SKU for. This is a
+ * merchandising shortlist: the handful of sizes worth putting in front of
+ * someone who already knows theirs, capped so the module stays scannable.
+ * Growing one should never silently grow the other.
+ *
+ * The 1" list is business-supplied. The 2", 4" and 5" lists are the standard
+ * industry sets and still need confirming against what KALERO actually
+ * stocks — edit the pairs here, nothing else needs to change.
+ */
+export type PopularDepth = 1 | 2 | 4 | 5;
+
+export const POPULAR_DEPTHS: PopularDepth[] = [1, 2, 4, 5];
+
+/** [width, height] pairs. Depth comes from the key. */
+const popularByDepth: Record<PopularDepth, [number, number][]> = {
+  1: [
+    [10, 20], [12, 20], [12, 24], [12, 25],
+    [14, 20], [14, 24], [14, 25], [16, 20],
+    [16, 24], [16, 25], [18, 20], [18, 24],
+    [18, 25], [20, 20], [20, 24], [20, 25],
+    [20, 30], [24, 20], [24, 24], [24, 25],
+  ],
+  2: [
+    [10, 20], [12, 20], [12, 24], [12, 25],
+    [14, 20], [14, 24], [14, 25], [16, 20],
+    [16, 24], [16, 25], [18, 20], [18, 24],
+    [18, 25], [20, 20], [20, 24], [20, 25],
+    [20, 30], [24, 24], [24, 25], [25, 25],
+  ],
+  4: [
+    [12, 24], [14, 20], [14, 24], [14, 25],
+    [16, 20], [16, 24], [16, 25], [18, 20],
+    [18, 24], [18, 25], [20, 20], [20, 24],
+    [20, 25], [20, 30], [24, 24], [24, 25],
+    [25, 25],
+  ],
+  // 5" is a media-cabinet depth and genuinely has fewer standard sizes, so
+  // this list is shorter rather than padded out to twenty.
+  5: [
+    [12, 24], [14, 25], [16, 20], [16, 25],
+    [18, 25], [20, 20], [20, 24], [20, 25],
+    [20, 30], [24, 25], [25, 25],
+  ],
+};
+
+export type PopularSize = { slug: string; label: string };
+
+/** The module shows at most twenty; it is a shortcut, not the directory. */
+export function popularSizesForDepth(
+  depth: PopularDepth,
+  limit = 20,
+): PopularSize[] {
+  return popularByDepth[depth].slice(0, limit).map(([w, h]) => ({
+    slug: sizeSlug(w, h, depth),
+    label: `${w} × ${h} × ${depth}`,
+  }));
+}
+
+/**
+ * Where a size links. Today `/air-filters/:slug` 307s to /shop (see
+ * next.config.ts); when the real size page lands, every caller follows.
+ */
+export function sizeHref(slug: string): string {
+  return `/air-filters/${slug}`;
+}
+
 /** Legacy alias — keeps STANDARD_SIZES imports working during migration. */
 export const STANDARD_SIZES = sizes.map(formatSize);
 
