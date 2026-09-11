@@ -166,8 +166,8 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
         <div className="h-5" aria-hidden="true" />
         <Link
           href={`/merv-${t.merv}`}
-          className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          style={{ backgroundColor: t.actionHex, outlineColor: t.actionHex }}
+          className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-[filter] duration-150 hover:brightness-[0.96] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          style={{ backgroundColor: t.hex, color: t.onHex, outlineColor: t.deepHex }}
         >
           Shop {t.name}
           <ArrowRight size={16} strokeWidth={2.25} aria-hidden="true" />

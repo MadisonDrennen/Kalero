@@ -40,11 +40,13 @@ export type FilterTier = {
   /** For tier-coloured text and icons on white. */
   deepHex: string;
   /**
-   * For white text on a solid tier fill -- buttons. Not the same job as
-   * deepHex: mint at #4E9770 reads fine as text on white but only reaches
-   * 3.5:1 behind white, under the 4.5:1 floor, so the fill is darker.
+   * Text colour to sit on a solid `hex` fill. Brand Kit v5 fixes the tier
+   * colours as spectrum stops and they are all pastels, so white on them runs
+   * 1.9:1 to 2.4:1 -- well under the 4.5:1 floor. Carbon on the same fills runs
+   * 8:1 to 10:1, which keeps the button the real tier colour instead of a
+   * darkened stand-in the kit does not define.
    */
-  actionHex: string;
+  onHex: string;
   /** The tier's packaging render. */
   heroImage: string;
   /** The filter itself, three-quarter view. */
@@ -73,7 +75,7 @@ export const tiers: FilterTier[] = [
     hex: "#37B2E6",
     softHex: "#DDF1FB",
     deepHex: "#0C74B0",
-    actionHex: "#0C74B0",
+    onHex: "#0B0D10",
     heroImage: "/images/products/merv-8-4pack.jpg",
     angleImage: "/images/products/merv-8-box.png",
     filterImage: "/images/products/merv-8-filter.jpg",
@@ -106,7 +108,7 @@ export const tiers: FilterTier[] = [
     hex: "#86CCA8",
     softHex: "#DDEEE0",
     deepHex: "#4E9770",
-    actionHex: "#3D7B5A",
+    onHex: "#0B0D10",
     heroImage: "/images/products/merv-11-4pack.jpg",
     angleImage: "/images/products/merv-11-box.png",
     filterImage: "/images/products/merv-11-filter.jpg",
@@ -139,7 +141,7 @@ export const tiers: FilterTier[] = [
     hex: "#C1A1CC",
     softHex: "#EDDDF3",
     deepHex: "#7E3E98",
-    actionHex: "#7E3E98",
+    onHex: "#0B0D10",
     heroImage: "/images/products/merv-13-4pack.jpg",
     angleImage: "/images/products/merv-13-box.png",
     filterImage: "/images/products/merv-13-filter.jpg",
