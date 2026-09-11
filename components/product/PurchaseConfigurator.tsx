@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Check, Minus, Plus, Sparkles } from "lucide-react";
 import { SizeCombobox } from "@/components/product/SizeCombobox";
+import { MervShield } from "@/components/ui/MervShield";
 import type { ProductConfig } from "@/components/product/useProductConfig";
 import { businessConfig } from "@/lib/business";
 import { formatPrice } from "@/lib/pricing";
@@ -62,28 +63,39 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
                   role="radio"
                   aria-checked={selected}
                   onClick={() => config.setTier(t.id)}
-                  className="relative rounded-xl border px-2.5 pb-3 pt-3.5 text-left transition-all hover:-translate-y-px"
+                  className="group relative flex flex-col items-center rounded-xl border px-2 pb-3 pt-4 text-center transition-all duration-200 hover:-translate-y-0.5"
                   style={{
                     borderColor: selected ? t.hex : LINE,
-                    boxShadow: selected ? `inset 0 0 0 1px ${t.hex}` : undefined,
-                    background: selected ? `${t.softHex}55` : "#FFFFFF",
+                    boxShadow: selected
+                      ? `inset 0 0 0 1px ${t.hex}, 0 10px 24px -16px ${t.deepHex}`
+                      : undefined,
+                    background: selected
+                      ? `linear-gradient(180deg, ${t.softHex}66 0%, #FFFFFF 78%)`
+                      : "#FFFFFF",
                   }}
                 >
-                  <span
-                    className="block h-1 w-7 rounded-full"
-                    style={{ backgroundColor: t.hex }}
-                    aria-hidden="true"
+                  {/* The packaging shield, not a plain number — the same badge
+                      printed on the box the customer will unwrap. */}
+                  <MervShield
+                    rating={String(t.merv)}
+                    size="sm"
+                    color={t.deepHex}
+                    showLabel={false}
+                    decorative
+                    className={`transition-transform duration-200 ${
+                      selected
+                        ? "scale-105"
+                        : "opacity-90 group-hover:scale-105 group-hover:opacity-100"
+                    }`}
                   />
-                  <span className="mt-2.5 block font-display text-lg font-bold leading-none text-charcoal">
-                    MERV {t.merv}
-                  </span>
+                  <span className="sr-only">MERV {t.merv}</span>
                   <span
-                    className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.14em]"
+                    className="mt-2.5 block text-[11px] font-bold uppercase tracking-[0.16em]"
                     style={{ color: t.deepHex }}
                   >
                     {t.name}
                   </span>
-                  <span className="mt-1.5 block text-[11px] leading-snug text-charcoal-mid">
+                  <span className="mt-1 block text-[11px] leading-snug text-charcoal-mid">
                     {t.shortBenefit}
                   </span>
                   {selected && (

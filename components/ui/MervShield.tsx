@@ -1,11 +1,17 @@
 /**
  * MERV shield badge — pulled directly from Kalero packaging.
- * Sky-blue shield with rating + STANDARD/PREMIUM label.
+ * Shield with the rating, in the tier's colour.
  */
 type Props = {
   rating: string;
   label?: string;
   size?: "xs" | "sm" | "md";
+  /** Tier colour. Defaults to KALERO blue, the Standard tier's own. */
+  color?: string;
+  /** Hide the label inside the shield when the card already spells it out. */
+  showLabel?: boolean;
+  /** Set when surrounding text already carries the meaning. */
+  decorative?: boolean;
   className?: string;
 };
 
@@ -34,32 +40,35 @@ export function MervShield({
   rating,
   label = "Standard",
   size = "sm",
+  color,
+  showLabel = true,
+  decorative = false,
   className = "",
 }: Props) {
   const d = dims[size];
   return (
     <div
-      aria-label={`MERV ${rating} ${label}`}
-      className={`relative flex flex-col items-center justify-center bg-sky-500 pt-1.5 text-white shadow-soft ${d.box} ${className}`}
+      aria-hidden={decorative || undefined}
+      aria-label={decorative ? undefined : `MERV ${rating} ${label}`}
+      className={`relative flex flex-col items-center justify-center pt-1.5 text-white shadow-soft ${color ? "" : "bg-sky-500"} ${d.box} ${className}`}
       style={{
+        backgroundColor: color,
         clipPath: "polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%)",
       }}
     >
-      <span
-        className={`${d.top} font-semibold uppercase tracking-[0.14em]`}
-      >
+      <span className={`${d.top} font-semibold uppercase tracking-[0.14em]`}>
         MERV
       </span>
-      <span
-        className={`${d.rating} font-display font-bold leading-none`}
-      >
+      <span className={`${d.rating} font-display font-bold leading-none`}>
         {rating}
       </span>
-      <span
-        className={`mt-0.5 ${d.bottom} font-medium uppercase tracking-[0.14em]`}
-      >
-        {label}
-      </span>
+      {showLabel && (
+        <span
+          className={`mt-0.5 ${d.bottom} font-medium uppercase tracking-[0.14em]`}
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 }
