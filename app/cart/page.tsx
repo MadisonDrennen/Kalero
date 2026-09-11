@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, RefreshCw, ShieldCheck, ShoppingBag, Truck } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
-import { categories } from "@/lib/categories";
+import { liveCategories } from "@/lib/categories";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { CartScentUpsell } from "@/components/scent/CartScentUpsell";
 
@@ -18,9 +18,7 @@ const trustPoints = [
   { Icon: ShieldCheck, label: "30-day filter guarantee" },
 ];
 
-const suggestedConcerns = categories
-  .filter((c) => c.key !== "seasonal")
-  .slice(0, 4);
+const suggestedConcerns = liveCategories.slice(0, 4);
 
 export default function CartPage() {
   return (

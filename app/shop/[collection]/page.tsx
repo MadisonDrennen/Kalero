@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
-import { categories, categoryBySlug } from "@/lib/categories";
+import { categories, categoryBySlug, liveCategories } from "@/lib/categories";
 import { products, productsByCategory, type CategoryKey } from "@/lib/products";
 
 /**
@@ -28,11 +28,6 @@ const angleImages: Partial<Record<CategoryKey, { src: string; label: string }[]>
     { src: "/images/products/merv-13-filter.jpg", label: "The filter" },
     { src: "/images/products/merv-13-4pack.jpg", label: "Four pack" },
   ],
-  hotel: [
-    { src: "/images/products/merv-11-box.png", label: "Packaging" },
-    { src: "/images/products/merv-11-filter.jpg", label: "The filter" },
-    { src: "/images/products/merv-11-4pack.jpg", label: "Four pack" },
-  ],
 };
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ProductCard } from "@/components/product/ProductCard";
@@ -42,7 +37,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function generateStaticParams() {
-  return categories.map((c) => ({ collection: c.slug }));
+  return liveCategories.map((c) => ({ collection: c.slug }));
 }
 
 export async function generateMetadata({
@@ -66,15 +61,17 @@ export default async function CollectionPage({
 }) {
   const { collection } = await params;
   const category = categoryBySlug(collection);
-  if (!category) notFound();
+  /* Same reason as the product route: the page is dynamic, so a category that
+     is defined but not on sale would still render without this. */
+  if (!category || !category.live) notFound();
 
   const inCategory = productsByCategory(category.key);
   const featured = inCategory[0];
   const others = products
-    .filter((p) => p.category !== category.key && p.category !== "seasonal")
+    .filter((p) => p.category !== category.key)
     .slice(0, 3);
   const otherCategories = categories.filter(
-    (c) => c.key !== category.key && c.key !== "seasonal",
+    (c) => c.key !== category.key,
   );
 
   return (

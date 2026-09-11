@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { products } from "@/lib/products";
+import { liveProducts } from "@/lib/categories";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -25,7 +25,7 @@ export function ProductCollection() {
               A filter for every kind of home.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-charcoal-mid text-pretty">
-              Six clearly named filters, one for each real-life air concern. Sizes are
+              One clearly named filter for each real-life air concern. Sizes are
               standard residential, and every one is subscription-ready.
             </p>
           </div>
@@ -39,30 +39,13 @@ export function ProductCollection() {
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, i) => (
+          {liveProducts.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.04}>
               <ProductCard product={p} />
             </Reveal>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-start gap-3 rounded-card bg-white p-6 ring-1 ring-sky-100 shadow-soft sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-display text-lg font-semibold text-charcoal">
-              For hotels, property groups, and multi-building supply
-            </p>
-            <p className="mt-1 text-sm text-charcoal-mid">
-              KALERO&apos;s Hotel Collection is our separate hospitality and property-management offering.
-            </p>
-          </div>
-          <Link
-            href="/hotel-property"
-            className="inline-flex items-center gap-2 rounded-pill bg-gold px-5 py-2.5 text-sm font-medium text-charcoal transition-colors hover:bg-gold-deep hover:text-white"
-          >
-            Explore property supply
-            <ArrowRight size={16} />
-          </Link>
-        </div>
       </div>
     </section>
   );

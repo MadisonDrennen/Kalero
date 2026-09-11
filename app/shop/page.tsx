@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { products } from "@/lib/products";
-import { categories } from "@/lib/categories";
+import { liveCategories, liveProducts } from "@/lib/categories";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { Reveal } from "@/components/ui/Reveal";
@@ -15,13 +15,12 @@ const concernImage: Record<string, string> = {
   "allergies-and-pollen": "/images/products/merv-13-box.png",
   "smoke-and-pollution": "/images/products/merv-13-box.png",
   "odors-and-vocs": "/images/products/merv-13-box.png",
-  "hotel-collection": "/images/products/merv-11-box.png",
 };
 
 export const metadata: Metadata = {
   title: "Shop Home Air Filters | MERV 8, 11, 13 by Concern",
   description:
-    "Shop every KALERO home air filter, sorted by concern, pet dander, allergies, smoke, dust, odors, and hotel supply. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes. Free shipping on subscriptions.",
+    "Shop every KALERO home air filter, sorted by concern, pet dander, allergies, smoke, dust, and odors. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes. Free shipping on subscriptions.",
   alternates: { canonical: "/shop" },
   keywords: [
     "home air filters",
@@ -41,12 +40,12 @@ export const metadata: Metadata = {
   ],
 };
 
-const visibleCategories = (() => {
-  const list = categories.filter((c) => c.key !== "seasonal");
-  const hotel = list.find((c) => c.key === "hotel");
-  const rest = list.filter((c) => c.key !== "hotel");
-  return hotel ? [...rest, hotel] : rest;
-})();
+const visibleCategories = liveCategories;
+
+/** Small enough a lookup beats pulling in a number-to-words dependency. */
+const COUNT_WORD: Record<number, string> = {
+  2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven",
+};
 
 export default function ShopPage() {
   return (
@@ -74,7 +73,10 @@ export default function ShopPage() {
               Start with what&apos;s in your air.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-charcoal-mid text-pretty">
-              Six clearly named concerns for six clearly named filters. Pick the one that
+              {/* Counted, not written out -- this said "six" for a while after
+                  the list stopped being six. */}
+              {visibleCategories.length === 1 ? "One" : COUNT_WORD[visibleCategories.length] ?? visibleCategories.length}{" "}
+              clearly named concerns for as many clearly named filters. Pick the one that
               sounds most like your home and we&apos;ll take it from there.
             </p>
             <Link
@@ -171,7 +173,7 @@ export default function ShopPage() {
                 id="shop-products"
                 className="mt-3 font-display text-2xl font-semibold text-charcoal text-balance sm:text-3xl"
               >
-                {products.length} filters, ready to ship.
+                {liveProducts.length} filters, ready to ship.
               </h2>
             </div>
             <Link
@@ -186,7 +188,7 @@ export default function ShopPage() {
             className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: "none" }}
           >
-            {products.map((p) => (
+            {liveProducts.map((p) => (
               <div
                 key={p.slug}
                 className="w-[240px] shrink-0 snap-start sm:w-[260px] lg:w-[280px]"

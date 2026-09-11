@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { productBySlug, products } from "@/lib/products";
+import { liveProducts } from "@/lib/categories";
 import { ProductDetail } from "@/components/product/ProductDetail";
 
 const BASE_URL = "https://kalero.com";
 
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+  return liveProducts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -61,7 +62,9 @@ export default async function ProductPage({
 }) {
   const { slug } = await params;
   const product = productBySlug(slug);
-  if (!product) notFound();
+  /* Not just absent from generateStaticParams: the route is still dynamic, so
+     a hidden line would render on request without this. */
+  if (!product || !liveProducts.includes(product)) notFound();
 
   const productJsonLd = {
     "@context": "https://schema.org",

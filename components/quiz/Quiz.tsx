@@ -182,7 +182,10 @@ function scoreAnswers(a: Answers) {
   if (a.climate === "urban") score.smoke += 1;
   if (a.climate === "suburb") score.everyday += 1;
 
+  /* Only rank what is actually on sale. Seasonal could win this before and
+     has no product behind it; hotel is off for launch. */
   const ranked = (Object.keys(score) as CategoryKey[])
+    .filter((k) => categoryByKey(k)?.live)
     .map((k) => ({ key: k, val: score[k] }))
     .sort((a, b) => b.val - a.val);
 

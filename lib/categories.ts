@@ -1,4 +1,4 @@
-import type { CategoryKey } from "./products";
+import { products, type CategoryKey } from "./products";
 
 export type Category = {
   key: CategoryKey;
@@ -15,6 +15,14 @@ export type Category = {
   softHex: string;
   deepHex: string;
   icon: "dust" | "paw" | "flower" | "flame" | "leaf" | "sparkles";
+  /**
+   * Whether this line is on sale yet. Launch is the three MERV tiers only --
+   * Everyday, Pet and Allergy -- so Hotel and Seasonal are defined but not
+   * shown. One flag rather than a `!== "hotel"` in every grid: the last time a
+   * category was hidden it took four separate filters, and any surface that
+   * forgot one leaked it.
+   */
+  live: boolean;
 };
 
 export const categories: Category[] = [
@@ -34,6 +42,7 @@ export const categories: Category[] = [
     softHex: "#E5F2FD",
     deepHex: "#3A8FC9",
     icon: "dust",
+    live: true,
   },
   {
     key: "pet",
@@ -51,6 +60,7 @@ export const categories: Category[] = [
     softHex: "#EDF3D9",
     deepHex: "#6E8B27",
     icon: "paw",
+    live: true,
   },
   {
     key: "allergy",
@@ -68,6 +78,7 @@ export const categories: Category[] = [
     softHex: "#DCE3F0",
     deepHex: "#0F1F42",
     icon: "flower",
+    live: true,
   },
   {
     key: "hotel",
@@ -85,6 +96,7 @@ export const categories: Category[] = [
     softHex: "#FBEFD3",
     deepHex: "#B78A2E",
     icon: "sparkles",
+    live: false,
   },
   {
     key: "smoke",
@@ -102,6 +114,7 @@ export const categories: Category[] = [
     softHex: "#E6E2EF",
     deepHex: "#4E4278",
     icon: "flame",
+    live: true,
   },
   {
     key: "carbon",
@@ -119,6 +132,7 @@ export const categories: Category[] = [
     softHex: "#E7E5EB",
     deepHex: "#2B2B33",
     icon: "sparkles",
+    live: true,
   },
   {
     key: "seasonal",
@@ -136,8 +150,21 @@ export const categories: Category[] = [
     softHex: "#DCEEFA",
     deepHex: "#0B5A94",
     icon: "leaf",
+    live: false,
   },
 ];
+
+/** Everything on sale, in display order. The grids all read from this. */
+export const liveCategories = categories.filter((c) => c.live);
+
+/**
+ * Products whose category is on sale. Derived rather than a second flag, so a
+ * line can never be half-launched: turning a category live turns its products
+ * on with it. Lives here, not in products.ts, to keep the dependency one-way.
+ */
+export const liveProducts = products.filter(
+  (p) => categories.find((c) => c.key === p.category)?.live ?? false,
+);
 
 export const categoryByKey = (key: CategoryKey) =>
   categories.find((c) => c.key === key);
