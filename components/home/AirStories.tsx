@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { tiers, type TierId } from "@/lib/tiers";
-import { IridescentWave } from "@/components/ui/IridescentWave";
 
 /**
  * A photographic break between the comparison table and the brand story. The
@@ -33,8 +32,6 @@ export function AirStories() {
       aria-labelledby="air-stories-title"
       className="relative isolate py-16 sm:py-20"
     >
-      {/* the brand wave runs behind the heading and under the tops of the cards */}
-      <IridescentWave className="absolute inset-x-0 top-0 -z-10 h-80 w-full opacity-70 sm:h-[26rem]" />
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-eyebrow text-sky-700">Made for real air</p>
