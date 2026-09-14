@@ -8,6 +8,7 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { productBySlug } from "@/lib/products";
+import { tierById, tierForProduct } from "@/lib/tiers";
 
 const concernImage: Record<string, string> = {
   "everyday-dust": "/images/products/merv-8-box.png",
@@ -54,14 +55,16 @@ export default function ShopPage() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-sky-200 via-sky-100/70 to-canvas"
       />
+      {/* Clipped to the page width: the glows sit partly off-screen, and
+          unclipped they made the whole page 96px wider than the window, so it
+          scrolled sideways on a phone. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-24 top-0 -z-10 h-96 w-96 rounded-full bg-sky-300/40 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-24 top-24 -z-10 h-96 w-96 rounded-full bg-sky-400/30 blur-3xl"
-      />
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] overflow-hidden"
+      >
+        <div className="absolute -left-24 top-0 h-96 w-96 rounded-full bg-sky-300/40 blur-3xl" />
+        <div className="absolute -right-24 top-24 h-96 w-96 rounded-full bg-sky-400/30 blur-3xl" />
+      </div>
 
       <section aria-labelledby="shop-cats" className="pt-10 pb-12 sm:pt-14 sm:pb-16">
         <div className="container-x">
@@ -88,78 +91,82 @@ export default function ShopPage() {
             </Link>
           </div>
 
+          {/* Each concern in its tier's brand colour (blue, mint, lilac), with the
+              carton floating on that colour. The cards used their own category
+              palette -- a second blue, lime and navy, none of them in the brand
+              kit -- washed over a cropped carton, which muddied the product. */}
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleCategories.map((c, i) => (
-              <Reveal key={c.slug} delay={i * 0.05}>
-                <Link
-                  href={`/shop/${c.slug}`}
-                  className="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl p-7 shadow-card ring-1 ring-white/60 transition-all hover:-translate-y-1 hover:shadow-[0_40px_80px_-40px_rgba(74,46,122,0.45)] sm:p-8"
-                  style={{
-                    background: `linear-gradient(180deg, ${c.hex} 0%, ${c.softHex} 100%)`,
-                  }}
-                >
-                  {concernImage[c.slug] && (
-                    <Image
-                      src={concernImage[c.slug]}
-                      alt=""
-                      fill
-                      sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw"
-                      className="absolute inset-0 object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <div
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background: `linear-gradient(180deg, ${c.hex}80 0%, ${c.hex}CC 55%, ${c.deepHex}E6 100%)`,
-                    }}
-                    aria-hidden="true"
-                  />
-                  <div
-                    className="pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full opacity-40 blur-3xl"
-                    style={{ backgroundColor: `${c.hex}66` }}
-                    aria-hidden="true"
-                  />
-                  <div
-                    className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full opacity-30 blur-3xl"
-                    style={{ backgroundColor: `${c.hex}55` }}
-                    aria-hidden="true"
-                  />
-
-                  <div className="relative flex items-center justify-between">
-                    <span
-                      className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/40 ring-1 ring-white/70 backdrop-blur"
-                      style={{ color: c.deepHex }}
+            {visibleCategories.map((c, i) => {
+              const product = productBySlug(c.productSlug);
+              const tier = tierById(tierForProduct(product?.merv ?? "MERV 8"));
+              return (
+                <Reveal key={c.slug} delay={i * 0.05}>
+                  <Link
+                    href={`/shop/${c.slug}`}
+                    className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-[#E8EEF3] transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+                  >
+                    <div
+                      className="relative flex h-80 items-end justify-center overflow-hidden"
+                      style={{
+                        background: `radial-gradient(125% 95% at 50% 105%, ${tier.hex} 0%, ${tier.softHex} 58%, #FFFFFF 100%)`,
+                      }}
                     >
-                      <CategoryIcon icon={c.icon} size={26} color={c.deepHex} />
-                    </span>
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-charcoal shadow-soft transition-transform group-hover:translate-x-0.5">
-                      <ArrowRight size={18} strokeWidth={2.25} />
-                    </span>
-                  </div>
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -top-5 left-4 select-none font-display text-[10rem] font-bold leading-none opacity-[0.16]"
+                        style={{ color: tier.deepHex }}
+                      >
+                        {tier.merv}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="absolute bottom-5 left-1/2 h-8 w-3/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
+                      />
+                      <div className="relative mb-4 h-[86%] w-[60%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
+                        <Image
+                          src={tier.angleImage}
+                          alt={`KALERO ${product?.name ?? tier.name}, MERV ${tier.merv}`}
+                          fill
+                          sizes="(min-width: 1024px) 22vw, (min-width: 640px) 40vw, 70vw"
+                          className="object-contain drop-shadow-[0_24px_30px_rgba(11,13,16,0.22)]"
+                        />
+                      </div>
+                      <span className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white text-charcoal shadow-soft transition-transform group-hover:translate-x-0.5">
+                        <ArrowRight size={18} strokeWidth={2.25} />
+                      </span>
+                    </div>
 
-                  <div className="relative mt-auto">
-                    <p className="font-display text-3xl font-bold leading-tight text-white drop-shadow-sm sm:text-4xl">
-                      {c.title}
-                    </p>
-                    <p className="mt-3 max-w-[26ch] text-sm leading-relaxed text-white/90 text-pretty">
-                      {c.description}
-                    </p>
-                    {productBySlug(c.productSlug) && (
-                      <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/25 px-3 py-1.5 text-xs font-medium text-white ring-1 ring-white/40 backdrop-blur">
-                        <span className="uppercase tracking-[0.12em] text-white/85">
-                          Filter
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="flex items-center gap-3">
+                        <span
+                          className="flex h-10 w-10 items-center justify-center rounded-xl"
+                          style={{ backgroundColor: tier.softHex }}
+                        >
+                          <CategoryIcon icon={c.icon} size={20} color={tier.deepHex} />
                         </span>
-                        <span className="h-1 w-1 rounded-full bg-white/60" />
-                        <span className="font-semibold">
-                          {productBySlug(c.productSlug)!.name}
+                        <span
+                          className="text-[11px] font-bold uppercase tracking-[0.16em]"
+                          style={{ color: tier.deepHex }}
+                        >
+                          MERV {tier.merv} · {tier.name}
                         </span>
                       </div>
-                    )}
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+                      <h3 className="mt-4 font-display text-2xl font-bold text-charcoal">
+                        {c.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-charcoal-mid text-pretty">
+                        {c.description}
+                      </p>
+                      {product && (
+                        <p className="mt-auto pt-5 text-sm font-semibold text-sky-700">
+                          Shop {product.name}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -184,17 +191,11 @@ export default function ShopPage() {
             </Link>
           </div>
 
-          <div
-            className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
-            style={{ scrollbarWidth: "none" }}
-          >
+          {/* Three filters sit side by side; a sideways scroller for three
+              items left most of the row empty. */}
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {liveProducts.map((p) => (
-              <div
-                key={p.slug}
-                className="w-[240px] shrink-0 snap-start sm:w-[260px] lg:w-[280px]"
-              >
-                <ProductCard product={p} />
-              </div>
+              <ProductCard key={p.slug} product={p} />
             ))}
           </div>
         </div>
