@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Send } from "lucide-react";
-import { Logo } from "@/components/ui/Logo";
 import { AirflowLines } from "@/components/ui/AirflowLines";
 import { IridescentWave } from "@/components/ui/IridescentWave";
 
@@ -61,7 +61,17 @@ export function Footer() {
       <div className="container-x relative pb-12 pt-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
           <div className="max-w-md">
-            <Logo variant="light" size="lg" />
+            {/* The wordmark is artwork, never typeset: the spectrum colourway
+                from the brand kit, which reads on the dark footer. */}
+            <Link href="/" aria-label="KALERO home" className="inline-block">
+              <Image
+                src="/images/brand/kalero-wordmark-spectrum.png"
+                alt="KALERO"
+                width={2255}
+                height={727}
+                className="h-auto w-44 sm:w-52"
+              />
+            </Link>
             <p className="mt-6 text-eyebrow font-semibold uppercase tracking-[0.28em] text-sky-300">
               Cleaner Air. Better Living.
             </p>
