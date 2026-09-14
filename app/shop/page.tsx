@@ -105,35 +105,28 @@ export default function ShopPage() {
                     href={`/shop/${c.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-[#E8EEF3] transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
                   >
+                    {/* The carton is the card. The render carries ~12% empty
+                        margin each side, so it is scaled up from the bottom
+                        edge to fill the stage instead of floating small in it. */}
                     <div
-                      className="relative flex h-80 items-end justify-center overflow-hidden"
+                      className="relative aspect-[4/5] overflow-hidden"
                       style={{
-                        background: `radial-gradient(125% 95% at 50% 105%, ${tier.hex} 0%, ${tier.softHex} 58%, #FFFFFF 100%)`,
+                        background: `radial-gradient(120% 80% at 50% 100%, ${tier.hex} 0%, ${tier.softHex} 62%, #FFFFFF 100%)`,
                       }}
                     >
                       <span
                         aria-hidden="true"
-                        className="pointer-events-none absolute -top-5 left-4 select-none font-display text-[10rem] font-bold leading-none opacity-[0.16]"
-                        style={{ color: tier.deepHex }}
-                      >
-                        {tier.merv}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="absolute bottom-5 left-1/2 h-8 w-3/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
+                        className="absolute bottom-2 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
                       />
-                      <div className="relative mb-4 h-[86%] w-[60%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
+                      <div className="absolute inset-x-3 bottom-1 top-8 transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
                         <Image
                           src={tier.angleImage}
                           alt={`KALERO ${product?.name ?? tier.name}, MERV ${tier.merv}`}
                           fill
-                          sizes="(min-width: 1024px) 22vw, (min-width: 640px) 40vw, 70vw"
-                          className="object-contain drop-shadow-[0_24px_30px_rgba(11,13,16,0.22)]"
+                          sizes="(min-width: 1024px) 26vw, (min-width: 640px) 46vw, 90vw"
+                          className="origin-bottom scale-[1.1] object-contain object-bottom drop-shadow-[0_24px_30px_rgba(11,13,16,0.22)]"
                         />
                       </div>
-                      <span className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white text-charcoal shadow-soft transition-transform group-hover:translate-x-0.5">
-                        <ArrowRight size={18} strokeWidth={2.25} />
-                      </span>
                     </div>
 
                     <div className="flex flex-1 flex-col p-6">
@@ -158,8 +151,11 @@ export default function ShopPage() {
                         {c.description}
                       </p>
                       {product && (
-                        <p className="mt-auto pt-5 text-sm font-semibold text-sky-700">
+                        <p className="mt-auto flex items-center justify-between gap-3 pt-5 text-sm font-semibold text-sky-700">
                           Shop {product.name}
+                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-charcoal text-white transition-transform group-hover:translate-x-0.5">
+                            <ArrowRight size={17} strokeWidth={2.25} />
+                          </span>
                         </p>
                       )}
                     </div>
