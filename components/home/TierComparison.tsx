@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { tiers, type TierId } from "@/lib/tiers";
@@ -80,6 +81,17 @@ export function TierComparison() {
                 className="border-r border-sky-100 p-4 text-center last:border-r-0 sm:p-6"
                 style={{ backgroundColor: t.softHex }}
               >
+                {/* The filter itself, so the difference in media colour is seen
+                    before it is read about. */}
+                <div className="relative mx-auto mb-3 aspect-[4/5] w-16 sm:w-24">
+                  <Image
+                    src={t.filterImage}
+                    alt={`MERV ${t.merv} ${t.name} filter`}
+                    fill
+                    sizes="96px"
+                    className="object-contain mix-blend-multiply"
+                  />
+                </div>
                 <p
                   className="text-[11px] font-semibold uppercase tracking-[0.16em]"
                   style={{ color: t.deepHex }}

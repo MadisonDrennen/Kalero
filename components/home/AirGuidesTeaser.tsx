@@ -1,21 +1,25 @@
 import Link from "next/link";
-import { ArrowRight, Ruler, Sparkles, Wind } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const guides = [
   {
-    icon: Wind,
+    image: "/images/products/tiers-cinematic.jpg",
+    focus: "object-center",
     title: "What is MERV?",
     body: "Understand filtration ratings without the technical jargon.",
     href: "/learn/merv-guide",
   },
   {
-    icon: Sparkles,
+    image: "/images/products/lifestyle-mountains.jpg",
+    focus: "object-[60%_center]",
     title: "How often should I change my filter?",
     body: "A simple replacement guide based on your home and your season.",
     href: "/learn/replacement-guide",
   },
   {
-    icon: Ruler,
+    image: "/images/products/merv-8-4pack.jpg",
+    focus: "object-[center_42%]",
     title: "What size air filter do I need?",
     body: "Learn how to read the dimensions on your current filter in seconds.",
     href: "/learn/filter-size-guide",
@@ -43,16 +47,23 @@ export function AirGuidesTeaser() {
         </div>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
-          {guides.map(({ icon: Icon, title, body, href }) => (
+          {guides.map(({ image, focus, title, body, href }) => (
             <Link
               key={href}
               href={href}
-              className="group flex flex-col rounded-2xl border border-sky-100 bg-white p-6 transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-soft sm:p-7"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-sky-100 bg-white transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-soft"
             >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
-                <Icon size={20} strokeWidth={1.75} />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-charcoal sm:text-xl">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-sky-50">
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className={`object-cover ${focus} transition-transform duration-500 group-hover:scale-[1.04]`}
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+              <h3 className="font-display text-lg font-semibold text-charcoal sm:text-xl">
                 {title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-charcoal-mid text-pretty">
@@ -62,6 +73,7 @@ export function AirGuidesTeaser() {
                 Read guide
                 <ArrowRight size={12} strokeWidth={2.25} />
               </span>
+              </div>
             </Link>
           ))}
         </div>

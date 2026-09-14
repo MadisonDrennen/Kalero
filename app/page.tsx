@@ -2,7 +2,8 @@ import { KaleroEverydayHero } from "@/components/hero/KaleroEverydayHero";
 import { PopularSizes } from "@/components/home/PopularSizes";
 import { ShopByAir } from "@/components/home/ShopByAir";
 import { TierComparison } from "@/components/home/TierComparison";
-import { WhyKalero } from "@/components/home/WhyKalero";
+import { BrandBento } from "@/components/home/BrandBento";
+import { AirStories } from "@/components/home/AirStories";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Subscription } from "@/components/home/Subscription";
 // import { Testimonials } from "@/components/home/Testimonials"; // held back — see below
@@ -31,8 +32,11 @@ export default function Home() {
 
       <IridescentWave intensity="subtle" className="h-16 w-full sm:h-20" />
 
-      {/* 6 — Brand / Lifestyle */}
-      <WhyKalero />
+      {/* Photographic break: each tier in the air it is made for */}
+      <AirStories />
+
+      {/* 6 — Brand story as colour tiles */}
+      <BrandBento />
 
       {/* 7 — How KALERO works */}
       <HowItWorks />

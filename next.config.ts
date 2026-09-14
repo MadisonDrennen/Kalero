@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/why-kalero", destination: "/#why-kalero", permanent: false },
       { source: "/learn", destination: "/find-your-filter", permanent: false },
+      // The three homepage guide cards link here and the articles are not written yet.
+      { source: "/learn/:slug", destination: "/find-your-filter", permanent: false },
       { source: "/account", destination: "/cart", permanent: false },
       { source: "/air-filters", destination: "/shop", permanent: false },
       { source: "/air-filters/:slug", destination: "/shop", permanent: false },

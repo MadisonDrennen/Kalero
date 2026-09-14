@@ -103,67 +103,69 @@ export function ShopByAir() {
 
 function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
   return (
-    <article
-      className="group flex flex-col overflow-hidden rounded-2xl border bg-white transition-shadow duration-200 hover:shadow-card"
-      style={{ borderColor: "#E8EEF3" }}
-    >
-      {/* the tier's colour, stated once at the top rather than washed across
-          the whole card */}
-      <div aria-hidden="true" className="h-1" style={{ backgroundColor: t.hex }} />
-
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <p
-              className="text-[11px] font-bold uppercase tracking-[0.16em]"
-              style={{ color: t.deepHex }}
-            >
-              {t.name}
-            </p>
-            <h3 className="mt-1 font-display text-2xl font-bold text-charcoal">
-              MERV {t.merv}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-charcoal-mid text-pretty">
-              {t.positioning}
-            </p>
-          </div>
-
-          <div className="relative h-28 w-24 shrink-0 sm:h-32 sm:w-28">
-            <Image
-              src={t.heroImage}
-              alt={`KALERO ${t.name}, MERV ${t.merv}, four pack`}
-              fill
-              sizes="120px"
-              className="object-contain transition-transform duration-300 group-hover:scale-[1.04]"
-            />
-          </div>
+    <article className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-[#E8EEF3] transition-all duration-300 hover:-translate-y-1 hover:shadow-card">
+      {/* The product on a stage of its own tier colour. The carton render has
+          a transparent background, so it floats on the glow rather than
+          sitting in a white box. */}
+      <div
+        className="relative flex h-72 items-end justify-center overflow-hidden sm:h-80"
+        style={{
+          background: `radial-gradient(125% 95% at 50% 105%, ${t.hex} 0%, ${t.softHex} 58%, #FFFFFF 100%)`,
+        }}
+      >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-5 left-4 select-none font-display text-[8.5rem] font-bold leading-none opacity-[0.16] sm:text-[10rem]"
+          style={{ color: t.deepHex }}
+        >
+          {t.merv}
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute bottom-5 left-1/2 h-8 w-3/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
+        />
+        <div className="relative mb-4 h-[86%] w-[60%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
+          <Image
+            src={t.angleImage}
+            alt={`KALERO ${t.name}, MERV ${t.merv} air filter`}
+            fill
+            sizes="(min-width: 1024px) 22vw, 60vw"
+            className="object-contain drop-shadow-[0_24px_30px_rgba(11,13,16,0.22)]"
+          />
         </div>
+      </div>
 
-        <p className="mt-5 text-xs font-semibold text-charcoal">Best for:</p>
-        <ul className="mt-2.5 grid grid-cols-4 gap-2">
+      <div className="flex flex-1 flex-col p-6">
+        <span
+          className="inline-flex w-fit rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
+          style={{ backgroundColor: t.softHex, color: t.deepHex }}
+        >
+          {t.name}
+        </span>
+        <h3 className="mt-3 font-display text-3xl font-bold text-charcoal">
+          MERV {t.merv}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-charcoal-mid text-pretty">
+          {t.positioning}
+        </p>
+
+        <ul className="mt-5 flex flex-wrap gap-2">
           {t.handles.map(({ icon, label }) => {
             const Icon = HANDLED[icon];
             return (
-              <li key={label} className="flex flex-col items-center text-center">
-                <span
-                  className="flex h-9 w-9 items-center justify-center rounded-full"
-                  style={{ backgroundColor: t.softHex }}
-                >
-                  <Icon
-                    className="h-4 w-4"
-                    style={{ color: t.deepHex }}
-                    aria-hidden="true"
-                  />
-                </span>
-                <span className="mt-1.5 text-[11px] leading-tight text-charcoal-mid">
-                  {label}
-                </span>
+              <li
+                key={label}
+                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-charcoal"
+                style={{ backgroundColor: t.softHex }}
+              >
+                <Icon className="h-3.5 w-3.5" style={{ color: t.deepHex }} aria-hidden="true" />
+                {label}
               </li>
             );
           })}
         </ul>
 
-        <div className="h-5" aria-hidden="true" />
+        <div className="h-6" aria-hidden="true" />
         <Link
           href={`/merv-${t.merv}`}
           className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-[filter] duration-150 hover:brightness-[0.96] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
