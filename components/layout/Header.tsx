@@ -34,6 +34,18 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+  /* A beat of grace before closing: a diagonal move toward the panel, or a
+     small overshoot, used to shut the menu before a link could be clicked. */
+  const closeMenuSoon = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setActiveMenu(null), 180);
+  };
+  useEffect(() => cancelClose, []);
   const [query, setQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { itemCount, openDrawer } = useCart();
@@ -158,7 +170,9 @@ export function Header() {
       <div className="hidden border-t border-sky-100/60 lg:block">
         <div
           className="container-x relative flex h-11 items-center justify-center gap-8"
-          onMouseLeave={() => setActiveMenu(null)}
+          onMouseLeave={closeMenuSoon}
+          onMouseEnter={cancelClose}
+          onKeyDown={(e) => e.key === "Escape" && setActiveMenu(null)}
         >
           <button
             type="button"
@@ -216,8 +230,13 @@ export function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
-                className="absolute left-1/2 top-full z-30 mt-2 grid w-[860px] -translate-x-1/2 grid-cols-[1.1fr_1fr] gap-6 rounded-2xl bg-white p-6 shadow-card ring-1 ring-sky-100"
+                /* Centred by a full-width flex wrapper, not left-1/2 +
+                   -translate-x-1/2: framer-motion writes its own transform for
+                   the y animation, which silently dropped the translate and
+                   pinned the panel's left edge to the middle of the page. */
+                className="absolute inset-x-0 top-full z-30 flex justify-center px-6 pt-2"
               >
+                <div className="grid w-full max-w-[860px] grid-cols-[1.1fr_1fr] gap-6 rounded-2xl bg-white p-6 shadow-card ring-1 ring-sky-100">
                 <div>
                   <p className="text-eyebrow font-semibold text-sky-700">
                     Shop Filters
@@ -274,6 +293,7 @@ export function Header() {
                     </Link>
                   </div>
                 </div>
+                </div>
               </motion.div>
             )}
             {activeMenu === "learn" && (
@@ -283,8 +303,9 @@ export function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
-                className="absolute left-1/2 top-full z-30 mt-2 w-[420px] -translate-x-1/2 rounded-2xl bg-white p-5 shadow-card ring-1 ring-sky-100"
+                className="absolute inset-x-0 top-full z-30 flex justify-center px-6 pt-2"
               >
+                <div className="w-full max-w-[420px] rounded-2xl bg-white p-5 shadow-card ring-1 ring-sky-100">
                 <p className="text-eyebrow font-semibold text-sky-700">
                   Learn
                 </p>
@@ -312,6 +333,7 @@ export function Header() {
                       MERV {t.merv} · {t.name}
                     </Link>
                   ))}
+                </div>
                 </div>
               </motion.div>
             )}
