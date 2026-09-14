@@ -42,11 +42,11 @@ const socials = [
 export function Footer() {
   return (
     <footer className="relative isolate mt-24 overflow-hidden bg-charcoal text-white">
-      {/* Iridescent wave divider at top edge */}
+      {/* The brand wave low in the footer, behind the copyright line, where
+          it reads as atmosphere instead of a band with a visible edge. */}
       <IridescentWave
         flip
-        intensity="subtle"
-        className="absolute inset-x-0 top-0 h-24 w-full"
+        className="absolute inset-x-0 bottom-0 h-56 w-full opacity-60 sm:h-64"
       />
       <div className="pointer-events-none absolute inset-0 opacity-40">
         <AirflowLines

@@ -3,9 +3,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 /**
- * The brand story on one full-bleed photograph: particulate on the left
- * clearing into the KALERO spectrum on the right. The copy sits on the clean
- * side of the image, so the picture does the explaining.
+ * The brand story on one photograph: particulate on the left clearing into
+ * the KALERO spectrum on the right. No white wash over it.
+ *
+ * From desktop width the photo is full bleed and the copy sits on its clean
+ * right side. Below that there is no crop where the copy clears the
+ * particles, so the photo gets its own band and the copy sits under it.
  */
 const points = [
   "Three MERV levels, one easy choice",
@@ -16,26 +19,19 @@ const points = [
 
 export function BrandBento() {
   return (
-    <section
-      aria-labelledby="bento-title"
-      className="relative isolate overflow-hidden"
-    >
-      <Image
-        src="/images/products/air-particles-to-clean.jpg"
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="100vw"
-        className="-z-10 object-cover object-[30%_center] lg:object-left"
-      />
-      {/* keeps the text side calm on narrow screens, where the particles
-          would otherwise sit behind the copy */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-white/80 lg:bg-transparent lg:bg-gradient-to-l lg:from-white/75 lg:via-white/40 lg:to-white/0"
-      />
+    <section aria-labelledby="bento-title" className="relative isolate overflow-hidden">
+      <div className="relative aspect-[16/9] w-full lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto">
+        <Image
+          src="/images/products/air-particles-to-clean.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover object-left"
+        />
+      </div>
 
-      <div className="container-x flex min-h-[560px] items-center py-20 sm:min-h-[640px] lg:justify-end">
+      <div className="container-x py-12 sm:py-16 lg:flex lg:min-h-[640px] lg:items-center lg:justify-end lg:py-20">
         <div className="max-w-md">
           <p className="eyebrow">The KALERO way</p>
           <h2
@@ -44,7 +40,7 @@ export function BrandBento() {
           >
             Dust in. Clean air out.
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-charcoal-mid text-pretty">
+          <p className="mt-4 text-lg font-medium leading-relaxed text-charcoal-soft text-pretty">
             Air filters, finally designed for your home.
           </p>
           <ul className="mt-7 grid gap-2.5">

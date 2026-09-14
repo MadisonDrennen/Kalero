@@ -1,91 +1,54 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-
-const guides = [
-  {
-    image: "/images/products/tiers-cinematic.jpg",
-    focus: "object-center",
-    title: "What is MERV?",
-    body: "Understand filtration ratings without the technical jargon.",
-    href: "/learn/merv-guide",
-  },
-  {
-    image: "/images/products/lifestyle-mountains.jpg",
-    focus: "object-[60%_center]",
-    title: "How often should I change my filter?",
-    body: "A simple replacement guide based on your home and your season.",
-    href: "/learn/replacement-guide",
-  },
-  {
-    image: "/images/products/merv-8-4pack.jpg",
-    focus: "object-[center_42%]",
-    title: "What size air filter do I need?",
-    body: "Learn how to read the dimensions on your current filter in seconds.",
-    href: "/learn/filter-size-guide",
-  },
-];
+import { LinkButton } from "@/components/ui/Button";
 
 /**
- * Homepage §16 — editorial guides teaser. Cleaner than a blog grid.
+ * Homepage — air guides as one full-bleed landscape with the message over it,
+ * in the style of the launch email. The guide articles are not written yet,
+ * so this points at the filter finder rather than listing links that lead
+ * nowhere.
  */
 export function AirGuidesTeaser() {
   return (
     <section
       aria-labelledby="air-guides-title"
-      className="relative isolate py-16 sm:py-20"
+      className="relative isolate overflow-hidden"
     >
-      <div className="container-x">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-eyebrow text-sky-700">Learn</p>
-          <h2
-            id="air-guides-title"
-            className="mt-3 font-display text-3xl font-semibold text-charcoal text-balance sm:text-4xl"
-          >
-            Air, explained simply.
-          </h2>
-        </div>
+      <Image
+        src="/images/products/lifestyle-mountains.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="-z-20 object-cover object-[center_62%]"
+      />
+      {/* A soft white bloom behind the copy, as in the email, so the headline
+          reads over sky and snow alike. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_58%_62%_at_50%_46%,rgba(255,255,255,0.9)_0%,rgba(255,255,255,0.55)_48%,rgba(255,255,255,0)_78%)]"
+      />
+      {/* fade the photo into the page above and below, so it isn't a hard box */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-20 bg-gradient-to-b from-canvas to-transparent" />
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-20 bg-gradient-to-t from-canvas to-transparent" />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-3">
-          {guides.map(({ image, focus, title, body, href }) => (
-            <Link
-              key={href}
-              href={href}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-sky-100 bg-white transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-soft"
-            >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-sky-50">
-                <Image
-                  src={image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 640px) 33vw, 100vw"
-                  className={`object-cover ${focus} transition-transform duration-500 group-hover:scale-[1.04]`}
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-6 sm:p-7">
-              <h3 className="font-display text-lg font-semibold text-charcoal sm:text-xl">
-                {title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-charcoal-mid text-pretty">
-                {body}
-              </p>
-              <span className="mt-5 inline-flex items-center gap-1 text-xs font-semibold text-sky-700 transition-transform group-hover:translate-x-0.5">
-                Read guide
-                <ArrowRight size={12} strokeWidth={2.25} />
-              </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/learn"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-sky-700 hover:text-sky-800"
-          >
-            Explore Air Guides
-            <ArrowRight size={14} strokeWidth={2.25} />
-          </Link>
+      <div className="container-x flex min-h-[520px] flex-col items-center justify-center py-24 text-center sm:min-h-[620px]">
+        <p className="text-eyebrow text-sky-700">Air, explained simply</p>
+        <h2
+          id="air-guides-title"
+          className="mt-4 font-display text-5xl font-bold leading-[1.02] tracking-tight text-charcoal text-balance sm:text-7xl"
+        >
+          Know your air.
+          <span className="block bg-gradient-to-r from-[#37B2E6] to-[#7E3E98] bg-clip-text pb-1 text-transparent">
+            Breathe easier.
+          </span>
+        </h2>
+        <p className="mt-5 max-w-md text-lg leading-relaxed text-charcoal-soft text-pretty">
+          MERV ratings, filter sizes and when to replace, made simple.
+        </p>
+        <div className="mt-8">
+          <LinkButton href="/find-your-filter" size="lg" arrow>
+            Find your filter
+          </LinkButton>
         </div>
       </div>
     </section>

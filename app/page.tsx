@@ -10,7 +10,6 @@ import { Subscription } from "@/components/home/Subscription";
 import { AirGuidesTeaser } from "@/components/home/AirGuidesTeaser";
 import { EmailCapture } from "@/components/home/EmailCapture";
 import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
-import { IridescentWave } from "@/components/ui/IridescentWave";
 
 export default function Home() {
   return (
@@ -29,8 +28,6 @@ export default function Home() {
 
       {/* 5 — Which KALERO is right for you? (Standard vs Pro vs Max) */}
       <TierComparison />
-
-      <IridescentWave intensity="subtle" className="relative h-28 w-full sm:h-36" />
 
       {/* Photographic break: each tier in the air it is made for */}
       <AirStories />
@@ -51,8 +48,6 @@ export default function Home() {
           the FTC's rule on fake reviews and testimonials carries penalties.
           Put this back the day there are genuine customers to quote. */}
       {/* <Testimonials /> */}
-
-      <IridescentWave intensity="subtle" className="relative h-28 w-full sm:h-36" flip />
 
       {/* 10 — Air Guides */}
       <AirGuidesTeaser />

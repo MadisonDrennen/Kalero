@@ -6,6 +6,7 @@ import { Check, RefreshCw, Sparkles } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { ProductRender } from "@/components/product/ProductRender";
 import { productBySlug } from "@/lib/products";
+import { IridescentWave } from "@/components/ui/IridescentWave";
 
 type Mode = "onetime" | "subscribe";
 
@@ -24,6 +25,11 @@ export function Subscription() {
       className="relative isolate overflow-hidden bg-gradient-to-b from-canvas via-sky-50/40 to-canvas py-24 sm:py-28"
       aria-labelledby="subscription-title"
     >
+      {/* the brand wave as atmosphere through the middle of the section */}
+      <IridescentWave
+        flip
+        className="absolute inset-x-0 top-1/2 -z-10 h-80 w-full -translate-y-1/2 opacity-50 sm:h-[30rem]"
+      />
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
           <div className="max-w-lg">
