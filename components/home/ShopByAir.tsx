@@ -48,11 +48,11 @@ const TRUST = [
 function BadgeUSA({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 16" aria-hidden="true" className={className}>
-      <rect width="24" height="16" rx="2" fill="#F5F8FA" />
+      <rect width="24" height="16" rx="2" fill="#F4F7FA" />
       {[0, 2, 4, 6, 8, 10, 12].map((y) => (
         <rect key={y} y={y} width="24" height="1.25" fill="#B4472C" />
       ))}
-      <rect width="10" height="8.75" rx="1" fill="#0C74B0" />
+      <rect width="10" height="8.75" rx="1" fill="#0047B3" />
     </svg>
   );
 }

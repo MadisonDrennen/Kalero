@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Instrument_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,14 +7,18 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { CartProvider } from "@/lib/cart";
 import { CartDrawer } from "@/components/commerce/CartDrawer";
 
-const manrope = Manrope({
+/* Brand kit type: Instrument Sans × Poppins.
+   Poppins is the display face -- it is geometric like the wordmark, whose A is
+   a triangle and whose O is a circle. Instrument Sans carries body and UI,
+   where it is the more legible of the two at small sizes. */
+const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -116,7 +120,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${instrumentSans.variable}`}>
       <body className="min-h-screen bg-canvas text-charcoal">
         <CartProvider>
           <a

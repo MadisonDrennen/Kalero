@@ -34,7 +34,7 @@ export function EmailCapture() {
       <div className="container-x">
         <div
           className="relative grid overflow-hidden rounded-[2rem] lg:grid-cols-[1fr_1.05fr] lg:items-center"
-          style={{ background: "linear-gradient(120deg, #37B2E6 0%, #C1A1CC 100%)" }}
+          style={{ background: "linear-gradient(120deg, #35B1E6 0%, #0047B3 100%)" }}
         >
           <Image
             src="/images/products/brand-wave.jpg"

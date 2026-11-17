@@ -1,131 +1,65 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
   className?: string;
+  /** "light" knocks the mark out in white for dark grounds. */
   variant?: "dark" | "light" | "brand";
   size?: "sm" | "md" | "lg";
+  /** Kept so existing call sites keep compiling; the tagline is part of the
+   *  artwork now, so there is nothing left to stack. */
   withMark?: boolean;
   stacked?: boolean;
   href?: string;
 };
 
-const wordSize: Record<NonNullable<Props["size"]>, string> = {
-  sm: "text-base tracking-[0.28em]",
-  md: "text-lg tracking-[0.32em]",
-  lg: "text-2xl tracking-[0.36em]",
+/* Natural size of the exported artwork, used to keep the aspect ratio exact. */
+const ART_W = 1120;
+const ART_H = 283;
+
+const widths: Record<NonNullable<Props["size"]>, string> = {
+  sm: "w-28",
+  md: "w-36 sm:w-40",
+  lg: "w-44 sm:w-52",
 };
 
-const stackedWordSize: Record<NonNullable<Props["size"]>, string> = {
-  sm: "text-xl tracking-[0.28em]",
-  md: "text-3xl tracking-[0.32em]",
-  lg: "text-4xl tracking-[0.34em]",
-};
-
-const stackedTaglineSize: Record<NonNullable<Props["size"]>, string> = {
-  sm: "text-[9px] tracking-[0.32em]",
-  md: "text-[10px] tracking-[0.36em]",
-  lg: "text-[11px] tracking-[0.4em]",
-};
-
-const markSize: Record<NonNullable<Props["size"]>, string> = {
-  sm: "h-5 w-5",
-  md: "h-6 w-6",
-  lg: "h-8 w-8",
-};
-
+/**
+ * The KALERO wordmark.
+ *
+ * Placed from file, never typeset: the mark sets the A as a gradient triangle
+ * and the brand kit is explicit that it is artwork. This used to render the
+ * word in the UI font beside a drawn circle mark, which was a different logo
+ * from the one on the carton.
+ */
 export function Logo({
   className = "",
   variant = "dark",
   size = "md",
-  withMark = true,
   stacked = false,
   href = "/",
 }: Props) {
-  const colorClass =
+  const src =
     variant === "light"
-      ? "text-white"
-      : variant === "brand"
-        ? "text-sky-600"
-        : "text-charcoal";
-  const taglineColor =
-    variant === "light"
-      ? "text-white/70"
-      : variant === "brand"
-        ? "text-sky-500/80"
-        : "text-charcoal-mid";
+      ? "/images/brand/kalero-wordmark-white.png"
+      : "/images/brand/kalero-wordmark.png";
 
-  const mark = withMark && !stacked && (
-    <svg
-      viewBox="0 0 32 32"
-      className={markSize[size]}
-      fill="none"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="logoMark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#1B8FD1" />
-          <stop offset="100%" stopColor="#0B5A94" />
-        </linearGradient>
-      </defs>
-      <circle cx="16" cy="16" r="15" fill="url(#logoMark)" />
-      <path
-        d="M 7 12 Q 16 6 25 12"
-        stroke="#FAFAFC"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M 7 16 Q 16 10 25 16"
-        stroke="#FAFAFC"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M 7 20 Q 16 14 25 20"
-        stroke="#FAFAFC"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
-  );
-
-  const content = stacked ? (
-    <span
-      className={`inline-flex flex-col items-start leading-none ${className}`}
-    >
-      <span
-        className={`font-display font-extrabold ${stackedWordSize[size]} ${colorClass}`}
-      >
-        KALERO
-      </span>
-      <span
-        className={`mt-1.5 font-medium uppercase ${stackedTaglineSize[size]} ${taglineColor}`}
-      >
-        Premium Air Filters
-      </span>
-    </span>
-  ) : (
-    <span
-      className={`inline-flex items-center gap-2.5 font-display font-bold ${wordSize[size]} ${colorClass} ${className}`}
-    >
-      {mark}
-      <span>KALERO</span>
-    </span>
+  const art = (
+    <Image
+      src={src}
+      alt="KALERO, quality air filters"
+      width={ART_W}
+      height={ART_H}
+      priority={size === "lg"}
+      className={`h-auto ${widths[size]} ${className}`}
+    />
   );
 
   if (href) {
     return (
-      <Link
-        href={href}
-        className="focus-visible:outline-none"
-        aria-label="KALERO home"
-      >
-        {content}
+      <Link href={href} className="inline-block focus-visible:outline-none" aria-label="KALERO home">
+        {art}
       </Link>
     );
   }
-  return content;
+  return art;
 }

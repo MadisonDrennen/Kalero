@@ -362,9 +362,9 @@ export function Quiz() {
                                   }
                                 : isSelected
                                   ? {
-                                      borderColor: "#1B8FD1",
+                                      borderColor: "#35B1E6",
                                       background:
-                                        "linear-gradient(180deg, #DCEEFA 0%, #FFFFFF 100%)",
+                                        "linear-gradient(180deg, #CFE8F4 0%, #FFFFFF 100%)",
                                     }
                                   : undefined
                             }
