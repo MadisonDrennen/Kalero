@@ -50,11 +50,15 @@ export type FilterTier = {
   /** Held back from launch: listed and indexed, but not purchasable. */
   comingSoon?: boolean;
   /** The tier's packaging render. */
-  heroImage: string;
+  /* Photography is null until the new blue-and-navy cartons are shot. The old
+     renders were v5 packaging with green MERV 11 and lilac MERV 13 media, so
+     they were removed rather than left on the site looking current. Callers
+     fall back to the drawn FilterBox. */
+  heroImage: string | null;
   /** The filter itself, three-quarter view. */
-  angleImage: string;
+  angleImage: string | null;
   /** The filter out of its carton, showing the tier's media colour. */
-  filterImage: string;
+  filterImage: string | null;
 };
 
 export const tiers: FilterTier[] = [
@@ -78,9 +82,9 @@ export const tiers: FilterTier[] = [
     softHex: "#CFE8F4",
     deepHex: "#0047B3",
     onHex: "#050708",
-    heroImage: "/images/products/merv-8-4pack.jpg",
-    angleImage: "/images/products/merv-8-box.png",
-    filterImage: "/images/products/merv-8-filter.jpg",
+    heroImage: null,
+    angleImage: null,
+    filterImage: null,
   },
   {
     id: "pro",
@@ -111,9 +115,9 @@ export const tiers: FilterTier[] = [
     softHex: "#D6E2F3",
     deepHex: "#022F72",
     onHex: "#FFFFFF",
-    heroImage: "/images/products/merv-11-4pack.jpg",
-    angleImage: "/images/products/merv-11-box.png",
-    filterImage: "/images/products/merv-11-filter.jpg",
+    heroImage: null,
+    angleImage: null,
+    filterImage: null,
   },
   {
     id: "max",
@@ -145,9 +149,9 @@ export const tiers: FilterTier[] = [
     deepHex: "#050708",
     onHex: "#FFFFFF",
     comingSoon: true,
-    heroImage: "/images/products/merv-13-4pack.jpg",
-    angleImage: "/images/products/merv-13-box.png",
-    filterImage: "/images/products/merv-13-filter.jpg",
+    heroImage: null,
+    angleImage: null,
+    filterImage: null,
   },
 ];
 

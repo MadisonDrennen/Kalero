@@ -1,15 +1,11 @@
-import Image from "next/image";
 import { howItWorks } from "@/lib/copy";
 import { Reveal } from "@/components/ui/Reveal";
 import { AirflowLines } from "@/components/ui/AirflowLines";
 
 /** One photograph per step, replacing mock UI that included an empty grey
  *  square where a product image should have been. */
-const stepImages = [
-  { src: "/images/products/lifestyle-dog.jpg", alt: "A golden retriever resting on a rug in a bright living room" },
-  { src: "/images/products/tiers-three-up.jpg", alt: "KALERO MERV 8, 11 and 13 filters side by side" },
-  { src: "/images/products/lifestyle-home.jpg", alt: "A sunlit living room with clean air flowing through it" },
-];
+/** Tier colour per step, so the sequence reads blue → navy → carbon. */
+const stepAccents = ["#35B1E6", "#0047B3", "#283238"];
 
 export function HowItWorks() {
   return (
@@ -39,19 +35,20 @@ export function HowItWorks() {
           {howItWorks.map((s, i) => (
             <Reveal key={s.step} delay={i * 0.08}>
               <div className="relative flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-sky-100 shadow-soft">
-                <div className="relative aspect-[3/2] w-full bg-sky-50">
-                  <Image
-                    src={stepImages[i].src}
-                    alt={stepImages[i].alt}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/90 font-display text-lg font-semibold text-sky-700 shadow-soft backdrop-blur">
+                <div
+                  aria-hidden="true"
+                  className="h-1.5 w-full"
+                  style={{ backgroundColor: stepAccents[i] }}
+                />
+                <div className="px-7 pt-7">
+                  <span
+                    className="flex h-12 w-12 items-center justify-center rounded-xl font-display text-lg font-bold"
+                    style={{ backgroundColor: `${stepAccents[i]}1F`, color: stepAccents[i] }}
+                  >
                     {s.step}
-                  </div>
+                  </span>
                 </div>
-                <div className="flex flex-1 flex-col p-7">
+                <div className="flex flex-1 flex-col px-7 pb-7 pt-5">
                   <div className="font-display text-lg font-semibold text-charcoal">
                     {s.title}
                   </div>

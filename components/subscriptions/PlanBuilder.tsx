@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Minus, Plus } from "lucide-react";
+import { FilterBox } from "@/components/ui/FilterBox";
 
 type Cadence = 30 | 60 | 90;
 
@@ -13,7 +14,7 @@ type PlanFilter = {
   name: string;
   merv: string;
   price: number;
-  image: string;
+  image: string | null;
   hex: string;
   soft: string;
 };
@@ -24,16 +25,16 @@ const catalog: PlanFilter[] = [
     name: "Everyday Defense",
     merv: "MERV 8",
     price: 22,
-    image: "/images/products/merv-8-box.png",
-    hex: "#67B7F2",
-    soft: "#E5F2FD",
+    image: null,
+    hex: "#35B1E6",
+    soft: "#CFE8F4",
   },
   {
     slug: "pet-defense",
     name: "Pet Defense",
     merv: "MERV 11",
     price: 28,
-    image: "/images/products/merv-11-box.png",
+    image: null,
     hex: "#0047B3",
     soft: "#D6E2F3",
   },
@@ -42,7 +43,7 @@ const catalog: PlanFilter[] = [
     name: "Allergy Defense",
     merv: "MERV 13",
     price: 32,
-    image: "/images/products/merv-13-box.png",
+    image: null,
     hex: "#283238",
     soft: "#E3E6E8",
   },
@@ -53,7 +54,7 @@ const catalog: PlanFilter[] = [
     price: 34,
     hex: "#283238",
     soft: "#E3E6E8",
-    image: "/images/products/merv-8-box.png",
+    image: null,
   },
   {
     slug: "carbon-defense",
@@ -62,7 +63,7 @@ const catalog: PlanFilter[] = [
     price: 38,
     hex: "#283238",
     soft: "#E3E6E8",
-    image: "/images/products/merv-8-box.png",
+    image: null,
   },
 ];
 
@@ -190,13 +191,26 @@ export function PlanBuilder() {
                         background: `linear-gradient(180deg, ${f.soft} 0%, #FFFFFF 100%)`,
                       }}
                     >
-                      <Image
-                        src={f.image}
-                        alt={f.name}
-                        fill
-                        sizes="64px"
-                        className="object-contain p-1"
-                      />
+                      {f.image ? (
+                        <Image
+                          src={f.image}
+                          alt={f.name}
+                          fill
+                          sizes="64px"
+                          className="object-contain p-1"
+                        />
+                      ) : (
+                        <FilterBox
+                          name={f.name}
+                          merv={f.merv}
+                          category="everyday"
+                          colors={{ base: f.hex, deep: f.hex, soft: f.soft }}
+                          size="sm"
+                          floating={false}
+                          showBadge={false}
+                          className="w-full p-1"
+                        />
+                      )}
                     </div>
                   </button>
                   <div className="min-w-0 flex-1">

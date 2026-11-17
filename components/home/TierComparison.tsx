@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { tiers, type TierId } from "@/lib/tiers";
+import { FilterBox } from "@/components/ui/FilterBox";
 
 type Row = {
   label: string;
@@ -83,13 +84,16 @@ export function TierComparison() {
               >
                 {/* The filter itself, so the difference in media colour is seen
                     before it is read about. */}
-                <div className="relative mx-auto mb-3 aspect-[4/5] w-16 sm:w-24">
-                  <Image
-                    src={t.filterImage}
-                    alt={`MERV ${t.merv} ${t.name} filter`}
-                    fill
-                    sizes="96px"
-                    className="object-contain mix-blend-multiply"
+                <div className="mx-auto mb-3 w-16 sm:w-24">
+                  <FilterBox
+                    name={t.name}
+                    merv={`MERV ${t.merv}`}
+                    category="everyday"
+                    colors={{ base: t.hex, deep: t.deepHex, soft: t.softHex }}
+                    size="sm"
+                    floating={false}
+                    showBadge={false}
+                    className="w-full"
                   />
                 </div>
                 <p

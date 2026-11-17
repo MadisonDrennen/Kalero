@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { Check, Send } from "lucide-react";
 import { tiers } from "@/lib/tiers";
+import { FilterBox } from "@/components/ui/FilterBox";
+import { IridescentWave } from "@/components/ui/IridescentWave";
 
 /**
  * Homepage close — the email capture as a colour panel with the three cartons
@@ -36,14 +38,7 @@ export function EmailCapture() {
           className="relative grid overflow-hidden rounded-[2rem] lg:grid-cols-[1fr_1.05fr] lg:items-center"
           style={{ background: "linear-gradient(120deg, #35B1E6 0%, #0047B3 100%)" }}
         >
-          <Image
-            src="/images/products/brand-wave.jpg"
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="100vw"
-            className="pointer-events-none object-cover opacity-60 mix-blend-soft-light"
-          />
+          <IridescentWave className="pointer-events-none absolute inset-0 h-full w-full opacity-45" />
 
           <div className="relative p-8 sm:p-12 lg:p-14">
             <h2
@@ -89,13 +84,16 @@ export function EmailCapture() {
 
           <div className="relative h-72 sm:h-96 lg:h-[440px]" aria-hidden="true">
             {tiers.map((t, i) => (
-              <div key={t.id} className={`absolute h-[78%] w-[38%] ${fan[i]}`}>
-                <Image
-                  src={t.angleImage}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 18vw, 36vw"
-                  className="object-contain drop-shadow-[0_28px_34px_rgba(11,13,16,0.28)]"
+              <div key={t.id} className={`absolute w-[38%] ${fan[i]}`}>
+                <FilterBox
+                  name={t.name}
+                  merv={`MERV ${t.merv}`}
+                  category="everyday"
+                  colors={{ base: t.hex, deep: t.deepHex, soft: t.softHex }}
+                  size="md"
+                  floating={false}
+                  showBadge={false}
+                  className="w-full"
                 />
               </div>
             ))}

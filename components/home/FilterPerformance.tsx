@@ -59,7 +59,7 @@ const heroParticle: Record<Filter, string[]> = {
 const backgroundImage: Record<Filter, string> = {
   everyday: "/images/New - fresh everyday home.png",
   pet: "/images/Pet - new.png",
-  allergy: "/images/products/merv-13-box.png",
+  allergy: "",
   smoke: "/images/Smoke Homepage.png",
   carbon: "/images/Carbon Homepage.png",
 };

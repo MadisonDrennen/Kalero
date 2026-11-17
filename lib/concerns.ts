@@ -27,7 +27,7 @@ export type Concern = {
   softHex: string;
   deepHex: string;
   /** Optional artwork for the concern hub page. */
-  heroImage?: string;
+  heroImage?: string | null;
 };
 
 export const concerns: Concern[] = [
@@ -43,7 +43,7 @@ export const concerns: Concern[] = [
     hex: "#35B1E6",
     softHex: "#CFE8F4",
     deepHex: "#0047B3",
-    heroImage: "/images/products/merv-8-box.png",
+    heroImage: null,
   },
   {
     slug: "pets-and-dander",
@@ -57,7 +57,7 @@ export const concerns: Concern[] = [
     hex: "#0047B3",
     softHex: "#D6E2F3",
     deepHex: "#022F72",
-    heroImage: "/images/products/merv-11-box.png",
+    heroImage: null,
   },
   {
     slug: "allergies-and-pollen",
@@ -71,7 +71,7 @@ export const concerns: Concern[] = [
     hex: "#0047B3",
     softHex: "#D6E2F3",
     deepHex: "#022F72",
-    heroImage: "/images/products/merv-13-box.png",
+    heroImage: null,
   },
   {
     slug: "smoke-and-pollution",
@@ -85,7 +85,7 @@ export const concerns: Concern[] = [
     hex: "#283238",
     softHex: "#E3E6E8",
     deepHex: "#050708",
-    heroImage: "/images/products/merv-13-box.png",
+    heroImage: null,
   },
   {
     slug: "odors-and-vocs",
@@ -99,7 +99,7 @@ export const concerns: Concern[] = [
     hex: "#283238",
     softHex: "#E3E6E8",
     deepHex: "#050708",
-    heroImage: "/images/products/merv-13-box.png",
+    heroImage: null,
   },
   {
     slug: "hotel-property",
@@ -113,7 +113,7 @@ export const concerns: Concern[] = [
     hex: "#0047B3",
     softHex: "#D6E2F3",
     deepHex: "#022F72",
-    heroImage: "/images/products/merv-11-box.png",
+    heroImage: null,
   },
 ];
 

@@ -11,7 +11,7 @@ type Shot = { src: string; label: string };
 
 /** Every tier render, so another tier's artwork never trails into this one. */
 const TIER_ART = new Set(
-  tiers.flatMap((t) => [t.angleImage, t.filterImage, t.heroImage]),
+  tiers.flatMap((t) => [t.angleImage, t.filterImage, t.heroImage]).filter(Boolean),
 );
 
 /**
@@ -30,14 +30,15 @@ export function ProductGallery({
 }) {
   const tier = tierById(tierId);
 
+  /* Photography is null until the new cartons are shot, and an empty list is
+     the signal: the gallery falls through to the drawn render below rather
+     than showing v5 packaging that is no longer what ships. */
   const shots = useMemo<Shot[]>(() => {
     const list: Shot[] = [
       { src: tier.angleImage, label: "Packaging" },
       { src: tier.filterImage, label: "The filter" },
       { src: tier.heroImage, label: "Four pack" },
-    ];
-    // A product's own render is usually just one of the tier renders; only add
-    // it when it's genuinely a different shot.
+    ].filter((s): s is Shot => s.src != null);
     if (product.image && !TIER_ART.has(product.image)) {
       list.push({ src: product.image, label: "Studio" });
     }

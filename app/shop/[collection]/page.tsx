@@ -6,29 +6,8 @@ import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { categories, categoryBySlug, liveCategories } from "@/lib/categories";
 import { products, productsByCategory, type CategoryKey } from "@/lib/products";
 
-/**
- * Three genuinely different views per collection: the carton, the filter out of
- * it, and the four pack. This used to be the same render three times under
- * three labels ("Front view", "Airflow detail", "In the vent"), which promised
- * angles the photography never had.
- */
-const angleImages: Partial<Record<CategoryKey, { src: string; label: string }[]>> = {
-  everyday: [
-    { src: "/images/products/merv-8-box.png", label: "Packaging" },
-    { src: "/images/products/merv-8-filter.jpg", label: "The filter" },
-    { src: "/images/products/merv-8-4pack.jpg", label: "Four pack" },
-  ],
-  pet: [
-    { src: "/images/products/merv-11-box.png", label: "Packaging" },
-    { src: "/images/products/merv-11-filter.jpg", label: "The filter" },
-    { src: "/images/products/merv-11-4pack.jpg", label: "Four pack" },
-  ],
-  allergy: [
-    { src: "/images/products/merv-13-box.png", label: "Packaging" },
-    { src: "/images/products/merv-13-filter.jpg", label: "The filter" },
-    { src: "/images/products/merv-13-4pack.jpg", label: "Four pack" },
-  ],
-};
+/* The per-collection photo strip is gone with the v5 packaging. The page
+   falls back to the drawn carton until the new renders exist. */
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
@@ -248,55 +227,6 @@ export default async function CollectionPage({
         </section>
       )}
 
-      {featured && angleImages[category.key] && (
-        <section className="pb-14">
-          <div className="container-x">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="eyebrow">See how it works</p>
-                <p className="mt-3 font-display text-display-md font-semibold text-charcoal text-balance">
-                  {featured.name}, from every angle.
-                </p>
-              </div>
-              <Link
-                href={`/products/${featured.slug}`}
-                className="link-underline text-sm font-medium text-sky-700"
-              >
-                View full details →
-              </Link>
-            </div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {angleImages[category.key]!.map((view) => (
-                <div
-                  key={view.src}
-                  className="relative overflow-hidden rounded-card shadow-soft ring-1 ring-white/60"
-                  style={{
-                    background: `linear-gradient(180deg, ${category.hex} 0%, ${category.softHex} 100%)`,
-                  }}
-                >
-                  <div className="relative aspect-square w-full">
-                    <Image
-                      src={view.src}
-                      alt={`${featured.name} ${view.label.toLowerCase()}`}
-                      fill
-                      sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw"
-                      className="object-contain p-4 drop-shadow-[0_25px_45px_rgba(23,23,27,0.25)] transition-transform duration-500 hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between px-5 py-4">
-                    <span className="text-xs font-medium uppercase tracking-[0.14em] text-white/95">
-                      {view.label}
-                    </span>
-                    <span className="inline-flex h-6 items-center rounded-full bg-white/25 px-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-white ring-1 ring-white/40 backdrop-blur">
-                      {featured.merv}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {inCategory.length > 1 && (
         <section className="pb-14">

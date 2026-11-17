@@ -1,6 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { FilterBox } from "@/components/ui/FilterBox";
+import { IridescentWave } from "@/components/ui/IridescentWave";
 
 /**
  * Single-frame hero, matching how the storefront presents it: headline left,
@@ -13,24 +14,26 @@ export function KaleroEverydayHero() {
       aria-labelledby="hero-title"
       className="relative isolate w-full overflow-hidden bg-white"
     >
-      {/* The render carries its own light background, so it sits flush rather
-          than being darkened for legibility — the copy has its own space. */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero/new-hero.png"
-          alt="KALERO premium air filter with filtered air flowing through it"
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover object-right"
-        />
-      </div>
+      {/* The hero render was a v5 filter under a blue-green-violet wave, so it
+          went with the rest of the old packaging. Until the new cartons are
+          shot this is the kit gradient, the drawn wave and the drawn carton. */}
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-white via-glacier-soft to-glacier" />
+      <IridescentWave className="absolute inset-x-0 bottom-0 h-2/3 w-full opacity-80" />
 
-      {/* Left-side wash so the headline holds against the image on narrow screens */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 w-full bg-gradient-to-r from-white via-white/80 to-transparent sm:w-[72%] sm:via-white/70 lg:w-[62%]"
-      />
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] items-center justify-center lg:flex"
+      >
+        <FilterBox
+          name="Standard"
+          merv="MERV 8"
+          category="everyday"
+          colors={{ base: "#35B1E6", deep: "#0047B3", soft: "#CFE8F4" }}
+          size="xl"
+          showBadge={false}
+          className="w-[62%] rotate-[-6deg]"
+        />
+      </div>
 
       <div className="container-x relative z-10 flex min-h-[560px] flex-col justify-center py-20 sm:min-h-[640px] lg:min-h-[720px]">
         <div className="max-w-xl">

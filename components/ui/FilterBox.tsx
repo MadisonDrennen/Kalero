@@ -12,13 +12,15 @@ type Props = {
   className?: string;
   floating?: boolean;
   showBadge?: boolean;
+  /** Explicit colours, for callers driven by tier rather than category. */
+  colors?: { base: string; deep: string; soft: string; accent?: string };
 };
 
 const palette: Record<
   CategoryKey,
   { base: string; deep: string; soft: string; accent: string; label: string }
 > = {
-  everyday: { base: "#67B7F2", deep: "#3A8FC9", soft: "#E5F2FD", accent: "#35B1E6", label: "Everyday" },
+  everyday: { base: "#35B1E6", deep: "#0047B3", soft: "#CFE8F4", accent: "#0047B3", label: "Everyday" },
   pet: { base: "#0047B3", deep: "#022F72", soft: "#D6E2F3", accent: "#35B1E6", label: "Pet" },
   allergy: { base: "#283238", deep: "#050708", soft: "#E3E6E8", accent: "#35B1E6", label: "Allergy" },
   smoke: { base: "#283238", deep: "#050708", soft: "#E3E6E8", accent: "#CFE8F4", label: "Smoke" },
@@ -47,164 +49,171 @@ export function FilterBox({
   className = "",
   floating = true,
   showBadge = true,
+  colors,
 }: Props) {
-  const p = palette[category];
-  const gid = `grad-${category}`;
-  const inner = `inner-${category}`;
-  const air = `air-${category}`;
+  const base = palette[category];
+  const p = colors
+    ? { ...base, ...colors, accent: colors.accent ?? base.accent }
+    : base;
+  const key = colors ? `${category}-${colors.base.replace("#", "")}` : category;
+  const gid = `grad-${key}`;
+  const inner = `inner-${key}`;
+  const air = `air-${key}`;
 
   const boxContent = (
     <svg
       viewBox="0 0 360 460"
-      className="h-auto w-full drop-shadow-[0_30px_60px_rgba(74,46,122,0.25)]"
+      className="h-auto w-full drop-shadow-[0_26px_46px_rgba(5,7,8,0.22)]"
       role="img"
-      aria-label={`${name} filter packaging`}
+      aria-label={`${name}, ${merv ?? ""} packaging`}
     >
       <defs>
+        {/* The carton's wave: KALERO Blue folding into Navy. */}
         <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="55%" stopColor={p.soft} />
-          <stop offset="100%" stopColor={p.base} stopOpacity="0.55" />
-        </linearGradient>
-        <linearGradient id={inner} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={p.base} stopOpacity="0.25" />
-          <stop offset="100%" stopColor={p.deep} stopOpacity="0.05" />
+          <stop offset="0%" stopColor={p.base} />
+          <stop offset="58%" stopColor={p.deep} />
+          <stop offset="100%" stopColor={p.deep} />
         </linearGradient>
         <linearGradient id={air} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor={p.accent} stopOpacity="0" />
-          <stop offset="50%" stopColor={p.accent} stopOpacity="0.9" />
-          <stop offset="100%" stopColor={p.accent} stopOpacity="0" />
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
+          <stop offset="45%" stopColor="#FFFFFF" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
+        <clipPath id={inner}>
+          <rect x="30" y="26" width="300" height="408" rx="14" />
+        </clipPath>
       </defs>
 
-      {/* Soft glow */}
-      <ellipse cx="180" cy="420" rx="140" ry="18" fill={p.deep} opacity="0.18" />
+      <ellipse cx="180" cy="446" rx="132" ry="14" fill="#050708" opacity="0.16" />
 
-      {/* Box body */}
-      <rect
-        x="30"
-        y="30"
-        width="300"
-        height="400"
-        rx="26"
-        fill={`url(#${gid})`}
-        stroke="#FFFFFF"
-        strokeWidth="1"
-      />
-      <rect
-        x="30"
-        y="30"
-        width="300"
-        height="400"
-        rx="26"
-        fill="none"
-        stroke={p.base}
-        strokeOpacity="0.18"
-        strokeWidth="1"
-      />
+      {/* carton face */}
+      <rect x="30" y="26" width="300" height="408" rx="14" fill="#FFFFFF" />
 
-      {/* Top brand strip */}
-      <rect x="30" y="30" width="300" height="70" rx="26" fill="#FFFFFF" opacity="0.7" />
-      <rect x="30" y="82" width="300" height="18" fill="#FFFFFF" opacity="0.7" />
+      <g clipPath={`url(#${inner})`}>
+        {/* the wave band, as on the pack */}
+        <path d="M30,150 C110,96 190,214 268,150 C300,124 320,118 330,122 L330,434 L30,434 Z" fill={`url(#${gid})`} />
+        <path
+          d="M30,168 C112,118 192,232 272,170 C302,146 320,140 330,144"
+          fill="none"
+          stroke={`url(#${air})`}
+          strokeWidth="3"
+        />
+        <path
+          d="M30,196 C116,146 196,258 276,198 C304,176 320,170 330,174"
+          fill="none"
+          stroke={`url(#${air})`}
+          strokeWidth="1.5"
+          opacity="0.7"
+        />
+
+        {/* pleat block along the bottom, like the window on the carton */}
+        <rect x="30" y="344" width="300" height="90" fill="#FFFFFF" opacity="0.92" />
+        {Array.from({ length: 13 }).map((_, i) => (
+          <line
+            key={i}
+            x1={44 + i * 22}
+            y1="352"
+            x2={44 + i * 22}
+            y2="426"
+            stroke={p.deep}
+            strokeOpacity="0.22"
+            strokeWidth="5"
+          />
+        ))}
+      </g>
+
+      {/* wordmark */}
       <text
         x="180"
-        y="72"
+        y="74"
         textAnchor="middle"
-        fontFamily="Manrope, Inter, sans-serif"
-        fontSize="26"
+        fontFamily="Poppins, ui-sans-serif, sans-serif"
+        fontSize="30"
         fontWeight="700"
-        letterSpacing="4"
-        fill="#17171B"
+        letterSpacing="7"
+        fill="#050708"
       >
         KALERO
       </text>
-
-      {/* Inner filter panel */}
-      <rect
-        x="60"
-        y="130"
-        width="240"
-        height="180"
-        rx="18"
-        fill={`url(#${inner})`}
-        stroke={p.base}
-        strokeOpacity="0.3"
-      />
-
-      {/* Airflow arcs */}
-      {Array.from({ length: 5 }).map((_, i) => {
-        const y = 150 + i * 32;
-        return (
-          <path
-            key={i}
-            d={`M 70 ${y} C 150 ${y - 12} 230 ${y + 12} 290 ${y}`}
-            stroke={`url(#${air})`}
-            strokeWidth="1.5"
-            fill="none"
-            strokeLinecap="round"
-          />
-        );
-      })}
-
-      {/* Bottom text block */}
       <text
         x="180"
-        y="350"
+        y="94"
         textAnchor="middle"
-        fontFamily="Manrope, Inter, sans-serif"
-        fontSize="22"
-        fontWeight="700"
-        fill="#17171B"
+        fontFamily="Poppins, ui-sans-serif, sans-serif"
+        fontSize="9"
+        fontWeight="500"
+        letterSpacing="3.4"
+        fill="#283238"
       >
-        {name}
+        QUALITY AIR FILTERS
+      </text>
+
+      {/* MERV numeral, the loudest thing on the pack */}
+      {merv && (
+        <>
+          <text
+            x="62"
+            y="214"
+            fontFamily="Poppins, ui-sans-serif, sans-serif"
+            fontSize="15"
+            fontWeight="600"
+            letterSpacing="5"
+            fill="#FFFFFF"
+          >
+            MERV
+          </text>
+          <text
+            x="58"
+            y="300"
+            fontFamily="Poppins, ui-sans-serif, sans-serif"
+            fontSize="86"
+            fontWeight="700"
+            fill="#FFFFFF"
+          >
+            {merv.replace(/[^0-9]/g, "")}
+          </text>
+        </>
+      )}
+
+      {/* The pack prints the tier word. Product names are longer than the
+          panel, so the type steps down rather than running off the carton. */}
+      <text
+        x="188"
+        y="252"
+        fontFamily="Poppins, ui-sans-serif, sans-serif"
+        fontSize={name.length > 12 ? 14 : name.length > 8 ? 18 : 24}
+        fontWeight="700"
+        letterSpacing={name.length > 12 ? 0.4 : 1}
+        fill="#FFFFFF"
+      >
+        {name.toUpperCase()}
       </text>
       {subtitle && (
         <text
-          x="180"
-          y="374"
-          textAnchor="middle"
-          fontFamily="Inter, sans-serif"
-          fontSize="11"
-          fill={p.deep}
+          x="188"
+          y="276"
+          fontFamily="var(--font-sans), Instrument Sans, sans-serif"
+          fontSize="10"
+          fill="#FFFFFF"
+          opacity="0.88"
         >
-          {subtitle}
+          {subtitle.length > 30 ? `${subtitle.slice(0, 30)}…` : subtitle}
         </text>
       )}
-      {merv && (
-        <g>
-          <rect x="120" y="390" width="120" height="26" rx="13" fill={p.deep} />
-          <text
-            x="180"
-            y="407"
-            textAnchor="middle"
-            fontFamily="Inter, sans-serif"
-            fontSize="11"
-            fontWeight="600"
-            letterSpacing="1.5"
-            fill="#FFFFFF"
-          >
-            {merv.toUpperCase()}
-          </text>
-        </g>
-      )}
 
-      {/* Corner tag */}
       {showBadge && (
-        <g>
-          <circle cx="300" cy="60" r="20" fill={p.deep} />
-          <text
-            x="300"
-            y="65"
-            textAnchor="middle"
-            fontFamily="Inter, sans-serif"
-            fontSize="9"
-            fontWeight="700"
-            letterSpacing="1"
-            fill="#FFFFFF"
-          >
-            {p.label.toUpperCase()}
-          </text>
-        </g>
+        <text
+          x="306"
+          y="74"
+          textAnchor="end"
+          fontFamily="Poppins, ui-sans-serif, sans-serif"
+          fontSize="10"
+          fontWeight="600"
+          letterSpacing="1.4"
+          fill="#283238"
+        >
+          MADE IN USA
+        </text>
       )}
     </svg>
   );

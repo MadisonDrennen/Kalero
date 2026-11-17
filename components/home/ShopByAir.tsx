@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { tiers, type HandledIcon, type TierId } from "@/lib/tiers";
+import { FilterBox } from "@/components/ui/FilterBox";
 
 /**
  * The three tiers, as three cards that each answer "is this the one for my
@@ -124,13 +125,16 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
           aria-hidden="true"
           className="absolute bottom-5 left-1/2 h-8 w-3/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
         />
-        <div className="relative mb-4 h-[86%] w-[60%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
-          <Image
-            src={t.angleImage}
-            alt={`KALERO ${t.name}, MERV ${t.merv} air filter`}
-            fill
-            sizes="(min-width: 1024px) 22vw, 60vw"
-            className="object-contain drop-shadow-[0_24px_30px_rgba(11,13,16,0.22)]"
+        <div className="relative mb-4 w-[62%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
+          <FilterBox
+            name={t.name}
+            merv={`MERV ${t.merv}`}
+            category="everyday"
+            colors={{ base: t.hex, deep: t.deepHex, soft: t.softHex }}
+            size="lg"
+            floating={false}
+            showBadge={false}
+            className="w-full"
           />
         </div>
       </div>

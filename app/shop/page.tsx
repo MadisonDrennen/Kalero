@@ -9,19 +9,13 @@ import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { productBySlug } from "@/lib/products";
 import { tierById, tierForProduct } from "@/lib/tiers";
+import { FilterBox } from "@/components/ui/FilterBox";
 
-const concernImage: Record<string, string> = {
-  "everyday-dust": "/images/products/merv-8-box.png",
-  "pets-and-dander": "/images/products/merv-11-box.png",
-  "allergies-and-pollen": "/images/products/merv-13-box.png",
-  "smoke-and-pollution": "/images/products/merv-13-box.png",
-  "odors-and-vocs": "/images/products/merv-13-box.png",
-};
 
 export const metadata: Metadata = {
-  title: "Shop Home Air Filters | MERV 8, 11, 13 by Concern",
+  title: "Shop Home Air Filters | MERV 8 & MERV 11 by Concern",
   description:
-    "Shop every KALERO home air filter, sorted by concern, pet dander, allergies, smoke, dust, and odors. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes. Free shipping on subscriptions.",
+    "Shop every KALERO home air filter, sorted by concern: everyday dust, pet dander and allergies. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes. Free shipping on subscriptions.",
   alternates: { canonical: "/shop" },
   keywords: [
     "home air filters",
@@ -30,7 +24,6 @@ export const metadata: Metadata = {
     "furnace filter",
     "MERV 8 filter",
     "MERV 11 filter",
-    "MERV 13 filter",
     "20x25x1 air filter",
     "16x25x1 air filter",
     "20x20x1 air filter",
@@ -118,13 +111,16 @@ export default function ShopPage() {
                         aria-hidden="true"
                         className="absolute bottom-2 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
                       />
-                      <div className="absolute inset-x-3 bottom-1 top-8 transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
-                        <Image
-                          src={tier.angleImage}
-                          alt={`KALERO ${product?.name ?? tier.name}, MERV ${tier.merv}`}
-                          fill
-                          sizes="(min-width: 1024px) 26vw, (min-width: 640px) 46vw, 90vw"
-                          className="origin-bottom scale-[1.1] object-contain object-bottom drop-shadow-[0_24px_30px_rgba(11,13,16,0.22)]"
+                      <div className="absolute inset-x-6 bottom-4 top-8 flex items-end justify-center transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
+                        <FilterBox
+                          name={product?.name ?? tier.name}
+                          merv={`MERV ${tier.merv}`}
+                          category={c.key}
+                          colors={{ base: tier.hex, deep: tier.deepHex, soft: tier.softHex }}
+                          size="lg"
+                          floating={false}
+                          showBadge={false}
+                          className="w-full"
                         />
                       </div>
                     </div>

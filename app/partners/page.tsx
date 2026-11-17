@@ -5,6 +5,8 @@ import { ArrowRight, Boxes, CalendarClock, Flag, Ruler } from "lucide-react";
 import { purchasableTiers } from "@/lib/tiers";
 import { partnerConfig, confirmedPartnerTerms } from "@/lib/business";
 import { PartnerRequestForm } from "@/components/partners/PartnerRequestForm";
+import { FilterBox } from "@/components/ui/FilterBox";
+import { IridescentWave } from "@/components/ui/IridescentWave";
 
 export const metadata: Metadata = {
   title: "HVAC Trade Program | Wholesale Air Filters for Contractors",
@@ -61,19 +63,11 @@ export default function PartnersPage() {
         aria-labelledby="partners-title"
         className="relative isolate overflow-hidden bg-charcoal text-white"
       >
-        <Image
-          src="/images/products/merv-8-cinematic.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          priority
-          className="-z-20 object-cover object-center opacity-40"
-        />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-charcoal via-charcoal/90 to-charcoal/40"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(120%_120%_at_80%_20%,#0047B3_0%,#283238_55%,#050708_100%)]"
         />
+        <IridescentWave className="absolute inset-x-0 bottom-0 -z-10 h-1/2 w-full opacity-30" />
 
         <div className="container-x flex min-h-[520px] flex-col justify-center py-20 sm:min-h-[580px]">
           <p className="text-eyebrow font-semibold uppercase tracking-[0.2em] text-sky-300">
@@ -158,13 +152,16 @@ export default function PartnersPage() {
                     background: `radial-gradient(120% 90% at 50% 105%, ${t.hex} 0%, ${t.softHex} 60%, #FFFFFF 100%)`,
                   }}
                 >
-                  <div className="absolute inset-x-8 bottom-0 top-6">
-                    <Image
-                      src={t.angleImage}
-                      alt={`KALERO MERV ${t.merv} ${t.name} filter`}
-                      fill
-                      sizes="(min-width: 640px) 45vw, 90vw"
-                      className="object-contain object-bottom drop-shadow-[0_20px_26px_rgba(5,7,8,0.22)]"
+                  <div className="absolute inset-x-10 bottom-0 top-6 flex items-end justify-center">
+                    <FilterBox
+                      name={t.name}
+                      merv={`MERV ${t.merv}`}
+                      category="everyday"
+                      colors={{ base: t.hex, deep: t.deepHex, soft: t.softHex }}
+                      size="lg"
+                      floating={false}
+                      showBadge={false}
+                      className="w-full"
                     />
                   </div>
                 </div>

@@ -3,7 +3,6 @@ import { PopularSizes } from "@/components/home/PopularSizes";
 import { ShopByAir } from "@/components/home/ShopByAir";
 import { TierComparison } from "@/components/home/TierComparison";
 import { BrandBento } from "@/components/home/BrandBento";
-import { AirStories } from "@/components/home/AirStories";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Subscription } from "@/components/home/Subscription";
 // import { Testimonials } from "@/components/home/Testimonials"; // held back — see below
@@ -28,9 +27,6 @@ export default function Home() {
 
       {/* 5 — Which KALERO is right for you? (Standard vs Pro vs Max) */}
       <TierComparison />
-
-      {/* Photographic break: each tier in the air it is made for */}
-      <AirStories />
 
       {/* 6 — Brand story as colour tiles */}
       <BrandBento />
