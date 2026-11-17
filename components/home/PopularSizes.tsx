@@ -51,12 +51,12 @@ export function PopularSizes() {
       className="relative isolate py-14 sm:py-16"
     >
       <div className="container-x">
-        <p className="text-eyebrow text-sky-700">Most popular sizes</p>
+        <p className="text-eyebrow text-sky-700">Sizes in stock</p>
         <h2
           id="popular-sizes-title"
           className="mt-2.5 font-display text-3xl font-semibold text-charcoal text-balance sm:text-4xl"
         >
-          Know your size? Start here.
+          The sizes your route actually calls for.
         </h2>
 
         {/* Tabs scroll rather than wrap on a phone — four stacked rows would

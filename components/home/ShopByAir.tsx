@@ -16,7 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { tiers, type HandledIcon, type TierId } from "@/lib/tiers";
-import { FilterBox } from "@/components/ui/FilterBox";
+import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 
 /**
  * The three tiers, as three cards that each answer "is this the one for my
@@ -39,9 +39,9 @@ const HANDLED: Record<HandledIcon, LucideIcon> = {
 };
 
 const TRUST = [
-  { Icon: Truck, title: "Fast & free shipping", note: "On all orders" },
-  { Icon: ShieldCheck, title: "Premium filtration", note: "Cleaner, healthier air" },
-  { Icon: BadgeUSA, title: "Made in the USA", note: "Trusted quality" },
+  { Icon: Truck, title: "Delivered on schedule", note: "Stock arrives before you run out" },
+  { Icon: ShieldCheck, title: "Every standard size", note: "Plus custom cuts" },
+  { Icon: BadgeUSA, title: "Made in the USA", note: "Printed on the carton" },
 ];
 
 /** The flag as a drawn mark rather than an emoji, which renders differently on
@@ -66,15 +66,16 @@ export function ShopByAir() {
     >
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-eyebrow text-sky-700">Shop by air</p>
+          <p className="text-eyebrow text-sky-700">The range</p>
           <h2
             id="shop-by-air-title"
             className="mt-3 font-display text-3xl font-semibold text-charcoal text-balance sm:text-4xl"
           >
-            Shop by what&apos;s in your air.
+            Two levels cover almost every call.
           </h2>
           <p className="mt-3 text-base leading-relaxed text-charcoal-mid text-pretty sm:text-lg">
-            Three levels of filtration. Pick the one that matches your home.
+            MERV 8 for routine service, MERV 11 for pets and allergies. Short
+            enough to stock, wide enough to cover the route.
           </p>
         </div>
 
@@ -126,15 +127,10 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
           className="absolute bottom-5 left-1/2 h-8 w-3/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
         />
         <div className="relative mb-4 w-[62%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
-          <FilterBox
-            name={t.name}
-            merv={`MERV ${t.merv}`}
-            category="everyday"
-            colors={{ base: t.hex, deep: t.deepHex, soft: t.softHex }}
+          <PhotoComingSoon
+            tint={{ soft: t.softHex, deep: t.deepHex }}
             size="lg"
-            floating={false}
-            showBadge={false}
-            className="w-full"
+            className="aspect-[4/5] w-full"
           />
         </div>
       </div>

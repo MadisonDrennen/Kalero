@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Minus, Plus } from "lucide-react";
-import { FilterBox } from "@/components/ui/FilterBox";
+import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 
 type Cadence = 30 | 60 | 90;
 
@@ -200,15 +200,10 @@ export function PlanBuilder() {
                           className="object-contain p-1"
                         />
                       ) : (
-                        <FilterBox
-                          name={f.name}
-                          merv={f.merv}
-                          category="everyday"
-                          colors={{ base: f.hex, deep: f.hex, soft: f.soft }}
+                        <PhotoComingSoon
+                          tint={{ soft: f.soft, deep: f.hex }}
                           size="sm"
-                          floating={false}
-                          showBadge={false}
-                          className="w-full p-1"
+                          className="h-full w-full"
                         />
                       )}
                     </div>

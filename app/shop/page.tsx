@@ -9,7 +9,7 @@ import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { productBySlug } from "@/lib/products";
 import { tierById, tierForProduct } from "@/lib/tiers";
-import { FilterBox } from "@/components/ui/FilterBox";
+import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 
 
 export const metadata: Metadata = {
@@ -112,15 +112,10 @@ export default function ShopPage() {
                         className="absolute bottom-2 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
                       />
                       <div className="absolute inset-x-6 bottom-4 top-8 flex items-end justify-center transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
-                        <FilterBox
-                          name={product?.name ?? tier.name}
-                          merv={`MERV ${tier.merv}`}
-                          category={c.key}
-                          colors={{ base: tier.hex, deep: tier.deepHex, soft: tier.softHex }}
+                        <PhotoComingSoon
+                          tint={{ soft: tier.softHex, deep: tier.deepHex }}
                           size="lg"
-                          floating={false}
-                          showBadge={false}
-                          className="w-full"
+                          className="h-full w-full"
                         />
                       </div>
                     </div>

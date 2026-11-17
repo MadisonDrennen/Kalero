@@ -19,15 +19,15 @@ export function HowItWorks() {
 
       <div className="container-x relative">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow justify-center">How KALERO works</p>
+          <p className="eyebrow justify-center">Becoming a partner</p>
           <h2
             id="how-title"
             className="mt-4 font-display text-display-xl font-semibold text-charcoal text-balance"
           >
-            Cleaner air without another thing to remember.
+            Three steps to a standing order.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-charcoal-mid text-pretty">
-            Three quiet steps between you and the filter your home actually needs.
+            No distributor minimums to clear before anyone will talk to you.
           </p>
         </div>
 

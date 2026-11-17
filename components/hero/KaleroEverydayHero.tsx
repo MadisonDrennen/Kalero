@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { FilterBox } from "@/components/ui/FilterBox";
+import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 import { IridescentWave } from "@/components/ui/IridescentWave";
 
 /**
@@ -24,14 +24,10 @@ export function KaleroEverydayHero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] items-center justify-center lg:flex"
       >
-        <FilterBox
-          name="Standard"
-          merv="MERV 8"
-          category="everyday"
-          colors={{ base: "#35B1E6", deep: "#0047B3", soft: "#CFE8F4" }}
-          size="xl"
-          showBadge={false}
-          className="w-[62%] rotate-[-6deg]"
+        <PhotoComingSoon
+          tint={{ soft: "#CFE8F4", deep: "#0047B3" }}
+          size="lg"
+          className="aspect-[4/5] w-[52%]"
         />
       </div>
 

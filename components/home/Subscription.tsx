@@ -33,26 +33,26 @@ export function Subscription() {
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
           <div className="max-w-lg">
-            <p className="eyebrow">Subscribe & save</p>
+            <p className="eyebrow">Standing orders</p>
             <h2
               id="subscription-title"
               className="mt-4 font-display text-display-xl font-semibold text-charcoal text-balance"
             >
-              Your next filter, right when you need it.
+              Stock that shows up before you run out.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-charcoal-mid text-pretty">
-              Select your size, choose your schedule, and let KALERO take filter
-              replacement off your mental checklist.
+              Set the sizes and the cadence once. The van stays stocked without
+              anyone raising a purchase order every month.
             </p>
 
             <ul className="mt-8 grid gap-3 text-sm text-charcoal-mid sm:grid-cols-2">
               {[
                 "Delivery every 30, 60, or 90 days",
-                "Multiple-filter households",
-                "Pause or cancel anytime",
-                "Save 15% every filter",
+                "Mixed sizes on one order",
+                "Pause or change anytime",
+                "Trade pricing every filter",
                 "Free shipping",
-                "Replacement reminders",
+                "Reorder reminders",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-2.5">
                   <span className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-sky-100 text-sky-700">
@@ -65,7 +65,7 @@ export function Subscription() {
 
             <div className="mt-8">
               <LinkButton href="/subscriptions" size="lg" arrow>
-                Build my filter plan
+                Build a standing order
               </LinkButton>
             </div>
           </div>

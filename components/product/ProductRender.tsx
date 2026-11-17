@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FilterBox } from "@/components/ui/FilterBox";
+import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 import type { CategoryKey } from "@/lib/products";
 
 type Size = "sm" | "md" | "lg" | "xl";
@@ -76,15 +76,10 @@ export function ProductRender({
   const fbSize: "sm" | "md" | "lg" =
     size === "xl" ? "lg" : (size as "sm" | "md" | "lg");
   return (
-    <FilterBox
-      name={name}
-      subtitle={subtitle}
-      merv={merv}
-      category={category}
-      size={fbSize}
-      className={className}
-      floating={floating}
-      showBadge={showBadge}
+    <PhotoComingSoon
+      tint={{ soft: "#CFE8F4", deep: "#0047B3" }}
+      size={size === "sm" ? "sm" : "lg"}
+      className="aspect-[4/5] w-full"
     />
   );
 }

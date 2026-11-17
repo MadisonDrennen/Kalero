@@ -100,18 +100,18 @@ export const seasonalDrops = [
 export const howItWorks = [
   {
     step: "01",
-    title: "Tell us about your home",
-    body: "Answer a few quick questions about your concerns, pets, and filter size.",
+    title: "Tell us what you move",
+    body: "The sizes you fit most, rough monthly volume, and what you stock today.",
   },
   {
     step: "02",
-    title: "Get the right filter",
-    body: "We recommend a filter made for the way you actually live, not a generic option.",
+    title: "We quote your rate",
+    body: "Trade pricing against your actual mix, not a generic wholesale sheet.",
   },
   {
     step: "03",
-    title: "Replace it on time",
-    body: "Your next filter arrives before the current one needs to come out.",
+    title: "Stock and reorder",
+    body: "A first order to try, then a standing schedule once it is working.",
   },
 ];
 
