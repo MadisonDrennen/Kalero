@@ -188,6 +188,13 @@ export function Header() {
             />
           </button>
           <Link
+            href="/partners"
+            onMouseEnter={() => setActiveMenu(null)}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-700 transition-colors hover:text-sky-800"
+          >
+            For HVAC Pros
+          </Link>
+          <Link
             href="/find-your-filter"
             onMouseEnter={() => setActiveMenu(null)}
             className="text-sm font-medium text-charcoal transition-colors hover:text-sky-700"
@@ -498,6 +505,16 @@ export function Header() {
                     {l.label}
                   </Link>
                 ))}
+                <p className="mt-4 px-4 pt-2 text-eyebrow text-sky-700">
+                  Trade
+                </p>
+                <Link
+                  href="/partners"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-2xl px-4 py-3 text-sm font-semibold text-sky-700 transition-colors hover:bg-canvas"
+                >
+                  For HVAC Pros
+                </Link>
                 <p className="mt-4 px-4 pt-2 text-eyebrow text-sky-700">
                   Discover
                 </p>

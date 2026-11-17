@@ -27,11 +27,11 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   title: {
     default:
-      "KALERO, Premium Home Air Filters | MERV 8, 11, 13 HVAC Filters Delivered",
+      "KALERO, Quality Air Filters | MERV 8 & 11 for HVAC Pros and Homes",
     template: "%s | KALERO Air Filters",
   },
   description:
-    "Shop premium residential air filters in every standard HVAC size (16x25x1, 20x20x1, 20x25x1, and more). MERV 8, MERV 11, and MERV 13 filters for pet dander, allergies, smoke, dust, and odors, delivered on your schedule with free shipping.",
+    "MERV 8 and MERV 11 residential air filters in every standard size (16x25x1, 20x20x1, 20x25x1 and more), made in the USA. Trade pricing for HVAC contractors, and scheduled delivery for homes.",
   keywords: [
     "air filters",
     "home air filters",
@@ -39,7 +39,8 @@ export const metadata: Metadata = {
     "furnace filter",
     "MERV 8 filter",
     "MERV 11 filter",
-    "MERV 13 filter",
+    "wholesale air filters",
+    "HVAC contractor filters",
     "20x25x1 air filter",
     "16x25x1 air filter",
     "20x20x1 air filter",

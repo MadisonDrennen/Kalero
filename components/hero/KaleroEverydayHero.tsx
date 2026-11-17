@@ -40,21 +40,30 @@ export function KaleroEverydayHero() {
           >
             Cleaner air.
             <br />
-            Better living.
+            Better business.
           </h1>
 
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-mid text-pretty sm:text-lg">
-            Premium air filters designed to make finding the right filtration
-            for your home simple.
+            MERV 8 and MERV 11 filters in every standard size, made in the USA.
+            Built to be stocked by the contractors homeowners already trust.
           </p>
 
-          <div className="mt-9">
+          {/* Trade first, homeowner second: HVAC partnerships are the launch
+              motion, so the consumer route is the quieter of the two.
+              Carbon on KALERO Blue -- white on this blue is 2.45:1 and fails. */}
+          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link
+              href="/partners"
+              className="inline-flex h-12 items-center justify-center gap-2 bg-sky px-8 text-sm font-semibold uppercase tracking-[0.08em] text-charcoal transition-colors hover:bg-sky-400"
+            >
+              HVAC trade pricing
+              <ArrowRight size={16} strokeWidth={2.25} />
+            </Link>
             <Link
               href="/shop"
-              className="inline-flex h-12 items-center justify-center gap-2 bg-sky px-8 text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-sky-600"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-charcoal-mid underline-offset-4 transition-colors hover:text-charcoal hover:underline"
             >
-              Shop Filters
-              <ArrowRight size={16} strokeWidth={2.25} />
+              Shopping for your home?
             </Link>
           </div>
         </div>
