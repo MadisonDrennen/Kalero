@@ -28,7 +28,7 @@ export function SeasonalCollection() {
           </div>
           <Link
             href="/shop/seasonal-air"
-            className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sky-600"
+            className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-5 py-2.5 text-sm font-medium text-charcoal transition-colors hover:bg-sky-400"
           >
             Discover seasonal drops
             <ArrowRight size={16} />

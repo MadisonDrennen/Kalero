@@ -98,6 +98,13 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
                   <span className="mt-1 block text-[11px] leading-snug text-charcoal-mid">
                     {t.shortBenefit}
                   </span>
+                  {t.comingSoon && (
+                    <span
+                      className="absolute left-1/2 top-1.5 -translate-x-1/2 whitespace-nowrap rounded-full bg-charcoal px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.1em] text-white"
+                    >
+                      Coming soon
+                    </span>
+                  )}
                   {selected && (
                     <span
                       className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full text-white"
@@ -332,9 +339,12 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
               onAdded?.();
             }}
             disabled={!config.canAddToCart}
-            className="mt-4 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-6 text-[15px] font-semibold tracking-[0.01em] text-white shadow-[0_8px_24px_-10px_rgba(55,178,230,0.9)] transition-all hover:bg-sky-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-charcoal-light disabled:shadow-none"
+            /* Carbon on KALERO Blue, not white: white on this blue is 2.45:1 and fails. */
+            className="mt-4 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-6 text-[15px] font-semibold tracking-[0.01em] text-charcoal shadow-[0_8px_24px_-10px_rgba(0,71,179,0.55)] transition-all hover:bg-sky-400 active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-charcoal-light disabled:text-charcoal disabled:shadow-none"
           >
-            {config.canAddToCart ? (
+            {config.tierComingSoon ? (
+              `MERV ${tier.merv} is coming soon`
+            ) : config.canAddToCart ? (
               <>
                 Add to cart
                 {quote.total != null && (
@@ -349,7 +359,13 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
             )}
           </button>
 
-          {!quote.confirmed && quote.total != null && (
+          {config.tierComingSoon && (
+            <p className="mt-2 text-center text-[12px] text-charcoal-mid">
+              Launching with MERV 8 and MERV 11. Pick one of those to order today.
+            </p>
+          )}
+
+          {!config.tierComingSoon && !quote.confirmed && quote.total != null && (
             <p className="mt-2 text-center text-[11px] text-charcoal-mid">
               Pricing shown is indicative while variants are being finalized.
             </p>
@@ -631,7 +647,7 @@ function ScentChoice({
         </span>
       </span>
       {selected && (
-        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white">
+        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sky-500 text-charcoal">
           <Check size={10} strokeWidth={3.5} aria-hidden="true" />
           <span className="sr-only">Selected</span>
         </span>

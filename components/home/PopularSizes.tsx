@@ -81,7 +81,7 @@ export function PopularSizes() {
                 onClick={() => setDepth(d)}
                 className={`shrink-0 rounded-xl px-5 py-2.5 text-sm font-semibold tracking-[0.02em] transition-colors ${
                   active
-                    ? "bg-sky-500 text-white"
+                    ? "bg-sky-500 text-charcoal"
                     : "bg-[#EEF3F7] text-charcoal-mid hover:bg-[#E4EDF4] hover:text-charcoal"
                 }`}
               >

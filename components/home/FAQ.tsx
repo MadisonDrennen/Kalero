@@ -46,7 +46,7 @@ export function FAQ() {
                     <span
                       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
                         isOpen
-                          ? "bg-sky-500 text-white"
+                          ? "bg-sky-500 text-charcoal"
                           : "bg-canvas text-charcoal-mid group-hover:bg-sky-100 group-hover:text-sky-700"
                       }`}
                     >

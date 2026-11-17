@@ -28,7 +28,7 @@ export default function ScentStripsPage() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-sky-600"
+                className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-6 py-3.5 text-sm font-medium text-charcoal transition-colors hover:bg-sky-400"
               >
                 Shop compatible filters
                 <ArrowRight size={16} />

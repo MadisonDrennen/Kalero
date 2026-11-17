@@ -74,8 +74,8 @@ export function AirStories() {
                     {s.line}
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-white/90 transition-transform group-hover:translate-x-0.5">
-                    Shop {t.name}
-                    <ArrowRight size={14} strokeWidth={2.25} />
+                    {t.comingSoon ? `${t.name} is coming soon` : `Shop ${t.name}`}
+                    {!t.comingSoon && <ArrowRight size={14} strokeWidth={2.25} />}
                   </span>
                 </div>
               </Link>

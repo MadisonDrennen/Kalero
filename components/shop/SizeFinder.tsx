@@ -129,7 +129,7 @@ export function SizeFinder() {
             <span
               className={`mt-0.5 flex h-8 w-8 items-center justify-center rounded-full ${
                 isStandard
-                  ? "bg-sky-500 text-white"
+                  ? "bg-sky-500 text-charcoal"
                   : "bg-gold text-charcoal"
               }`}
             >
@@ -159,7 +159,7 @@ export function SizeFinder() {
           <button
             type="button"
             onClick={scrollToConcerns}
-            className="shrink-0 rounded-full bg-sky-500 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sky-600"
+            className="shrink-0 rounded-full bg-sky-500 px-4 py-2 text-xs font-medium text-charcoal transition-colors hover:bg-sky-400"
           >
             Choose a concern →
           </button>

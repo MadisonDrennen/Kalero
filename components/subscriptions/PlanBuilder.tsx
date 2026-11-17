@@ -146,7 +146,7 @@ export function PlanBuilder() {
       <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
         <div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-[11px] font-semibold text-white">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-[11px] font-semibold text-charcoal">
               1
             </span>
             <p className="text-eyebrow text-charcoal-light">Pick your filters</p>
@@ -223,7 +223,7 @@ export function PlanBuilder() {
                       <button
                         type="button"
                         onClick={() => update(f.slug, 1)}
-                        className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white hover:bg-sky-600"
+                        className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-charcoal hover:bg-sky-400"
                         aria-label={`Increase ${f.name}`}
                       >
                         <Plus size={12} />
@@ -245,7 +245,7 @@ export function PlanBuilder() {
           </div>
 
           <div className="mt-8 flex items-center gap-2">
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-[11px] font-semibold text-white">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-[11px] font-semibold text-charcoal">
               2
             </span>
             <p className="text-eyebrow text-charcoal-light">Pick your cadence</p>
@@ -260,7 +260,7 @@ export function PlanBuilder() {
                   onClick={() => setCadence(c.value)}
                   className={`rounded-2xl p-4 text-left ring-1 transition-all ${
                     isActive
-                      ? "bg-sky-500 text-white ring-sky-500 shadow-soft"
+                      ? "bg-sky-500 text-charcoal ring-sky-500 shadow-soft"
                       : "bg-canvas text-charcoal ring-sky-100 hover:ring-sky-300"
                   }`}
                 >
@@ -374,7 +374,7 @@ export function PlanBuilder() {
             href="/cart"
             className={`relative mt-6 inline-flex items-center justify-center gap-2 rounded-pill px-6 py-3.5 text-sm font-semibold transition-all ${
               totals.count > 0
-                ? "bg-sky-500 text-white hover:bg-sky-400"
+                ? "bg-sky-500 text-charcoal hover:bg-sky-400"
                 : "cursor-not-allowed bg-white/10 text-white/50"
             }`}
             aria-disabled={totals.count === 0}

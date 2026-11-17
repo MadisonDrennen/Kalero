@@ -53,7 +53,7 @@ export function HowToFindSize({ className = "", compact = false }: Props) {
             key={s.n}
             className="flex flex-col gap-2 rounded-2xl bg-canvas p-4 ring-1 ring-sky-100"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-xs font-semibold text-white">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-500 text-xs font-semibold text-charcoal">
               {s.n}
             </span>
             <p className="font-display text-sm font-semibold text-charcoal">

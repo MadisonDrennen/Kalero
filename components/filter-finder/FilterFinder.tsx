@@ -79,7 +79,7 @@ export function FilterFinder() {
             <button
               type="button"
               onClick={handleFind}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-sky-500 px-7 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-sky-700"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-sky-500 px-7 text-sm font-semibold text-charcoal transition-colors hover:bg-sky-400 focus-visible:outline-2 focus-visible:outline-sky-700"
             >
               Find My Filter
               <ArrowRight size={16} strokeWidth={2.25} />

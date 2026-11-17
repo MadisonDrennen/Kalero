@@ -136,11 +136,18 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <span
-          className="inline-flex w-fit rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
-          style={{ backgroundColor: t.softHex, color: t.deepHex }}
-        >
-          {t.name}
+        <span className="inline-flex w-fit items-center gap-2">
+          <span
+            className="inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
+            style={{ backgroundColor: t.softHex, color: t.deepHex }}
+          >
+            {t.name}
+          </span>
+          {t.comingSoon && (
+            <span className="inline-flex rounded-full bg-charcoal px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
+              Coming soon
+            </span>
+          )}
         </span>
         <h3 className="mt-3 font-display text-3xl font-bold text-charcoal">
           MERV {t.merv}
@@ -171,8 +178,8 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
           className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-[filter] duration-150 hover:brightness-[0.96] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{ backgroundColor: t.hex, color: t.onHex, outlineColor: t.deepHex }}
         >
-          Shop {t.name}
-          <ArrowRight size={16} strokeWidth={2.25} aria-hidden="true" />
+          {t.comingSoon ? `${t.name} is coming soon` : `Shop ${t.name}`}
+          {!t.comingSoon && <ArrowRight size={16} strokeWidth={2.25} aria-hidden="true" />}
         </Link>
       </div>
     </article>

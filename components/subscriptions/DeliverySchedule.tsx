@@ -115,7 +115,7 @@ export function DeliverySchedule() {
                           ease: [0.22, 1, 0.36, 1],
                           delay: i * 0.02,
                         }}
-                        className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-sky-500 text-white shadow-[0_10px_20px_-8px_rgba(145,100,210,0.7)] ring-4 ring-white"
+                        className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-sky-500 text-charcoal shadow-[0_10px_20px_-8px_rgba(145,100,210,0.7)] ring-4 ring-white"
                       >
                         <PackageOpen size={16} strokeWidth={2} />
                       </motion.div>

@@ -16,7 +16,7 @@ import {
   sizes as allSizes,
   type FilterSize,
 } from "@/lib/sizes";
-import { tierForProduct, type TierId } from "@/lib/tiers";
+import { tierForProduct, type TierId, tierIsPurchasable } from "@/lib/tiers";
 import {
   DEFAULT_CADENCE,
   PACK_QUANTITIES,
@@ -52,6 +52,8 @@ export type ProductConfig = {
   quote: Quote;
   /** False when nothing sellable is configured yet. */
   canAddToCart: boolean;
+  /** True when the chosen filtration level is held back from launch. */
+  tierComingSoon: boolean;
   /** True once the customer has touched any control. */
   touched: boolean;
   setSize: (s: FilterSize) => void;
@@ -192,7 +194,10 @@ export function useProductConfig(product: Product): ProductConfig {
     scentKey,
     scentEligible,
     quote: currentQuote,
-    canAddToCart: cartSizeSlug != null,
+    /* MERV 13 is out for launch, and the configurator can switch any product
+       to it, so this gates on the chosen tier and not just the product. */
+    canAddToCart: cartSizeSlug != null && tierIsPurchasable(tierId),
+    tierComingSoon: !tierIsPurchasable(tierId),
     touched,
     setSize,
     setCustomSize,

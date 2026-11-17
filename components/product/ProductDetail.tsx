@@ -339,11 +339,17 @@ export function ProductDetail({ product }: Props) {
               type="button"
               onClick={config.addToCart}
               disabled={!config.canAddToCart}
-              className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-sky-500 px-5 text-sm font-semibold text-white transition-colors hover:bg-sky-600 disabled:bg-charcoal-light"
+              className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-sky-500 px-5 text-sm font-semibold text-charcoal transition-colors hover:bg-sky-400 disabled:bg-charcoal-light disabled:text-charcoal"
             >
-              Add to cart
-              {config.quote.total != null && (
-                <span className="opacity-70">{formatPrice(config.quote.total)}</span>
+              {config.tierComingSoon ? (
+                "Coming soon"
+              ) : (
+                <>
+                  Add to cart
+                  {config.quote.total != null && (
+                    <span className="opacity-70">{formatPrice(config.quote.total)}</span>
+                  )}
+                </>
               )}
             </button>
           </div>

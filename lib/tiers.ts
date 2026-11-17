@@ -47,6 +47,8 @@ export type FilterTier = {
    * darkened stand-in the kit does not define.
    */
   onHex: string;
+  /** Held back from launch: listed and indexed, but not purchasable. */
+  comingSoon?: boolean;
   /** The tier's packaging render. */
   heroImage: string;
   /** The filter itself, three-quarter view. */
@@ -142,6 +144,7 @@ export const tiers: FilterTier[] = [
     softHex: "#E3E6E8",
     deepHex: "#050708",
     onHex: "#FFFFFF",
+    comingSoon: true,
     heroImage: "/images/products/merv-13-4pack.jpg",
     angleImage: "/images/products/merv-13-box.png",
     filterImage: "/images/products/merv-13-filter.jpg",
@@ -171,4 +174,11 @@ export function tierByMerv(merv: MervRating): FilterTier {
   const t = tiers.find((x) => x.merv === merv);
   if (!t) throw new Error(`No tier for MERV ${merv}`);
   return t;
+}
+
+/** MERV 13 is out for launch; the range is MERV 8 and MERV 11. */
+export const purchasableTiers = tiers.filter((t) => !t.comingSoon);
+
+export function tierIsPurchasable(id: TierId): boolean {
+  return !tierById(id).comingSoon;
 }

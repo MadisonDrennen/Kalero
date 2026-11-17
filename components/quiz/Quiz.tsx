@@ -282,9 +282,9 @@ export function Quiz() {
                     <div
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-all ${
                         isActive
-                          ? "bg-sky-500 text-white shadow-soft ring-4 ring-sky-200/60"
+                          ? "bg-sky-500 text-charcoal shadow-soft ring-4 ring-sky-200/60"
                           : isDone
-                            ? "bg-sky-500 text-white"
+                            ? "bg-sky-500 text-charcoal"
                             : "bg-white text-charcoal-light ring-1 ring-sky-200"
                       }`}
                     >

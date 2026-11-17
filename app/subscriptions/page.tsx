@@ -140,7 +140,7 @@ export default function SubscriptionsPage() {
             <div className="mt-7">
               <Link
                 href="#build"
-                className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.06em] text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-card"
+                className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.06em] text-charcoal shadow-soft transition-all hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-card"
               >
                 Build my filter plan
                 <ArrowRight size={16} strokeWidth={2.25} />
