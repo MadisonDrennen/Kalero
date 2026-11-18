@@ -47,7 +47,10 @@ export type FilterTier = {
    * darkened stand-in the kit does not define.
    */
   onHex: string;
-  /** Held back from launch: listed and indexed, but not purchasable. */
+  /* Held back from launch: listed and indexed, but not purchasable.
+     Brand Kit V2 gives colour a role rather than a tier -- KALERO Blue is the
+     filter frame and hero at every MERV level, and tiers are told apart by the
+     label, so all three carry the same blue. */
   comingSoon?: boolean;
   /** The tier's packaging render. */
   /* Photography is null until the new blue-and-navy cartons are shot. The old
@@ -78,7 +81,7 @@ export const tiers: FilterTier[] = [
     bestFor: ["Everyday homes", "Baseline filtration", "Households without pets"],
     captures: ["Household dust", "Pollen", "Lint", "Larger airborne particles"],
     colorToken: "merv-standard",
-    hex: "#35B1E6",
+    hex: "#35B2E6",
     softHex: "#CFE8F4",
     deepHex: "#0047B3",
     onHex: "#050708",
@@ -111,10 +114,11 @@ export const tiers: FilterTier[] = [
       "Common allergens",
     ],
     colorToken: "merv-pro",
-    hex: "#0047B3",
-    softHex: "#D6E2F3",
-    deepHex: "#022F72",
-    onHex: "#FFFFFF",
+    hex: "#35B2E6",
+    softHex: "#CFE8F4",
+    deepHex: "#0047B3",
+    onHex: "#050708",
+    comingSoon: true,
     heroImage: null,
     angleImage: null,
     filterImage: null,
@@ -144,11 +148,10 @@ export const tiers: FilterTier[] = [
       "Common airborne particles at high efficiency",
     ],
     colorToken: "merv-max",
-    hex: "#283238",
-    softHex: "#E3E6E8",
-    deepHex: "#050708",
-    onHex: "#FFFFFF",
-    comingSoon: true,
+    hex: "#35B2E6",
+    softHex: "#CFE8F4",
+    deepHex: "#0047B3",
+    onHex: "#050708",
     heroImage: null,
     angleImage: null,
     filterImage: null,
@@ -180,7 +183,7 @@ export function tierByMerv(merv: MervRating): FilterTier {
   return t;
 }
 
-/** MERV 13 is out for launch; the range is MERV 8 and MERV 11. */
+/** The launch range is MERV 8 and MERV 13; Pro is held back. */
 export const purchasableTiers = tiers.filter((t) => !t.comingSoon);
 
 export function tierIsPurchasable(id: TierId): boolean {

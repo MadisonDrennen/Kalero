@@ -50,7 +50,7 @@ export function Footer() {
       />
       <div className="pointer-events-none absolute inset-0 opacity-40">
         <AirflowLines
-          color="#35B1E6"
+          color="#35B2E6"
           opacity={0.18}
           animate={false}
           className="absolute inset-0 h-full w-full"

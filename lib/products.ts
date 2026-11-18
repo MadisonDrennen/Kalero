@@ -33,7 +33,11 @@ export type Product = {
   color: ProductColor;
   priceFrom: number;
   subscriptionSavings: number;
-  rating: { value: number; count: number };
+  /* Null until there are real reviews. The invented figures that were here
+     rendered as star ratings, "verified reviews" counts and schema.org
+     AggregateRating — the same fake-review problem the homepage testimonials
+     were already held back for. */
+  rating: { value: number; count: number } | null;
   sizes: FilterSize[];
   designedFor: string[];
   helpsCapture: string[];
@@ -83,8 +87,8 @@ export const productColors: Record<CategoryKey, ProductColor> = {
     chip: "bg-sky-100 text-sky-700",
   },
   allergy: {
-    base: "#283238",
-    soft: "#E3E6E8",
+    base: "#2B3238",
+    soft: "#E4E6E8",
     deep: "#050708",
     gradientFrom: "from-blush-soft",
     gradientTo: "to-white",
@@ -95,8 +99,8 @@ export const productColors: Record<CategoryKey, ProductColor> = {
     chip: "bg-sky-100 text-sky-700",
   },
   smoke: {
-    base: "#283238",
-    soft: "#E3E6E8",
+    base: "#2B3238",
+    soft: "#E4E6E8",
     deep: "#050708",
     gradientFrom: "from-smoke-soft",
     gradientTo: "to-white",
@@ -107,8 +111,8 @@ export const productColors: Record<CategoryKey, ProductColor> = {
     chip: "bg-sky-100 text-sky-700",
   },
   carbon: {
-    base: "#283238",
-    soft: "#E3E6E8",
+    base: "#2B3238",
+    soft: "#E4E6E8",
     deep: "#050708",
     gradientFrom: "from-graphite-soft",
     gradientTo: "to-white",
@@ -120,8 +124,8 @@ export const productColors: Record<CategoryKey, ProductColor> = {
   },
   hotel: {
     base: "#5A6670",
-    soft: "#E3E6E8",
-    deep: "#283238",
+    soft: "#E4E6E8",
+    deep: "#2B3238",
     gradientFrom: "from-gold-soft",
     gradientTo: "to-white",
     glowFrom: "rgba(233,185,92,0.35)",
@@ -131,7 +135,7 @@ export const productColors: Record<CategoryKey, ProductColor> = {
     chip: "bg-sky-100 text-sky-700",
   },
   seasonal: {
-    base: "#35B1E6",
+    base: "#35B2E6",
     soft: "#CFE8F4",
     deep: "#0047B3",
     gradientFrom: "from-sky-100",
@@ -166,7 +170,7 @@ export const products: Product[] = [
     color: productColors.everyday,
     priceFrom: 22,
     subscriptionSavings: 15,
-    rating: { value: 4.7, count: 812 },
+    rating: null,
     sizes: STANDARD_SIZES,
     designedFor: [
       "Everyday household dust",
@@ -201,7 +205,7 @@ export const products: Product[] = [
     color: productColors.pet,
     priceFrom: 28,
     subscriptionSavings: 15,
-    rating: { value: 4.8, count: 1264 },
+    rating: null,
     sizes: STANDARD_SIZES,
     designedFor: [
       "Pet dander",
@@ -236,7 +240,7 @@ export const products: Product[] = [
     color: productColors.allergy,
     priceFrom: 32,
     subscriptionSavings: 15,
-    rating: { value: 4.9, count: 1543 },
+    rating: null,
     sizes: STANDARD_SIZES,
     designedFor: [
       "Seasonal pollen surges",
@@ -271,7 +275,7 @@ export const products: Product[] = [
     color: productColors.hotel,
     priceFrom: 36,
     subscriptionSavings: 15,
-    rating: { value: 4.9, count: 512 },
+    rating: null,
     sizes: STANDARD_SIZES,
     designedFor: [
       "Guest room comfort",
@@ -311,7 +315,7 @@ export const products: Product[] = [
     color: productColors.smoke,
     priceFrom: 34,
     subscriptionSavings: 15,
-    rating: { value: 4.8, count: 987 },
+    rating: null,
     sizes: STANDARD_SIZES,
     designedFor: [
       "Wildfire smoke season",
@@ -345,7 +349,7 @@ export const products: Product[] = [
     color: productColors.carbon,
     priceFrom: 38,
     subscriptionSavings: 15,
-    rating: { value: 4.7, count: 662 },
+    rating: null,
     sizes: STANDARD_SIZES,
     designedFor: [
       "Kitchen and cooking odors",

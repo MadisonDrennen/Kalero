@@ -27,11 +27,11 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   title: {
     default:
-      "KALERO, Quality Air Filters | MERV 8 & 11 for HVAC Pros and Homes",
+      "KALERO, Quality Air Filters | MERV 8 & 13 for HVAC Pros and Homes",
     template: "%s | KALERO Air Filters",
   },
   description:
-    "MERV 8 and MERV 11 residential air filters in every standard size (16x25x1, 20x20x1, 20x25x1 and more), made in the USA. Trade pricing for HVAC contractors, and scheduled delivery for homes.",
+    "MERV 8 and MERV 13 residential air filters in every standard size (16x25x1, 20x20x1, 20x25x1 and more), made in the USA. Trade pricing for HVAC contractors, and scheduled delivery for homes.",
   keywords: [
     "air filters",
     "home air filters",

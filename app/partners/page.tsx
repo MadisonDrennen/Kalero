@@ -11,7 +11,7 @@ import { IridescentWave } from "@/components/ui/IridescentWave";
 export const metadata: Metadata = {
   title: "HVAC Trade Program | Wholesale Air Filters for Contractors",
   description:
-    "Become a KALERO preferred supplier. MERV 8 and MERV 11 residential air filters in every standard size, made in the USA, delivered on your schedule. Request trade pricing.",
+    "Become a KALERO preferred supplier. MERV 8 and MERV 13 residential air filters in every standard size, made in the USA, delivered on your schedule. Request trade pricing.",
   alternates: { canonical: "/partners" },
   keywords: [
     "wholesale air filters",
@@ -28,7 +28,7 @@ const REASONS = [
   {
     Icon: Boxes,
     title: "Two levels, not twenty",
-    body: "MERV 8 for routine service and MERV 11 for homes with pets or allergies. One short line covers almost every call, so the van carries less and the order sheet is simple.",
+    body: "MERV 8 for routine service and MERV 13 when a customer wants the most filtration. One short line covers almost every call, so the van carries less and the order sheet is simple.",
   },
   {
     Icon: Ruler,
@@ -65,7 +65,7 @@ export default function PartnersPage() {
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[radial-gradient(120%_120%_at_80%_20%,#0047B3_0%,#283238_55%,#050708_100%)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(120%_120%_at_80%_20%,#0047B3_0%,#2B3238_55%,#050708_100%)]"
         />
         <IridescentWave className="absolute inset-x-0 bottom-0 -z-10 h-1/2 w-full opacity-30" />
 
@@ -178,7 +178,7 @@ export default function PartnersPage() {
             ))}
           </div>
           <p className="mt-5 text-sm text-charcoal-mid">
-            MERV 13 is in development and not part of the launch range.
+            MERV 11 Pro is in development and not part of the launch range.
           </p>
         </div>
       </section>

@@ -7,7 +7,6 @@ import { ProductRender } from "@/components/product/ProductRender";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { PurchaseConfigurator } from "@/components/product/PurchaseConfigurator";
 import { useProductConfig } from "@/components/product/useProductConfig";
-import { Stars } from "@/components/ui/Stars";
 import { Chip } from "@/components/ui/Chip";
 import { LinkButton } from "@/components/ui/Button";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
@@ -87,13 +86,6 @@ export function ProductDetail({ product }: Props) {
               </p>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-                <Stars value={product.rating.value} count={product.rating.count} size={13} />
-                <Link
-                  href="#reviews"
-                  className="text-[13px] text-sky-700 underline-offset-2 hover:underline"
-                >
-                  Read reviews
-                </Link>
                 <span
                   className="ml-auto text-[13px] text-charcoal-mid"
                   aria-live="polite"
@@ -210,52 +202,10 @@ export function ProductDetail({ product }: Props) {
         </div>
       </section>
 
-      <section id="reviews" className="border-t border-sky-100 py-16 sm:py-20">
-        <div className="container-x">
-          <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
-            <div>
-              <p className="eyebrow">Reviews</p>
-              <p className="mt-3 font-display text-display-md font-semibold text-charcoal">
-                {product.rating.value.toFixed(1)}
-              </p>
-              <Stars value={product.rating.value} />
-              <p className="mt-2 text-sm text-charcoal-mid">
-                Based on {product.rating.count.toLocaleString()} verified reviews.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  author: "The Wallace family",
-                  text: `We swapped from a big-box filter and the difference was immediate, fewer sneezes on pollen days and no more mystery replacement dates.`,
-                },
-                {
-                  author: "L. Nguyen",
-                  text: `The subscription is the whole point. New filter shows up, old one comes out, done.`,
-                },
-                {
-                  author: "K. Ito",
-                  text: `The packaging alone made this feel like a real product, not a generic disposable.`,
-                },
-                {
-                  author: "Andrea R.",
-                  text: `Simple to understand, easy to reorder, and it looks nice in the utility closet.`,
-                },
-              ].map((r) => (
-                <div key={r.author} className="rounded-card bg-white p-5 ring-1 ring-sky-100 shadow-soft">
-                  <div className="flex items-center gap-1.5 text-sky-500">
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <Star key={i} size={12} className="fill-sky-500 text-sky-500" />
-                    ))}
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-charcoal-mid text-pretty">{r.text}</p>
-                  <p className="mt-3 text-xs text-charcoal-light">{r.author}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* The reviews section is gone, not hidden: it carried four invented
+          customer quotes under named authors and a "verified reviews" count.
+          Put it back when there are real ones, as with the homepage
+          testimonials. */}
 
       <section className="border-t border-sky-100 py-16 sm:py-20">
         <div className="container-x">

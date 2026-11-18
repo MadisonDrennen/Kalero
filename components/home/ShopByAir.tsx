@@ -74,8 +74,8 @@ export function ShopByAir() {
             Two levels cover almost every call.
           </h2>
           <p className="mt-3 text-base leading-relaxed text-charcoal-mid text-pretty sm:text-lg">
-            MERV 8 for routine service, MERV 11 for pets and allergies. Short
-            enough to stock, wide enough to cover the route.
+            MERV 8 for routine service, MERV 13 when a customer wants the most
+            filtration. Short enough to stock, wide enough to cover the route.
           </p>
         </div>
 

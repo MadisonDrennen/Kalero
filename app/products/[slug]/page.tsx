@@ -71,15 +71,12 @@ export default async function ProductPage({
     "@type": "Product",
     name: product.name,
     description: product.longDescription,
-    image: `${BASE_URL}${product.image}`,
+    ...(product.image ? { image: `${BASE_URL}${product.image}` } : {}),
     sku: product.slug,
     brand: { "@type": "Brand", name: "KALERO" },
     category: "Home & Garden > Household Appliance Accessories > HVAC Filters",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: product.rating.value,
-      reviewCount: product.rating.count,
-    },
+    /* No aggregateRating: asserting one without real reviews is what puts
+       fabricated stars into Google results. */
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "USD",

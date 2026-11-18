@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { IridescentWave } from "@/components/ui/IridescentWave";
 
 /**
  * The brand story on one photograph: particulate on the left clearing into
@@ -20,18 +20,16 @@ const points = [
 export function BrandBento() {
   return (
     <section aria-labelledby="bento-title" className="relative isolate overflow-hidden">
-      <div className="relative aspect-[16/9] w-full lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto">
-        <Image
-          src="/images/products/air-particles-to-clean.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          className="object-cover object-left"
-        />
-      </div>
+      {/* The photograph here was particulate dissolving into a green-and-violet
+          ribbon — the exact shot the kit lists under "never". Until there is a
+          macro pleat or clean-home frame to use, this is palette and wave. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,#FFFFFF_0%,#CFE8F4_48%,#9BD5F0_100%)]"
+      />
+      <IridescentWave className="absolute inset-x-0 bottom-0 -z-10 h-3/4 w-full opacity-80" />
 
-      <div className="container-x py-12 sm:py-16 lg:flex lg:min-h-[640px] lg:items-center lg:justify-end lg:py-20">
+      <div className="container-x flex min-h-[520px] items-center py-16 sm:py-20 lg:min-h-[600px]">
         <div className="max-w-md">
           <p className="eyebrow">The KALERO way</p>
           <h2

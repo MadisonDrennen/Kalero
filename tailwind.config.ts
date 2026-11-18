@@ -16,10 +16,10 @@ const config: Config = {
            are kept and re-pointed at kit colours so any straggler that still
            references them renders on-brand instead of off-palette. */
 
-        // KALERO Blue #35B1E6. `sky` keeps its name: it is referenced in
+        // KALERO Blue #35B2E6. `sky` keeps its name: it is referenced in
         // hundreds of class names and renaming it would be churn, not change.
         sky: {
-          DEFAULT: "#35B1E6",
+          DEFAULT: "#35B2E6",
           soft: "#CFE8F4",
           deep: "#0047B3",
           50: "#EFF9FD",
@@ -27,7 +27,7 @@ const config: Config = {
           200: "#A4DCF4",
           300: "#7ACCEE",
           400: "#55BDEA",
-          500: "#35B1E6",
+          500: "#35B2E6",
           600: "#2693D8",
           700: "#1877CA",
           800: "#0C5EBE",
@@ -60,7 +60,7 @@ const config: Config = {
         // Tier tokens. Standard is KALERO Blue, Pro is Navy. Max is kept for
         // the coming-soon Allergy listing and reads as graphite, not lilac.
         "merv-standard": {
-          DEFAULT: "#35B1E6",
+          DEFAULT: "#35B2E6",
           soft: "#CFE8F4",
           deep: "#0047B3",
         },
@@ -80,34 +80,34 @@ const config: Config = {
           900: "#04142A",
         },
         "merv-max": {
-          DEFAULT: "#283238",
-          soft: "#E3E6E8",
+          DEFAULT: "#2B3238",
+          soft: "#E4E6E8",
           deep: "#050708",
         },
 
         // Retired spectrum names, re-pointed at kit colours.
-        teal: { DEFAULT: "#35B1E6" },
-        mint: { soft: "#CFE8F4", DEFAULT: "#35B1E6", deep: "#0047B3" },
+        teal: { DEFAULT: "#35B2E6" },
+        mint: { soft: "#CFE8F4", DEFAULT: "#35B2E6", deep: "#0047B3" },
         lilac: { soft: "#D6E2F3", DEFAULT: "#0047B3", deep: "#022F72" },
         iris: { soft: "#D6E2F3", DEFAULT: "#0047B3", deep: "#022F72" },
         lavender: {
-          DEFAULT: "#35B1E6",
+          DEFAULT: "#35B2E6",
           50: "#EFF9FD",
           100: "#D7EFFA",
           200: "#A4DCF4",
           300: "#7ACCEE",
           400: "#55BDEA",
-          500: "#35B1E6",
+          500: "#35B2E6",
           600: "#2693D8",
           700: "#1877CA",
           800: "#0C5EBE",
           900: "#0047B3",
         },
 
-        // Carbon #050708, with Graphite #283238 as the soft step.
+        // Carbon #050708, with Graphite #2B3238 as the soft step.
         charcoal: {
           DEFAULT: "#050708",
-          soft: "#283238",
+          soft: "#2B3238",
           mid: "#5A6670",
           light: "#AEB8C0",
         },
@@ -125,10 +125,10 @@ const config: Config = {
 
         // Category identities, all drawn from the kit.
         grass: { DEFAULT: "#0047B3", soft: "#D6E2F3", deep: "#022F72" },
-        blush: { DEFAULT: "#283238", soft: "#E3E6E8", deep: "#050708" },
-        smoke: { DEFAULT: "#283238", soft: "#E3E6E8", deep: "#050708" },
-        graphite: { DEFAULT: "#283238", soft: "#E3E6E8", deep: "#050708" },
-        gold: { DEFAULT: "#5A6670", soft: "#E3E6E8", deep: "#283238" },
+        blush: { DEFAULT: "#2B3238", soft: "#E4E6E8", deep: "#050708" },
+        smoke: { DEFAULT: "#2B3238", soft: "#E4E6E8", deep: "#050708" },
+        graphite: { DEFAULT: "#2B3238", soft: "#E4E6E8", deep: "#050708" },
+        gold: { DEFAULT: "#5A6670", soft: "#E4E6E8", deep: "#2B3238" },
       },
       fontFamily: {
         display: [
@@ -172,7 +172,7 @@ const config: Config = {
         /* The kit's one gradient: white → Glacier → KALERO Blue → Navy →
            Graphite → Carbon. `iris-wash` keeps its name for callers. */
         "brand-ramp":
-          "linear-gradient(90deg, #FFFFFF 0%, #CFE8F4 22%, #35B1E6 45%, #0047B3 68%, #283238 86%, #050708 100%)",
+          "linear-gradient(90deg, #FFFFFF 0%, #CFE8F4 22%, #35B2E6 45%, #0047B3 68%, #2B3238 86%, #050708 100%)",
         "iris-wash":
           "linear-gradient(105deg, rgba(53,177,230,0.18) 0%, rgba(207,232,244,0.22) 45%, rgba(0,71,179,0.14) 100%)",
       },

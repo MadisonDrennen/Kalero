@@ -94,15 +94,20 @@ export function baseSubscriptionPercent(): number | null {
   if (businessConfig.subscriptionDiscount != null) {
     return businessConfig.subscriptionDiscount;
   }
-  const advertised = products
-    .map((p) => p.subscriptionSavings)
-    .filter((n): n is number => typeof n === "number");
-  return advertised.length > 0 ? Math.min(...advertised) : null;
+  /* Same reason: no advertised rate until one is confirmed. */
+  return null;
 }
 
-/** Subscription discount as a percentage, preferring the business config. */
-export function subscriptionPercent(product: Product): number | null {
-  return businessConfig.subscriptionDiscount ?? product.subscriptionSavings ?? null;
+/**
+ * Subscription discount as a percentage.
+ *
+ * businessConfig only. The per-product `subscriptionSavings` figures are
+ * placeholders that were never agreed, and falling back to them defeated the
+ * whole point of that config starting null — the site advertised "save 15%"
+ * on every filter. Brand Kit V2 forbids unconfirmed savings claims.
+ */
+export function subscriptionPercent(_product: Product): number | null {
+  return businessConfig.subscriptionDiscount;
 }
 
 export type QuoteInput = {

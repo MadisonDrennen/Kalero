@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { ProductRender } from "@/components/product/ProductRender";
-import { Stars } from "@/components/ui/Stars";
 import { Chip } from "@/components/ui/Chip";
 import { MervShield } from "@/components/ui/MervShield";
 import { isScentCompatible } from "@/lib/scentStrips";
+import { subscriptionPercent } from "@/lib/pricing";
 
 type Props = {
   product: Product;
@@ -54,7 +54,9 @@ export function ProductCard({ product, showSubscribeLabel = true, className = ""
         )}
         {showSubscribeLabel && (
           <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-sky-600">
-            Save {product.subscriptionSavings}% subscribing
+            {subscriptionPercent(product) != null
+              ? `Save ${subscriptionPercent(product)}% subscribing`
+              : "Subscription available"}
           </span>
         )}
       </div>
@@ -112,7 +114,10 @@ export function ProductCard({ product, showSubscribeLabel = true, className = ""
           </div>
           <div className="mt-0.5 flex items-baseline gap-1.5">
             <span className="font-display text-2xl font-semibold text-charcoal">
-              ${(product.priceFrom * (1 - product.subscriptionSavings / 100)).toFixed(2)}
+              ${(
+                product.priceFrom *
+                (1 - (subscriptionPercent(product) ?? 0) / 100)
+              ).toFixed(2)}
             </span>
             <span className="text-xs text-charcoal-light">/ filter</span>
           </div>
@@ -127,11 +132,7 @@ export function ProductCard({ product, showSubscribeLabel = true, className = ""
             </span>
           </div>
         </div>
-        <Stars
-          value={product.rating.value}
-          count={product.rating.count}
-          compact
-        />
+        {/* no Stars: ratings are null until real reviews exist */}
       </div>
 
       <div className="relative mt-5 flex items-center justify-between gap-3">

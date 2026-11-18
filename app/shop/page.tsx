@@ -13,7 +13,7 @@ import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 
 
 export const metadata: Metadata = {
-  title: "Shop Home Air Filters | MERV 8 & MERV 11 by Concern",
+  title: "Shop Home Air Filters | MERV 8 & MERV 13 by Concern",
   description:
     "Shop every KALERO home air filter, sorted by concern: everyday dust, pet dander and allergies. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes. Free shipping on subscriptions.",
   alternates: { canonical: "/shop" },

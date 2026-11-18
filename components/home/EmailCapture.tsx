@@ -36,7 +36,7 @@ export function EmailCapture() {
       <div className="container-x">
         <div
           className="relative grid overflow-hidden rounded-[2rem] lg:grid-cols-[1fr_1.05fr] lg:items-center"
-          style={{ background: "linear-gradient(120deg, #35B1E6 0%, #0047B3 100%)" }}
+          style={{ background: "linear-gradient(120deg, #35B2E6 0%, #0047B3 100%)" }}
         >
           <IridescentWave className="pointer-events-none absolute inset-0 h-full w-full opacity-45" />
 

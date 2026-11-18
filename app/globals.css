@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    --sky: #35b1e6;
+    --sky: #35B2E6;
     --sky-100: #d7effa;
     --sky-200: #a4dcf4;
     --navy: #0047b3;
     --glacier: #cfe8f4;
-    --graphite: #283238;
+    --graphite: #2B3238;
     --charcoal: #050708;
     --canvas: #f4f7fa;
   }
@@ -48,8 +48,18 @@
     @apply mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-12;
   }
 
+  /* Kit type table: packaging, eyebrows and labels are Poppins Medium or
+     SemiBold, all caps, wide tracking. Body copy is Instrument Sans.
+     Bound to the size utility itself because most eyebrows on the site use
+     `text-eyebrow` directly rather than this component class -- 58 of them,
+     across 20 files. The utility sets size, this sets family, so they do not
+     fight. */
+  .text-eyebrow {
+    font-family: var(--font-display), Poppins, ui-sans-serif, system-ui, sans-serif;
+  }
+
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-eyebrow font-medium uppercase text-sky-600;
+    @apply inline-flex items-center gap-2 font-display text-eyebrow font-medium uppercase tracking-[0.18em] text-sky-600;
   }
 
   .display-serif {

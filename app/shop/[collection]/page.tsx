@@ -11,7 +11,6 @@ import { products, productsByCategory, type CategoryKey } from "@/lib/products";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
-import { Stars } from "@/components/ui/Stars";
 import { LinkButton } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -112,12 +111,7 @@ export default async function CollectionPage({
                   <p className="mt-3 text-lg leading-relaxed text-white/90 text-pretty">
                     {featured.tagline}
                   </p>
-                  <Stars
-                    value={featured.rating.value}
-                    count={featured.rating.count}
-                    className="mt-5 text-white [&_span]:text-white"
-                    compact
-                  />
+                  {/* ratings omitted until there are real reviews */}
 
                   <ul className="mt-6 grid gap-2 sm:grid-cols-2">
                     {featured.designedFor.slice(0, 4).map((line) => (

@@ -27,12 +27,12 @@ export function IridescentWave({ className = "", flip = false }: Props) {
           <linearGradient id={`${id}-a`} x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#CFE8F4" stopOpacity="0" />
             <stop offset="28%" stopColor="#CFE8F4" stopOpacity="0.85" />
-            <stop offset="62%" stopColor="#35B1E6" stopOpacity="0.75" />
+            <stop offset="62%" stopColor="#35B2E6" stopOpacity="0.75" />
             <stop offset="100%" stopColor="#0047B3" stopOpacity="0.35" />
           </linearGradient>
           <linearGradient id={`${id}-b`} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#35B1E6" stopOpacity="0" />
-            <stop offset="40%" stopColor="#35B1E6" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#35B2E6" stopOpacity="0" />
+            <stop offset="40%" stopColor="#35B2E6" stopOpacity="0.5" />
             <stop offset="78%" stopColor="#0047B3" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#0047B3" stopOpacity="0" />
           </linearGradient>

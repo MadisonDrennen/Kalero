@@ -17,10 +17,12 @@ type Props = {
 const ART_W = 1120;
 const ART_H = 283;
 
+/* The kit sets a minimum width of 1.25in / 140px. w-36 is exactly 144px, so
+   that is the floor here — "sm" used to be 112px and broke it. */
 const widths: Record<NonNullable<Props["size"]>, string> = {
-  sm: "w-28",
-  md: "w-36 sm:w-40",
-  lg: "w-44 sm:w-52",
+  sm: "w-36",
+  md: "w-40 sm:w-44",
+  lg: "w-48 sm:w-56",
 };
 
 /**

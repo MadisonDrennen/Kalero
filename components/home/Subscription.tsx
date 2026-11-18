@@ -7,17 +7,21 @@ import { LinkButton } from "@/components/ui/Button";
 import { ProductRender } from "@/components/product/ProductRender";
 import { productBySlug } from "@/lib/products";
 import { IridescentWave } from "@/components/ui/IridescentWave";
+import { businessConfig } from "@/lib/business";
 
 type Mode = "onetime" | "subscribe";
 
 export function Subscription() {
   const [mode, setMode] = useState<Mode>("subscribe");
   const [cadence, setCadence] = useState<30 | 60 | 90>(60);
+  /* The kit forbids unconfirmed savings or shipping claims, and businessConfig
+     holds both as null until the business sets them. This section invented a
+     $32 filter at 15% off with free shipping; none of that was agreed. */
   const base = 32;
-  const savings = 0.15;
+  const discount = businessConfig.subscriptionDiscount;
   const price =
-    mode === "subscribe"
-      ? Math.round(base * (1 - savings) * 100) / 100
+    mode === "subscribe" && discount != null
+      ? Math.round(base * (1 - discount / 100) * 100) / 100
       : base;
 
   return (
@@ -51,7 +55,6 @@ export function Subscription() {
                 "Mixed sizes on one order",
                 "Pause or change anytime",
                 "Trade pricing every filter",
-                "Free shipping",
                 "Reorder reminders",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-2.5">
@@ -117,7 +120,11 @@ export function Subscription() {
                       />
                     )}
                     <span className="relative">
-                      {m === "onetime" ? "One-time purchase" : "Subscribe & save 15%"}
+                      {m === "onetime"
+                        ? "One-time purchase"
+                        : discount != null
+                          ? `Subscribe & save ${discount}%`
+                          : "Subscribe"}
                     </span>
                   </button>
                 ))}
@@ -165,9 +172,9 @@ export function Subscription() {
                       </span>
                     )}
                   </p>
-                  {mode === "subscribe" && (
+                  {mode === "subscribe" && discount != null && (
                     <p className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-sky-700">
-                      <Sparkles size={12} /> Save 15% + free shipping
+                      <Sparkles size={12} /> Save {discount}% on every filter
                     </p>
                   )}
                 </div>

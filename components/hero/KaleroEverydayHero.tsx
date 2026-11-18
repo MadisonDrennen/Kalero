@@ -35,15 +35,19 @@ export function KaleroEverydayHero() {
         <div className="max-w-xl">
           <h1
             id="hero-title"
-            className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.95] tracking-[-0.02em] text-charcoal text-balance"
+            /* Kit type table: page headlines are Poppins SemiBold, sentence case,
+               tight leading. The caps setting is reserved for packaging and labels. */
+            className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.0] tracking-[-0.02em] text-charcoal text-balance"
           >
-            Cleaner air.
+            The right filter.
             <br />
-            Better business.
+            The right fit.
+            <br />
+            Cleaner air.
           </h1>
 
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-mid text-pretty sm:text-lg">
-            MERV 8 and MERV 11 filters in every standard size, made in the USA.
+            Premium 1-inch HVAC filters in every standard size, made in the USA.
             Built to be stocked by the contractors homeowners already trust.
           </p>
 

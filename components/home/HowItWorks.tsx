@@ -5,7 +5,7 @@ import { AirflowLines } from "@/components/ui/AirflowLines";
 /** One photograph per step, replacing mock UI that included an empty grey
  *  square where a product image should have been. */
 /** Tier colour per step, so the sequence reads blue → navy → carbon. */
-const stepAccents = ["#35B1E6", "#0047B3", "#283238"];
+const stepAccents = ["#35B2E6", "#0047B3", "#2B3238"];
 
 export function HowItWorks() {
   return (

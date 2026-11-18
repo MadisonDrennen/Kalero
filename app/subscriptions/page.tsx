@@ -105,14 +105,10 @@ export default function SubscriptionsPage() {
     <>
       {/* HERO */}
       <section className="relative isolate overflow-hidden bg-sky-100">
-        <Image
-          src="/images/products/lifestyle-home.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover object-center"
-          priority
+        {/* Was a room shot carrying the retired spectrum wave. */}
+        <div
           aria-hidden="true"
+          className="absolute inset-0 -z-20 bg-[linear-gradient(140deg,#FFFFFF_0%,#CFE8F4_55%,#35B2E6_100%)]"
         />
         <div
           aria-hidden="true"

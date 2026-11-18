@@ -38,7 +38,7 @@ export function AirGuidesTeaser() {
           className="mt-4 font-display text-5xl font-bold leading-[1.02] tracking-tight text-charcoal text-balance sm:text-7xl"
         >
           Know your air.
-          <span className="block bg-gradient-to-r from-[#35B1E6] to-[#0047B3] bg-clip-text pb-1 text-transparent">
+          <span className="block bg-gradient-to-r from-[#35B2E6] to-[#0047B3] bg-clip-text pb-1 text-transparent">
             Breathe easier.
           </span>
         </h2>

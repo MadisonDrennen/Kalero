@@ -361,7 +361,7 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
 
           {config.tierComingSoon && (
             <p className="mt-2 text-center text-[12px] text-charcoal-mid">
-              Launching with MERV 8 and MERV 11. Pick one of those to order today.
+              Launching with MERV 8 and MERV 13. Pick one of those to order today.
             </p>
           )}
 
