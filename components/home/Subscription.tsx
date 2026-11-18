@@ -166,7 +166,7 @@ export function Subscription() {
                     <span className="font-display text-4xl font-semibold text-charcoal">
                       ${price.toFixed(2)}
                     </span>
-                    {mode === "subscribe" && (
+                    {mode === "subscribe" && discount != null && (
                       <span className="text-sm text-charcoal-light line-through">
                         ${base.toFixed(2)}
                       </span>

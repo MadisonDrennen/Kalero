@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
       // The three homepage guide cards link here and the articles are not written yet.
       { source: "/learn/:slug", destination: "/find-your-filter", permanent: false },
       { source: "/account", destination: "/cart", permanent: false },
+      /* MERV 11 was removed from the line; its routes point at the shop. */
+      { source: "/merv-11", destination: "/shop", permanent: false },
+      { source: "/products/pet-defense", destination: "/shop", permanent: false },
+      { source: "/shop/pets-and-dander", destination: "/shop", permanent: false },
       { source: "/air-filters", destination: "/shop", permanent: false },
       { source: "/air-filters/:slug", destination: "/shop", permanent: false },
       { source: "/custom-filters", destination: "/find-your-filter", permanent: false },

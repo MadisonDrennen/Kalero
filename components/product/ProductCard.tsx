@@ -10,6 +10,7 @@ import { Chip } from "@/components/ui/Chip";
 import { MervShield } from "@/components/ui/MervShield";
 import { isScentCompatible } from "@/lib/scentStrips";
 import { subscriptionPercent } from "@/lib/pricing";
+import { tierById, tierForProduct } from "@/lib/tiers";
 
 type Props = {
   product: Product;
@@ -39,16 +40,10 @@ export function ProductCard({ product, showSubscribeLabel = true, className = ""
         ) : (
           <MervShield
             rating={product.merv.replace("MERV ", "")}
-            /* The tier name, not a hardcoded "Standard" -- 11 is Pro and 13 is
-               Max. The brand kit calls this out as a fix-before-print item and
-               the same mistake was live here. */
-            label={
-              product.merv === "MERV 11"
-                ? "Pro"
-                : product.merv === "MERV 13"
-                  ? "Max"
-                  : "Standard"
-            }
+            /* Tier name and gradient both come from the tier, so a card can
+               never label a filter with the wrong one. */
+            label={tierById(tierForProduct(product.merv)).name}
+            gradient={tierById(tierForProduct(product.merv)).gradient}
             size="xs"
           />
         )}

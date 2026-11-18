@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const trustPoints = [
-  { Icon: Truck, label: "Free shipping on any subscription" },
+  { Icon: Truck, label: "Delivered on your schedule" },
   { Icon: RefreshCw, label: "Skip, pause, or cancel anytime" },
   { Icon: ShieldCheck, label: "30-day filter guarantee" },
 ];

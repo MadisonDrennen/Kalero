@@ -68,7 +68,6 @@ type TierPriceMatrix = Partial<Record<TierId, Partial<Record<PackQty, number | n
 
 const priceMatrix: TierPriceMatrix = {
   standard: {},
-  pro: {},
   max: {},
 };
 

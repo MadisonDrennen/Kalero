@@ -14,9 +14,8 @@ type Props = {
  * still being shot — so this says plainly that the photography is coming
  * rather than approximating the pack.
  *
- * The wording is about the photograph, never the product: MERV 11 Pro is the
- * one thing on this site that is genuinely "coming soon", and these panels
- * appear on MERV 8 and 13 too, which ship.
+ * The wording is about the photograph, never the product — both filters on
+ * the site ship today, only their photography is outstanding.
  */
 export function PhotoComingSoon({
   tint = { soft: "#CFE8F4", deep: "#0047B3" },

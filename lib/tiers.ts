@@ -3,7 +3,9 @@
  * The primary product axis for the new tier + size commerce model.
  * Each SIZE × TIER × PACK is a variant; tier is the fixed 3-way choice.
  */
-export type TierId = "standard" | "pro" | "max";
+/* Pro / MERV 11 is not part of the line. It was removed outright rather
+   than hidden, so nothing renders a placeholder for it. */
+export type TierId = "standard" | "max";
 export type MervRating = 8 | 11 | 13;
 
 /** Kept to a closed set so a tier cannot name an icon the card cannot draw. */
@@ -47,12 +49,14 @@ export type FilterTier = {
    * darkened stand-in the kit does not define.
    */
   onHex: string;
-  /* Held back from launch: listed and indexed, but not purchasable.
-     Tier colour is Madison's call, overriding the kit's role-based reading:
-     KALERO Blue for MERV 8, Navy for MERV 13. Pro is graphite because it is
-     the held-back tier and reads as inactive rather than as a third identity.
-     onHex differs per tier because white fails on KALERO Blue at 2.42:1 and
-     passes on Navy at 8.23 and Graphite at 12.99. */
+  /**
+   * Surfaces are gradients, not flat fills — flat #35B2E6 beside flat #0047B3
+   * reads like a hardware aisle. `glow` is a specular highlight placed in a
+   * corner where no text sits; `base`→`deep` is the body, and both ends clear
+   * 4.5:1 against white so the numerals stay legible.
+   */
+  gradient: { glow: string; base: string; deep: string };
+  /* Kept for whenever a tier is held back again; nothing sets it today. */
   comingSoon?: boolean;
   /** The tier's packaging render. */
   /* Photography is null until the new blue-and-navy cartons are shot. The old
@@ -87,40 +91,7 @@ export const tiers: FilterTier[] = [
     softHex: "#CFE8F4",
     deepHex: "#0047B3",
     onHex: "#050708",
-    heroImage: null,
-    angleImage: null,
-    filterImage: null,
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    merv: 11,
-    tagline: "More protection for the home you live in.",
-    shortBenefit: "Pets + allergies",
-    handles: [
-      { icon: "pets", label: "Pets" },
-      { icon: "allergens", label: "Allergies" },
-      { icon: "pollen", label: "Pollen" },
-      { icon: "dander", label: "Dander" },
-    ],
-    positioning: "Extra protection for pets, pollen, and everyday allergens.",
-    bestFor: [
-      "Homes with pets",
-      "Pollen-sensitive households",
-      "Allergy-aware homes",
-    ],
-    captures: [
-      "Everything in Standard",
-      "Pet dander",
-      "Finer dust",
-      "Common allergens",
-    ],
-    colorToken: "merv-pro",
-    hex: "#2B3238",
-    softHex: "#E4E6E8",
-    deepHex: "#050708",
-    onHex: "#FFFFFF",
-    comingSoon: true,
+    gradient: { glow: "#5BC8F5", base: "#1877CA", deep: "#0047B3" },
     heroImage: null,
     angleImage: null,
     filterImage: null,
@@ -154,6 +125,7 @@ export const tiers: FilterTier[] = [
     softHex: "#D6E2F3",
     deepHex: "#022F72",
     onHex: "#FFFFFF",
+    gradient: { glow: "#2E86D8", base: "#0A57BB", deep: "#01399E" },
     heroImage: null,
     angleImage: null,
     filterImage: null,
@@ -176,7 +148,7 @@ export function tierById(id: TierId): FilterTier {
 export function tierForProduct(merv: string): TierId {
   const m = /^MERV (\d+)$/.exec(merv);
   const t = m ? tiers.find((x) => x.merv === Number(m[1])) : undefined;
-  return t?.id ?? "pro";
+  return t?.id ?? "standard";
 }
 
 export function tierByMerv(merv: MervRating): FilterTier {

@@ -257,7 +257,7 @@ export const products: Product[] = [
     bestFor: ["Allergy-prone households", "Homes near green spaces", "Spring and fall", "Homes with young kids"],
     replacementCadence: "Every 45 to 60 days",
     longDescription:
-      "Allergy Defense is our go-to for households that feel every pollen count. Available in MERV 11 for balanced airflow or MERV 13 for higher capture, always designed to work with standard residential HVAC systems.",
+      "Allergy Defense is our go-to for households that feel every pollen count. MERV 13 capture, designed to work with standard residential HVAC systems.",
     image: null,
     cardImage: null,
     hero: {

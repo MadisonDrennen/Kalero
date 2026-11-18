@@ -7,7 +7,6 @@ import { IridescentWave } from "@/components/ui/IridescentWave";
 const shopLinks = [
   { href: "/shop", label: "Shop All" },
   { href: "/merv-8", label: "Standard · MERV 8" },
-  { href: "/merv-11", label: "Pro · MERV 11" },
   { href: "/merv-13", label: "Max · MERV 13" },
   { href: "/shop", label: "Shop by Size" },
   { href: "/custom-filters", label: "Custom Filters" },

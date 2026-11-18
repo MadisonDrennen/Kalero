@@ -15,7 +15,7 @@ import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 export const metadata: Metadata = {
   title: "Shop Home Air Filters | MERV 8 & MERV 13 by Concern",
   description:
-    "Shop every KALERO home air filter, sorted by concern: everyday dust, pet dander and allergies. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes. Free shipping on subscriptions.",
+    "Shop every KALERO home air filter, sorted by concern: everyday dust and allergies. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes.",
   alternates: { canonical: "/shop" },
   keywords: [
     "home air filters",
@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     "HVAC air filter",
     "furnace filter",
     "MERV 8 filter",
-    "MERV 11 filter",
     "20x25x1 air filter",
     "16x25x1 air filter",
     "20x20x1 air filter",
@@ -104,7 +103,10 @@ export default function ShopPage() {
                     <div
                       className="relative aspect-[4/5] overflow-hidden"
                       style={{
-                        background: `radial-gradient(120% 80% at 50% 100%, ${tier.hex} 0%, ${tier.softHex} 62%, #FFFFFF 100%)`,
+                        backgroundImage: [
+                          `radial-gradient(70% 55% at 78% 12%, ${tier.gradient.glow}40 0%, transparent 62%)`,
+                          `radial-gradient(130% 95% at 50% 105%, ${tier.gradient.base}66 0%, ${tier.softHex} 55%, #FFFFFF 100%)`,
+                        ].join(","),
                       }}
                     >
                       <span

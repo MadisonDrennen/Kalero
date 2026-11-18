@@ -60,7 +60,7 @@ export const categories: Category[] = [
     softHex: "#D6E2F3",
     deepHex: "#022F72",
     icon: "paw",
-    live: true,
+    live: false,
   },
   {
     key: "allergy",

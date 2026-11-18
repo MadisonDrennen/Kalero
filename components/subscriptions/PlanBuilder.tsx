@@ -30,15 +30,6 @@ const catalog: PlanFilter[] = [
     soft: "#CFE8F4",
   },
   {
-    slug: "pet-defense",
-    name: "Pet Defense",
-    merv: "MERV 11",
-    price: 28,
-    image: null,
-    hex: "#0047B3",
-    soft: "#D6E2F3",
-  },
-  {
     slug: "allergy-defense",
     name: "Allergy Defense",
     merv: "MERV 13",
@@ -94,7 +85,6 @@ const SUBSCRIBE_DISCOUNT = 0.15;
 
 export function PlanBuilder() {
   const [selected, setSelected] = useState<Record<string, number>>({
-    "pet-defense": 1,
   });
   const [cadence, setCadence] = useState<Cadence>(60);
 
@@ -360,7 +350,7 @@ export function PlanBuilder() {
               {deliveryMonths(cadence).join(" · ")}
             </p>
             <p className="mt-2 text-[11px] text-sky-200/90">
-              Free shipping on every delivery
+              Delivered on your schedule
             </p>
           </div>
 

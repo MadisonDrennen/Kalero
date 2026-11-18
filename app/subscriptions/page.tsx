@@ -15,7 +15,7 @@ import { PlanBuilder } from "@/components/subscriptions/PlanBuilder";
 export const metadata: Metadata = {
   title: "Air Filter Subscription, Delivered on Your Schedule | KALERO",
   description:
-    "Build an air filter subscription around your HVAC. Pick your MERV 8, 11, or 13 filter, size (20x25x1, 16x25x1, and more), quantity, and delivery cadence, every 30, 60, or 90 days. Free shipping. Skip, pause, or cancel anytime.",
+    "Build an air filter subscription around your HVAC. Pick your MERV 8 or MERV 13 filter, size (20x25x1, 16x25x1, and more), quantity, and delivery cadence, every 30, 60, or 90 days. Skip, pause, or cancel anytime.",
   alternates: { canonical: "/subscriptions" },
   keywords: [
     "air filter subscription",
@@ -41,7 +41,7 @@ const benefits = [
   },
   {
     Icon: Truck,
-    title: "Free shipping, always",
+    title: "Change it anytime",
     body: "Every KALERO subscription shipment ships free.",
   },
   {
@@ -65,7 +65,7 @@ const howItWorks = [
   {
     step: "03",
     title: "We deliver automatically",
-    body: "Get free shipping and a reminder before every order goes out.",
+    body: "Get a reminder before every order goes out.",
   },
 ];
 
@@ -88,7 +88,7 @@ const faqs = [
   },
   {
     q: "Is subscription shipping free?",
-    a: "Yes. Every KALERO subscription shipment includes free shipping.",
+    a: "Shipping terms are being finalised and will be shown at checkout.",
   },
   {
     q: "Can I cancel anytime?",

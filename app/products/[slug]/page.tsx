@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!p) return {};
   const sizesList = p.sizes.slice(0, 6).join(", ");
   const title = `${p.name}, ${p.merv} Home Air Filter | KALERO`;
-  const description = `${p.longDescription} Available in ${sizesList} and more. Free shipping on subscriptions. Skip or cancel anytime.`;
+  const description = `${p.longDescription} Available in ${sizesList} and more. Skip or cancel anytime.`;
   return {
     title,
     description,

@@ -52,7 +52,7 @@ export const concerns: Concern[] = [
     chipLabel: "For pet dander",
     description:
       "Extra help for the dander, fur, and odors that come with pet-active homes.",
-    recommendedTier: "pro",
+    recommendedTier: "max",
     icon: "paw",
     hex: "#0047B3",
     softHex: "#D6E2F3",
@@ -66,7 +66,7 @@ export const concerns: Concern[] = [
     chipLabel: "For pollen + allergens",
     description:
       "Higher-capture filtration for households sensitive to seasonal allergens.",
-    recommendedTier: "pro",
+    recommendedTier: "max",
     icon: "flower",
     hex: "#0047B3",
     softHex: "#D6E2F3",
@@ -108,7 +108,7 @@ export const concerns: Concern[] = [
     chipLabel: "For hospitality",
     description:
       "Consistent replacement filtration built into a property's service cadence.",
-    recommendedTier: "pro",
+    recommendedTier: "max",
     icon: "sparkles",
     hex: "#0047B3",
     softHex: "#D6E2F3",

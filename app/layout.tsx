@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "HVAC air filter",
     "furnace filter",
     "MERV 8 filter",
-    "MERV 11 filter",
     "wholesale air filters",
     "HVAC contractor filters",
     "20x25x1 air filter",
@@ -68,7 +67,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "KALERO, Premium Home Air Filters, Delivered",
     description:
-      "MERV 8, 11, and 13 air filters in every standard size. Made for real home concerns, pets, allergies, smoke, dust. Free shipping. Skip or cancel anytime.",
+      "MERV 8 and MERV 13 air filters in every standard size, made in the USA. Trade pricing for HVAC contractors. Skip or cancel anytime.",
     type: "website",
     siteName: "KALERO",
     locale: "en_US",
@@ -99,7 +98,7 @@ const organizationJsonLd = {
   url: "https://kalero.com",
   logo: "https://kalero.com/kalero-logo.png",
   description:
-    "Premium residential air filters in MERV 8, 11, and 13. Made for pets, allergies, smoke, dust, and odors. Delivered on subscription with free shipping.",
+    "Premium 1-inch residential air filters in MERV 8 and MERV 13, made in the USA. Trade pricing for HVAC contractors, and delivery on a schedule for homes.",
   sameAs: [] as string[],
 };
 

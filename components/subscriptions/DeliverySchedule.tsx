@@ -48,7 +48,7 @@ export function DeliverySchedule() {
             Here&apos;s when your filters arrive.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-charcoal-mid text-pretty sm:text-base">
-            Pick a cadence and see the year lay out. Every drop is free shipping, and we
+            Pick a cadence and see the year lay out. We
             email you a heads-up a few days before each one ships.
           </p>
         </div>

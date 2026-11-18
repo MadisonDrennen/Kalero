@@ -12,33 +12,32 @@ type Row = {
 const rows: Row[] = [
   {
     label: "Everyday dust",
-    cells: { standard: "yes", pro: "yes", max: "yes" },
+    cells: { standard: "yes", max: "yes" },
   },
   {
     label: "Pollen",
-    cells: { standard: "yes", pro: "yes", max: "yes" },
+    cells: { standard: "yes", max: "yes" },
   },
   {
     label: "Lint & fine fibers",
-    cells: { standard: "yes", pro: "yes", max: "yes" },
+    cells: { standard: "yes", max: "yes" },
   },
   {
     label: "Pet dander",
-    cells: { standard: "no", pro: "yes", max: "yes" },
+    cells: { standard: "no", max: "yes" },
   },
   {
     label: "Fine particles",
-    cells: { standard: "no", pro: "yes", max: "yes" },
+    cells: { standard: "no", max: "yes" },
   },
   {
     label: "Smoke & smog",
-    cells: { standard: "no", pro: "limited", max: "yes" },
+    cells: { standard: "no", max: "yes" },
   },
 ];
 
 const bestFor: Record<TierId, string> = {
   standard: "Everyday homes",
-  pro: "Pets + allergies",
   max: "Maximum filtration",
 };
 

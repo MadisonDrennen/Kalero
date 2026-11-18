@@ -111,8 +111,13 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
           sitting in a white box. */}
       <div
         className="relative flex h-72 items-end justify-center overflow-hidden sm:h-80"
+        /* Layered rather than one flat wash: a cool ground, the tier's glow
+           rising from the base, and a soft highlight top-right. */
         style={{
-          background: `radial-gradient(125% 95% at 50% 105%, ${t.hex} 0%, ${t.softHex} 58%, #FFFFFF 100%)`,
+          backgroundImage: [
+            `radial-gradient(70% 55% at 78% 12%, ${t.gradient.glow}40 0%, transparent 62%)`,
+            `radial-gradient(135% 100% at 50% 108%, ${t.gradient.base}66 0%, ${t.softHex} 52%, #FFFFFF 100%)`,
+          ].join(","),
         }}
       >
         <span
@@ -175,8 +180,13 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
         <div className="h-6" aria-hidden="true" />
         <Link
           href={`/merv-${t.merv}`}
-          className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-[filter] duration-150 hover:brightness-[0.96] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          style={{ backgroundColor: t.hex, color: t.onHex, outlineColor: t.deepHex }}
+          className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          style={{
+            backgroundImage: `linear-gradient(135deg, ${t.gradient.base} 0%, ${t.gradient.deep} 100%)`,
+            color: "#FFFFFF",
+            outlineColor: t.gradient.deep,
+            boxShadow: `0 10px 20px -10px ${t.gradient.deep}B3, inset 0 1px 0 ${t.gradient.glow}66`,
+          }}
         >
           {t.comingSoon ? `${t.name} is coming soon` : `Shop ${t.name}`}
           {!t.comingSoon && <ArrowRight size={16} strokeWidth={2.25} aria-hidden="true" />}

@@ -69,9 +69,10 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
                     boxShadow: selected
                       ? `inset 0 0 0 1px ${t.hex}, 0 10px 24px -16px ${t.deepHex}`
                       : undefined,
-                    background: selected
-                      ? `linear-gradient(180deg, ${t.softHex}66 0%, #FFFFFF 78%)`
-                      : "#FFFFFF",
+                    backgroundImage: selected
+                      ? `radial-gradient(90% 60% at 50% 0%, ${t.gradient.glow}2E 0%, transparent 70%), linear-gradient(180deg, ${t.softHex}80 0%, #FFFFFF 76%)`
+                      : "none",
+                    backgroundColor: selected ? undefined : "#FFFFFF",
                   }}
                 >
                   {/* The packaging shield, not a plain number — the same badge
@@ -79,7 +80,7 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
                   <MervShield
                     rating={String(t.merv)}
                     size="sm"
-                    color={t.deepHex}
+                    gradient={t.gradient}
                     showLabel={false}
                     decorative
                     className={`transition-transform duration-200 ${
@@ -340,7 +341,15 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
             }}
             disabled={!config.canAddToCart}
             /* Carbon on KALERO Blue, not white: white on this blue is 2.45:1 and fails. */
-            className="mt-4 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-6 text-[15px] font-semibold tracking-[0.01em] text-charcoal shadow-[0_8px_24px_-10px_rgba(0,71,179,0.55)] transition-all hover:bg-sky-400 active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-charcoal-light disabled:text-charcoal disabled:shadow-none"
+            style={
+              config.canAddToCart
+                ? {
+                    backgroundImage: `linear-gradient(135deg, ${tier.gradient.base} 0%, ${tier.gradient.deep} 100%)`,
+                    boxShadow: `0 14px 26px -12px ${tier.gradient.deep}CC, inset 0 1px 0 ${tier.gradient.glow}59`,
+                  }
+                : undefined
+            }
+            className="mt-4 flex h-[54px] w-full items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold tracking-[0.01em] text-white transition-all hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:bg-charcoal-light disabled:text-white disabled:shadow-none"
           >
             {config.tierComingSoon ? (
               `MERV ${tier.merv} is coming soon`
@@ -373,10 +382,15 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
 
           <ul className="mt-3.5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px] text-charcoal-mid">
             {[
+              /* "Fast shipping" was an unconfirmed delivery claim, which the
+                 brand kit rules out. Shipping only appears once the business
+                 has set a message for it. */
               businessConfig.manufacturingMessage ?? "Made in USA",
-              "Fast shipping",
+              businessConfig.shippingMessage,
               "Easy replacements",
-            ].map((t) => (
+            ]
+              .filter((t): t is string => Boolean(t))
+              .map((t) => (
               <li key={t} className="flex items-center gap-1">
                 <Check size={12} strokeWidth={2.5} className="text-sky-500" aria-hidden="true" />
                 {t}

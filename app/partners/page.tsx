@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "trade pricing air filters",
     "preferred filter supplier",
     "MERV 8 wholesale",
-    "MERV 11 wholesale",
   ],
 };
 
@@ -149,7 +148,10 @@ export default function PartnersPage() {
                 <div
                   className="relative aspect-[5/3] overflow-hidden"
                   style={{
-                    background: `radial-gradient(120% 90% at 50% 105%, ${t.hex} 0%, ${t.softHex} 60%, #FFFFFF 100%)`,
+                    backgroundImage: [
+                      `radial-gradient(70% 55% at 80% 12%, ${t.gradient.glow}40 0%, transparent 62%)`,
+                      `radial-gradient(130% 95% at 50% 105%, ${t.gradient.base}66 0%, ${t.softHex} 55%, #FFFFFF 100%)`,
+                    ].join(","),
                   }}
                 >
                   <div className="absolute inset-x-10 bottom-0 top-6 flex items-end justify-center">
@@ -177,9 +179,6 @@ export default function PartnersPage() {
               </div>
             ))}
           </div>
-          <p className="mt-5 text-sm text-charcoal-mid">
-            MERV 11 Pro is in development and not part of the launch range.
-          </p>
         </div>
       </section>
 

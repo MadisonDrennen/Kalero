@@ -14,7 +14,6 @@ import { useCart } from "@/lib/cart";
 const shopFiltersMenu = [
   { href: "/shop", label: "Shop All Filters", eyebrow: "Everything" },
   { href: "/merv-8", label: "Standard · MERV 8", eyebrow: "Everyday" },
-  { href: "/merv-11", label: "Pro · MERV 11", eyebrow: "Pets + Allergies" },
   { href: "/merv-13", label: "Max · MERV 13", eyebrow: "Maximum Filtration" },
   { href: "/custom-filters", label: "Custom Sizes", eyebrow: "Not standard?" },
 ];
