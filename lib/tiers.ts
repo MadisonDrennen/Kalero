@@ -48,9 +48,11 @@ export type FilterTier = {
    */
   onHex: string;
   /* Held back from launch: listed and indexed, but not purchasable.
-     Brand Kit V2 gives colour a role rather than a tier -- KALERO Blue is the
-     filter frame and hero at every MERV level, and tiers are told apart by the
-     label, so all three carry the same blue. */
+     Tier colour is Madison's call, overriding the kit's role-based reading:
+     KALERO Blue for MERV 8, Navy for MERV 13. Pro is graphite because it is
+     the held-back tier and reads as inactive rather than as a third identity.
+     onHex differs per tier because white fails on KALERO Blue at 2.42:1 and
+     passes on Navy at 8.23 and Graphite at 12.99. */
   comingSoon?: boolean;
   /** The tier's packaging render. */
   /* Photography is null until the new blue-and-navy cartons are shot. The old
@@ -114,10 +116,10 @@ export const tiers: FilterTier[] = [
       "Common allergens",
     ],
     colorToken: "merv-pro",
-    hex: "#35B2E6",
-    softHex: "#CFE8F4",
-    deepHex: "#0047B3",
-    onHex: "#050708",
+    hex: "#2B3238",
+    softHex: "#E4E6E8",
+    deepHex: "#050708",
+    onHex: "#FFFFFF",
     comingSoon: true,
     heroImage: null,
     angleImage: null,
@@ -148,10 +150,10 @@ export const tiers: FilterTier[] = [
       "Common airborne particles at high efficiency",
     ],
     colorToken: "merv-max",
-    hex: "#35B2E6",
-    softHex: "#CFE8F4",
-    deepHex: "#0047B3",
-    onHex: "#050708",
+    hex: "#0047B3",
+    softHex: "#D6E2F3",
+    deepHex: "#022F72",
+    onHex: "#FFFFFF",
     heroImage: null,
     angleImage: null,
     filterImage: null,
