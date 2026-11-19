@@ -16,11 +16,11 @@ export default function Home() {
       {/* 1 — Hero */}
       <KaleroEverydayHero />
 
-      {/* 2 — Popular Filter Sizes */}
-      <PopularSizes />
-
-      {/* 4 — Shop by what's in your air (tier cards + concern chips) */}
+      {/* 2 — The range (MERV 8 / MERV 13 tier cards) */}
       <ShopByAir />
+
+      {/* 3 — Popular filter sizes */}
+      <PopularSizes />
 
       {/* The product up close */}
       <UpClose />

@@ -567,6 +567,10 @@ void main() {
 
   animate = (timestamp: number): void => {
     if (!this.isPlaying) return;
+    if (!this.mesh.geometry.attributes.index.values) {
+      this.animationId = requestAnimationFrame(this.animate);
+      return;
+    }
     this.time += Math.min(timestamp - this.last, 1000 / 15);
     this.last = timestamp;
     this.mesh.material.uniforms.u_time.value = this.time;
@@ -574,8 +578,15 @@ void main() {
     this.animationId = requestAnimationFrame(this.animate);
   };
 
-  /** One frame, for reduced motion and for the first paint before play. */
+  /** One frame, for reduced motion and for the first paint before play.
+   *
+   *  Guarded, because resize() bails on a zero-sized container and therefore
+   *  never sets the topology. Drawing before that point reads the length of an
+   *  index buffer that does not exist yet and throws. A ResizeObserver's first
+   *  observation can legitimately be 0x0 -- it fires before the section has
+   *  been laid out -- so this is a normal path, not a broken one. */
   renderOnce(): void {
+    if (!this.mesh.geometry.attributes.index.values) return;
     this.mesh.material.uniforms.u_time.value = this.time;
     this.minigl.render();
   }

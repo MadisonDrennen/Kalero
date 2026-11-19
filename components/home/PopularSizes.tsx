@@ -20,8 +20,9 @@ export function PopularSizes() {
           onto /shop once already. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
         <GradientWave />
-        {/* Meets the hero's fade on the same white, so there is no seam. */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/60 to-transparent sm:h-40" />
+        {/* Meets the range section's ground on the same canvas, so there is
+            no seam where the drifting gradient starts. */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canvas via-canvas/60 to-transparent sm:h-40" />
       </div>
 
       <div className="container-x">

@@ -63,6 +63,13 @@ export function ShopByAir() {
       aria-labelledby="shop-by-air-title"
       className="relative isolate py-16 sm:py-20"
     >
+      {/* The hero above ends on pure white; the page ground is canvas. Fade
+          between the two rather than letting them meet as a visible step. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-white to-transparent sm:h-36"
+      />
+
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-eyebrow text-sky-700">The range</p>
