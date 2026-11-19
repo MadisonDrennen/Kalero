@@ -4,11 +4,11 @@ import { ShopByAir } from "@/components/home/ShopByAir";
 import { UpClose } from "@/components/home/UpClose";
 import { BrandBento } from "@/components/home/BrandBento";
 import { Subscription } from "@/components/home/Subscription";
+import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
 // import { Testimonials } from "@/components/home/Testimonials"; // held back — see below
 import { AirGuidesTeaser } from "@/components/home/AirGuidesTeaser";
 import { FAQ } from "@/components/home/FAQ";
 import { EmailCapture } from "@/components/home/EmailCapture";
-import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
 
 export default function Home() {
   return (
@@ -22,9 +22,6 @@ export default function Home() {
       {/* 4 — Shop by what's in your air (tier cards + concern chips) */}
       <ShopByAir />
 
-      {/* HVAC brands trust strip */}
-      <HvacCompatibility />
-
       {/* The product up close */}
       <UpClose />
 
@@ -33,6 +30,12 @@ export default function Home() {
 
       {/* 8 — Subscription */}
       <Subscription />
+
+      {/* The compatibility strip sits here rather than between the tier cards
+          and the product shots: "fits every major system" answers the question
+          a standing order raises — whether this will keep fitting — and it was
+          interrupting the run of product imagery further up. */}
+      <HvacCompatibility />
 
       {/* Testimonials are held back until there are real ones. The six in
           lib/copy.ts are invented names and quotes under a heading that calls
