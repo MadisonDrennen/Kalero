@@ -41,8 +41,12 @@ const benefits = [
   },
   {
     Icon: Truck,
+    /* Was "Every KALERO subscription shipment ships free" under a heading
+       about changing the plan — a mismatched card, and a shipping promise
+       with nothing behind it: businessConfig.shippingThreshold is still null.
+       The rest of the site had these removed already. */
     title: "Change it anytime",
-    body: "Every KALERO subscription shipment ships free.",
+    body: "Swap the size or the level between shipments, as often as you need.",
   },
   {
     Icon: Bell,
@@ -129,24 +133,26 @@ export default function SubscriptionsPage() {
           }}
         />
 
-        <div className="container-x relative py-10 sm:py-14 lg:py-16">
+        <div className="container-x relative py-14 sm:py-20 lg:py-24">
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1 text-eyebrow text-sky-700 ring-1 ring-sky-200 backdrop-blur">
               KALERO subscriptions
             </span>
-            <h1 className="mt-5 font-display text-[clamp(2.25rem,5vw,4rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] text-charcoal text-balance">
-              Fresh filters, right when your{" "}
-              <span className="text-sky-500">home needs them.</span>
+            {/* Was uppercase extrabold at up to 4rem, which ran to four lines
+                over a busy photograph. The kit sets page headlines in sentence
+                case at SemiBold and keeps caps for packaging and labels; the
+                two-tone split added a third thing to read at the same time. */}
+            <h1 className="mt-5 max-w-md font-display text-[clamp(2rem,3.6vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-charcoal text-balance">
+              Fresh filters, right when your home needs them.
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-charcoal-mid text-pretty sm:text-lg">
-              Build one flexible plan for every filter in your home. Choose your
-              products, sizes, and delivery schedule, then skip, pause, swap, or
-              cancel anytime.
+            <p className="mt-4 max-w-md text-base leading-relaxed text-charcoal-soft text-pretty">
+              One plan for every filter in the house. Set the sizes and the
+              cadence, then skip, pause or cancel whenever you like.
             </p>
-            <div className="mt-7">
+            <div className="mt-8">
               <Link
                 href="#build"
-                className="inline-flex items-center gap-2 rounded-pill bg-sky-500 px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.06em] text-charcoal shadow-soft transition-all hover:-translate-y-0.5 hover:bg-sky-400 hover:shadow-card"
+                className="inline-flex h-12 items-center gap-2 rounded-pill bg-[radial-gradient(130%_160%_at_88%_-12%,rgba(207,232,244,0.85)_0%,rgba(207,232,244,0)_58%),linear-gradient(158deg,#35B2E6_0%,#2693D8_88%)] px-7 text-sm font-semibold text-charcoal shadow-[0_14px_34px_-12px_rgba(53,178,230,0.7),inset_0_1px_0_0_rgba(255,255,255,0.45)] transition-all duration-300 hover:-translate-y-0.5"
               >
                 Build my filter plan
                 <ArrowRight size={16} strokeWidth={2.25} />
