@@ -130,7 +130,7 @@ export function Header() {
           searchOpen ? "invisible" : ""
         }`}
       >
-        <Logo variant="brand" size="md" stacked />
+        <Logo variant="brand" size="md" tagline />
         {/* Inline search bar — filterbuy-style prominent */}
         <button
           type="button"
