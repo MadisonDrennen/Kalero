@@ -188,18 +188,24 @@ export default function PartnersPage() {
                 key={t.id}
                 className="flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-sky-100"
               >
+                {/* A fixed stage with the carton sized by height. This was a
+                    5:3 box — 201px tall at phone width — holding a carton sized
+                    by width, which makes it 398px tall and cropped 221px off
+                    the top. Portrait artwork cannot be sized by width inside a
+                    landscape frame. */}
                 <div
-                  className="relative aspect-[5/3] overflow-hidden"
+                  className="relative flex h-56 items-center justify-center overflow-hidden px-10 pb-6 pt-5 sm:h-64"
                   style={{
                     backgroundImage: [
-                      `radial-gradient(70% 55% at 80% 12%, ${t.gradient.glow}40 0%, transparent 62%)`,
-                      `radial-gradient(130% 95% at 50% 105%, ${t.gradient.base}66 0%, ${t.softHex} 55%, #FFFFFF 100%)`,
+                      `linear-gradient(168deg, #FFFFFF 0%, ${t.softHex}66 58%, ${t.softHex}B3 100%)`,
                     ].join(","),
                   }}
                 >
-                  <div className="absolute inset-x-10 bottom-0 top-6 flex items-end justify-center">
-                    <CartonPhoto alt={`KALERO ${t.name} filter`} />
-                  </div>
+                  <CartonPhoto
+                    alt={`KALERO ${t.name} filter`}
+                    fit="height"
+                    sizes="(min-width: 640px) 22vw, 45vw"
+                  />
                 </div>
                 <div className="p-6">
                   <span
