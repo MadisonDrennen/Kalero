@@ -59,7 +59,7 @@ export function FinalCTA() {
             transition={{ duration: 0.75, delay: 0.25 }}
             className="mt-8 flex flex-wrap items-center justify-center gap-3"
           >
-            <LinkButton href="/find-your-filter" size="lg" arrow>
+            <LinkButton href="/shop" size="lg" arrow>
               Find my filter
             </LinkButton>
             <LinkButton href="/shop" size="lg" variant="secondary">
@@ -77,11 +77,11 @@ export function FinalCTA() {
             className="translate-y-4"
           >
             <ProductRender
-              name="Everyday Defense"
+              name="MERV 8"
               subtitle="The everyday one"
               merv="MERV 8"
               category="everyday"
-              image={productBySlug("everyday-defense")?.image}
+              image={productBySlug("merv-8")?.image}
               size="sm"
               floating={false}
             />
@@ -110,11 +110,11 @@ export function FinalCTA() {
             className="translate-y-6"
           >
             <ProductRender
-              name="Allergy Defense"
+              name="MERV 13"
               subtitle="For pollen weeks"
               merv="MERV 13"
               category="allergy"
-              image={productBySlug("allergy-defense")?.image}
+              image={productBySlug("merv-13")?.image}
               size="sm"
               floating={false}
             />

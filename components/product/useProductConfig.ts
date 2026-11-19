@@ -106,7 +106,11 @@ export function useProductConfig(product: Product): ProductConfig {
     [availableSizes, sizeSlug],
   );
 
-  const scentEligible = isScentCompatible(product);
+  /* Scent strips are pulled from the launch range. Gated here rather than
+     unpicked from pricing and the cart, so the add-on cannot render, cannot be
+     attached to a line, and cannot reach a total. Flip back to
+     isScentCompatible(product) to bring it back. */
+  const scentEligible = false;
   const scentSubtotal = scentKey === null ? 0 : scentStripPrice * packQty;
 
   const currentQuote = useMemo(

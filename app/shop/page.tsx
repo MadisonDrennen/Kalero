@@ -9,7 +9,7 @@ import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { productBySlug } from "@/lib/products";
 import { tierById, tierForProduct } from "@/lib/tiers";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
+import { CartonPhoto } from "@/components/ui/CartonPhoto";
 
 
 export const metadata: Metadata = {
@@ -75,10 +75,10 @@ export default function ShopPage() {
               sounds most like your home and we&apos;ll take it from there.
             </p>
             <Link
-              href="/find-your-filter"
+              href="/shop"
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-sky-700 hover:text-sky-800"
             >
-              Not sure? Take the two-minute quiz
+              See every size we stock
               <ArrowRight size={14} />
             </Link>
           </div>
@@ -87,7 +87,7 @@ export default function ShopPage() {
               carton floating on that colour. The cards used their own category
               palette -- a second blue, lime and navy, none of them in the brand
               kit -- washed over a cropped carton, which muddied the product. */}
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2">
             {visibleCategories.map((c, i) => {
               const product = productBySlug(c.productSlug);
               const tier = tierById(tierForProduct(product?.merv ?? "MERV 8"));
@@ -100,26 +100,27 @@ export default function ShopPage() {
                     {/* The carton is the card. The render carries ~12% empty
                         margin each side, so it is scaled up from the bottom
                         edge to fill the stage instead of floating small in it. */}
+                    {/* A fixed stage rather than aspect-[4/5]: on a wide card
+                        that ratio made the carton tower over the copy. */}
                     <div
-                      className="relative aspect-[4/5] overflow-hidden"
+                      className="relative flex h-64 items-center justify-center overflow-hidden px-10 pb-8 pt-6 sm:h-72"
                       style={{
                         backgroundImage: [
-                          `radial-gradient(70% 55% at 78% 12%, ${tier.gradient.glow}40 0%, transparent 62%)`,
-                          `radial-gradient(130% 95% at 50% 105%, ${tier.gradient.base}66 0%, ${tier.softHex} 55%, #FFFFFF 100%)`,
+                          `linear-gradient(168deg, #FFFFFF 0%, ${tier.softHex}66 58%, ${tier.softHex}B3 100%)`,
                         ].join(","),
                       }}
                     >
                       <span
                         aria-hidden="true"
-                        className="absolute bottom-2 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
+                        className="absolute bottom-6 left-1/2 h-6 w-1/2 -translate-x-1/2 rounded-[50%] blur-2xl"
+                        style={{ backgroundColor: `${tier.deepHex}33` }}
                       />
-                      <div className="absolute inset-x-6 bottom-4 top-8 flex items-end justify-center transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
-                        <PhotoComingSoon
-                          tint={{ soft: tier.softHex, deep: tier.deepHex }}
-                          size="lg"
-                          className="h-full w-full"
-                        />
-                      </div>
+                      <CartonPhoto
+                        alt={`KALERO MERV ${tier.merv} filter`}
+                        fit="height"
+                        sizes="(min-width: 1024px) 18vw, 42vw"
+                        className="relative transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.03]"
+                      />
                     </div>
 
                     <div className="flex flex-1 flex-col p-6">
@@ -169,7 +170,7 @@ export default function ShopPage() {
                 id="shop-products"
                 className="mt-3 font-display text-2xl font-semibold text-charcoal text-balance sm:text-3xl"
               >
-                {liveProducts.length} filters, ready to ship.
+                {liveProducts.length} filters. Every standard size.
               </h2>
             </div>
             <Link

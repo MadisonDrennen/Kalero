@@ -161,8 +161,8 @@ export const STANDARD_SIZES: FilterSize[] = [
 
 export const products: Product[] = [
   {
-    slug: "everyday-defense",
-    name: "Everyday Defense",
+    slug: "merv-8",
+    name: "MERV 8",
     tagline: "Fresh everyday air. Steady airflow.",
     concern: "Basic dust, lint, and everyday air circulation.",
     category: "everyday",
@@ -187,7 +187,7 @@ export const products: Product[] = [
     bestFor: ["Newer builds", "Single-story homes", "Apartments", "Low-traffic living"],
     replacementCadence: "Every 60 to 90 days",
     longDescription:
-      "The quiet workhorse of the KALERO lineup. Everyday Defense keeps regular household dust and lint moving through your HVAC cleanly, without over-restricting airflow. A great fit for homes that don't have specific concerns like pets, allergies, or smoke, just steady, easy air.",
+      "The quiet workhorse of the KALERO range. MERV 8 keeps regular household dust and lint moving through your HVAC cleanly, without over-restricting airflow. A great fit for homes with no specific concern beyond steady, easy air.",
     image: null,
     cardImage: null,
     hero: {
@@ -231,8 +231,8 @@ export const products: Product[] = [
     },
   },
   {
-    slug: "allergy-defense",
-    name: "Allergy Defense",
+    slug: "merv-13",
+    name: "MERV 13",
     tagline: "Fresh air through pollen season.",
     concern: "Pollen, dust mites, mold spores, and seasonal allergy concerns.",
     category: "allergy",
@@ -257,7 +257,7 @@ export const products: Product[] = [
     bestFor: ["Allergy-prone households", "Homes near green spaces", "Spring and fall", "Homes with young kids"],
     replacementCadence: "Every 45 to 60 days",
     longDescription:
-      "Allergy Defense is our go-to for households that feel every pollen count. MERV 13 capture, designed to work with standard residential HVAC systems.",
+      "Our go-to for households that feel every pollen count. MERV 13 capture, designed to work with standard residential HVAC systems.",
     image: null,
     cardImage: null,
     hero: {

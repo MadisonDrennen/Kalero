@@ -46,7 +46,7 @@ export function AirGuidesTeaser() {
           MERV ratings, filter sizes and when to replace, made simple.
         </p>
         <div className="mt-8">
-          <LinkButton href="/find-your-filter" size="lg" arrow>
+          <LinkButton href="/shop" size="lg" arrow>
             Find your filter
           </LinkButton>
         </div>

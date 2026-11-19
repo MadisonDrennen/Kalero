@@ -120,7 +120,7 @@ export function PurchaseConfigurator({ product, config, onAdded }: Props) {
             })}
           </RadioGroup>
           <Link
-            href="/find-your-filter"
+            href="/shop"
             className="mt-3 inline-block text-xs font-medium text-sky-700 underline-offset-2 hover:underline"
           >
             Compare MERV levels

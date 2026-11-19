@@ -11,11 +11,9 @@ import { Chip } from "@/components/ui/Chip";
 import { LinkButton } from "@/components/ui/Button";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
-import { ScentBadge } from "@/components/ui/ScentBadge";
-import { categoryByKey } from "@/lib/categories";
+import { categoryByKey, liveProducts } from "@/lib/categories";
 import { formatPrice } from "@/lib/pricing";
-import { products, type Product } from "@/lib/products";
-import { isScentCompatible } from "@/lib/scentStrips";
+import { type Product } from "@/lib/products";
 import { tierById } from "@/lib/tiers";
 
 type Props = {
@@ -26,7 +24,10 @@ export function ProductDetail({ product }: Props) {
   const category = categoryByKey(product.category)!;
   const config = useProductConfig(product);
   const tier = tierById(config.tierId);
-  const others = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+  /* liveProducts, not products: the full list still carries Pet Defense,
+     Hotel Collection and the rest of the unlaunched lines, and this row was
+     putting them in front of customers with prices attached. */
+  const others = liveProducts.filter((p) => p.slug !== product.slug).slice(0, 3);
 
   return (
     <>
@@ -75,7 +76,6 @@ export function ProductDetail({ product }: Props) {
                   <CategoryIcon icon={category.icon} size={11} color={category.deepHex} />
                   {category.title}
                 </span>
-                {isScentCompatible(product) && <ScentBadge size="xs" />}
               </div>
 
               <h1 className="mt-3 font-display text-display-lg font-semibold text-charcoal text-balance">
@@ -189,7 +189,7 @@ export function ProductDetail({ product }: Props) {
                   How does {product.name} fit next to the rest?
                 </p>
                 <LinkButton
-                  href="/find-your-filter"
+                  href="/shop"
                   variant="secondary"
                   className="mt-4 bg-white text-charcoal ring-0"
                   arrow

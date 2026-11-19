@@ -1,39 +1,41 @@
+/**
+ * Four questions, no more. Each answer sticks to what is verifiable: the MERV
+ * scale is an ASHRAE 52.2 rating, the size is printed on the customer's own
+ * frame, and the range is two levels. Nothing here promises a delivery window,
+ * a saving or a health outcome.
+ */
 export const faqs = [
   {
-    q: "How do I know which filter I need?",
-    a: "Start with what's actually in your air. If you have pets, we suggest Pet Defense. If pollen is the big story, Allergy Defense. If smoke is on your radar, Smoke Defense. Not sure? Take the two-minute Find Your Filter quiz and we'll match you.",
+    q: "What is the difference between MERV 8 and MERV 13?",
+    a: "MERV is the industry scale for how small a particle a filter is built to capture, and a higher number means a finer capture. MERV 8 is the everyday choice for household dust and lint. MERV 13 captures finer particles, which is what you want when pollen, smoke or air quality is the reason you are changing the filter. Both are built to run in standard residential systems.",
+  },
+  {
+    q: "How often should I change my filter?",
+    a: "Every 30 to 90 days for most homes. Pets, nearby construction, wildfire season and a system that runs hard all push you toward the shorter end. If you would rather not track it, a standing order arrives on the cadence you pick and you can pause or change it at any time.",
   },
   {
     q: "How do I find my filter size?",
-    a: "Slide out your current filter and look at the frame. There's almost always a printed size (like 20 × 25 × 1). If your size isn't listed, enter it in the custom size field at checkout and our team will confirm the fit.",
+    a: "Slide out the filter you have now and read the frame. The size is almost always printed on the edge, like 20 × 25 × 1. Order that same size. If yours is not one we stock, tell us the measurements and we will confirm whether we can cut it.",
   },
   {
-    q: "What does MERV mean?",
-    a: "MERV stands for Minimum Efficiency Reporting Value. It's an industry rating that describes how small a particle a filter is designed to capture. Higher MERV filters catch smaller particles, but the best filter is the one that matches both your air concerns and your HVAC system.",
+    q: "Do you work with HVAC contractors?",
+    a: "Yes, and that is who we are building for first. Tell us the sizes you fit most and roughly what you move in a month, and we will come back with a trade rate against your actual mix rather than a generic wholesale sheet.",
   },
-  {
-    q: "How often should I replace my filter?",
-    a: "Every 30 to 90 days, depending on your home, pets, and season. Pet Defense and Smoke Defense are usually replaced more often. Subscriptions arrive on the cadence you choose, so replacements stop being something to remember.",
-  },
-  {
-    q: "How does the subscription work?",
-    a: "Pick your filter, your size, how many you use, and how often you want a replacement. We deliver on that schedule, free of charge. Skip, pause, or swap products anytime from your account.",
-  },
-] as const;
+];
 
 export const testimonials = [
   {
     quote:
       "I finally know which filter my house is supposed to have. That alone was worth it.",
     author: "Priya M.",
-    detail: "Allergy Defense subscriber",
+    detail: "MERV 13 subscriber",
     category: "allergy" as const,
   },
   {
     quote:
       "Two goldens, one toddler. Pet Defense actually keeps the vents from looking like fur sweaters.",
     author: "Cameron & Alex",
-    detail: "Pet Defense subscriber",
+    detail: "MERV 13 subscriber",
     category: "pet" as const,
   },
   {
@@ -47,7 +49,7 @@ export const testimonials = [
     quote:
       "The packaging honestly convinced me. Then the reminder emails kept me.",
     author: "Riya S.",
-    detail: "Everyday Defense subscriber",
+    detail: "MERV 8 subscriber",
     category: "everyday" as const,
   },
   {

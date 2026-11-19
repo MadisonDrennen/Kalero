@@ -16,7 +16,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { tiers, type HandledIcon, type TierId } from "@/lib/tiers";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
 
 /**
  * The three tiers, as three cards that each answer "is this the one for my
@@ -79,7 +78,9 @@ export function ShopByAir() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        {/* Two tiers, not three. A three-column grid left the pair hugging the
+            left edge with a dead column beside them. */}
+        <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2">
           {tiers.map((t) => (
             <TierCard key={t.id} tier={t} />
           ))}
@@ -105,70 +106,62 @@ export function ShopByAir() {
 
 function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-[#E8EEF3] transition-all duration-300 hover:-translate-y-1 hover:shadow-card">
-      {/* The product on a stage of its own tier colour. The carton render has
-          a transparent background, so it floats on the glow rather than
-          sitting in a white box. */}
+    <article className="group flex flex-col overflow-hidden rounded-[1.75rem] bg-white ring-1 ring-charcoal/[0.07] shadow-[0_2px_4px_rgba(5,7,8,0.03),0_18px_40px_-24px_rgba(5,7,8,0.18)] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_4px_8px_rgba(5,7,8,0.04),0_30px_60px_-28px_rgba(0,71,179,0.3)]">
+      {/* Daylight, white space, blue as the only accent — so the stage is a
+          pale wash rather than a saturated panel, and the carton carries the
+          colour on its own. */}
       <div
-        className="relative flex h-72 items-end justify-center overflow-hidden sm:h-80"
-        /* Layered rather than one flat wash: a cool ground, the tier's glow
-           rising from the base, and a soft highlight top-right. */
+        className="relative flex h-72 items-center justify-center px-10 pb-9 pt-7 sm:h-80"
         style={{
-          backgroundImage: [
-            `radial-gradient(70% 55% at 78% 12%, ${t.gradient.glow}40 0%, transparent 62%)`,
-            `radial-gradient(135% 100% at 50% 108%, ${t.gradient.base}66 0%, ${t.softHex} 52%, #FFFFFF 100%)`,
-          ].join(","),
+          backgroundImage: `linear-gradient(168deg, #FFFFFF 0%, ${t.softHex}66 58%, ${t.softHex}B3 100%)`,
         }}
       >
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -top-5 left-4 select-none font-display text-[8.5rem] font-bold leading-none opacity-[0.16] sm:text-[10rem]"
-          style={{ color: t.deepHex }}
-        >
-          {t.merv}
-        </span>
-        <span
-          aria-hidden="true"
-          className="absolute bottom-5 left-1/2 h-8 w-3/5 -translate-x-1/2 rounded-[50%] bg-charcoal/25 blur-2xl"
+          className="absolute bottom-7 left-1/2 h-6 w-[44%] -translate-x-1/2 rounded-[50%] blur-2xl"
+          style={{ backgroundColor: `${t.deepHex}33` }}
         />
-        <div className="relative mb-4 w-[62%] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:-rotate-2">
-          <PhotoComingSoon
-            tint={{ soft: t.softHex, deep: t.deepHex }}
-            size="lg"
-            className="aspect-[4/5] w-full"
-          />
-        </div>
+        <Image
+          src="/images/products/carton-v2.png"
+          alt={`KALERO ${t.name} filter, MERV ${t.merv}`}
+          width={834}
+          height={1302}
+          sizes="(min-width: 1024px) 18vw, 42vw"
+          className="relative h-full w-auto object-contain drop-shadow-[0_16px_22px_rgba(5,7,8,0.14)] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.03]"
+        />
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-7">
         <span className="inline-flex w-fit items-center gap-2">
+          {/* The tier's deep step, not its bright one: KALERO Blue on white is
+              2.4:1 and would not hold at label size. */}
           <span
-            className="inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
-            style={{ backgroundColor: t.softHex, color: t.deepHex }}
+            className="text-[11px] font-bold uppercase tracking-[0.2em]"
+            style={{ color: t.deepHex }}
           >
             {t.name}
           </span>
           {t.comingSoon && (
-            <span className="inline-flex rounded-full bg-charcoal px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
+            <span className="rounded-full bg-charcoal px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
               Coming soon
             </span>
           )}
         </span>
-        <h3 className="mt-3 font-display text-3xl font-bold text-charcoal">
+
+        <h3 className="mt-2.5 font-display text-[2rem] font-bold leading-none tracking-[-0.02em] text-charcoal">
           MERV {t.merv}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-charcoal-mid text-pretty">
+        <p className="mt-3 text-sm leading-relaxed text-charcoal-mid text-pretty">
           {t.positioning}
         </p>
 
-        <ul className="mt-5 flex flex-wrap gap-2">
+        <ul className="mt-5 flex flex-wrap gap-1.5">
           {t.handles.map(({ icon, label }) => {
             const Icon = HANDLED[icon];
             return (
               <li
                 key={label}
-                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-charcoal"
-                style={{ backgroundColor: t.softHex }}
+                className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] font-medium text-charcoal-soft ring-1 ring-inset ring-charcoal/[0.09]"
               >
                 <Icon className="h-3.5 w-3.5" style={{ color: t.deepHex }} aria-hidden="true" />
                 {label}
@@ -177,15 +170,14 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
           })}
         </ul>
 
-        <div className="h-6" aria-hidden="true" />
         <Link
           href={`/merv-${t.merv}`}
-          className="mt-auto flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="mt-7 flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           style={{
-            backgroundImage: `linear-gradient(135deg, ${t.gradient.base} 0%, ${t.gradient.deep} 100%)`,
-            color: "#FFFFFF",
+            backgroundImage: `radial-gradient(130% 160% at 88% -12%, ${t.gradient.glow}CC 0%, ${t.gradient.glow}00 58%), linear-gradient(158deg, ${t.gradient.base} 0%, ${t.gradient.deep} 88%)`,
+            color: t.onHex,
             outlineColor: t.gradient.deep,
-            boxShadow: `0 10px 20px -10px ${t.gradient.deep}B3, inset 0 1px 0 ${t.gradient.glow}66`,
+            boxShadow: `0 14px 30px -14px ${t.gradient.deep}B3, inset 0 1px 0 rgba(255,255,255,0.4)`,
           }}
         >
           {t.comingSoon ? `${t.name} is coming soon` : `Shop ${t.name}`}
@@ -195,5 +187,7 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
     </article>
   );
 }
+
+
 
 export type ShopByAirTierId = TierId;

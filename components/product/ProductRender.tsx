@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
+import { CartonPhoto } from "@/components/ui/CartonPhoto";
 import type { CategoryKey } from "@/lib/products";
 
 type Size = "sm" | "md" | "lg" | "xl";
@@ -73,13 +73,9 @@ export function ProductRender({
     );
   }
 
-  const fbSize: "sm" | "md" | "lg" =
-    size === "xl" ? "lg" : (size as "sm" | "md" | "lg");
   return (
-    <PhotoComingSoon
-      tint={{ soft: "#CFE8F4", deep: "#0047B3" }}
-      size={size === "sm" ? "sm" : "lg"}
-      className="aspect-[4/5] w-full"
-    />
+    <div className={widthClass[size]}>
+      <CartonPhoto alt="KALERO filter" priority={priority} sizes={sizesAttr[size]} />
+    </div>
   );
 }

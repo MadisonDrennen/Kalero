@@ -6,7 +6,6 @@ import { Check, RefreshCw, Sparkles } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
 import { ProductRender } from "@/components/product/ProductRender";
 import { productBySlug } from "@/lib/products";
-import { IridescentWave } from "@/components/ui/IridescentWave";
 import { businessConfig } from "@/lib/business";
 
 type Mode = "onetime" | "subscribe";
@@ -29,11 +28,6 @@ export function Subscription() {
       className="relative isolate overflow-hidden bg-gradient-to-b from-canvas via-sky-50/40 to-canvas py-24 sm:py-28"
       aria-labelledby="subscription-title"
     >
-      {/* the brand wave as atmosphere through the middle of the section */}
-      <IridescentWave
-        flip
-        className="absolute inset-x-0 top-1/2 -z-10 h-80 w-full -translate-y-1/2 opacity-50 sm:h-[30rem]"
-      />
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
           <div className="max-w-lg">
@@ -81,21 +75,23 @@ export function Subscription() {
               transition={{ duration: 0.7 }}
               className="rounded-xl bg-white p-6 ring-1 ring-sky-100 shadow-card sm:p-8"
             >
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center justify-between gap-5">
                 <div>
                   <p className="eyebrow">Your plan preview</p>
+                  {/* The filter is named by what it is. The line under it is
+                      the size, not the level again. */}
                   <p className="mt-2 font-display text-xl font-semibold text-charcoal">
-                    Allergy Defense
+                    MERV 13 · Max
                   </p>
-                  <p className="mt-0.5 text-sm text-charcoal-mid">MERV 13 · 20 × 25 × 1</p>
+                  <p className="mt-0.5 text-sm text-charcoal-mid">20 × 25 × 1</p>
                 </div>
                 <div className="pointer-events-none">
                   <ProductRender
-                    name="Allergy Defense"
-                    subtitle="For pollen weeks"
+                    name="MERV 13"
+                    subtitle="Max"
                     merv="MERV 13"
                     category="allergy"
-                    image={productBySlug("allergy-defense")?.image}
+                    image={productBySlug("merv-13")?.image}
                     size="sm"
                     floating={false}
                   />
@@ -201,7 +197,7 @@ export function Subscription() {
                     Reminder
                   </p>
                   <p className="mt-1 font-display text-sm font-medium">
-                    Your next Allergy Defense ships in 4 weeks.
+                    Your next filter ships in 4 weeks.
                   </p>
                 </div>
                 <span className="rounded-full bg-sky-500 px-3 py-1 text-xs font-medium">

@@ -4,7 +4,6 @@ import { ArrowRight, RefreshCw, ShieldCheck, ShoppingBag, Truck } from "lucide-r
 import { LinkButton } from "@/components/ui/Button";
 import { liveCategories } from "@/lib/categories";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
-import { CartScentUpsell } from "@/components/scent/CartScentUpsell";
 
 export const metadata: Metadata = {
   title: "Your cart",
@@ -53,7 +52,7 @@ export default function CartPage() {
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-charcoal-mid text-pretty">
               Start by picking the concern that sounds most like your home, take the
-              two-minute quiz, or build a subscription plan around the way your house
+              full range, or build a subscription plan around the way your house
               actually breathes.
             </p>
           </div>
@@ -92,8 +91,8 @@ export default function CartPage() {
                 <LinkButton href="/shop" size="lg" arrow>
                   Shop all filters
                 </LinkButton>
-                <LinkButton href="/find-your-filter" size="lg" variant="secondary" arrow>
-                  Take the quiz
+                <LinkButton href="/shop" size="lg" variant="secondary" arrow>
+                  Shop filters
                 </LinkButton>
               </div>
 
@@ -123,7 +122,6 @@ export default function CartPage() {
               </div>
 
               <div className="relative mt-8">
-                <CartScentUpsell />
               </div>
             </div>
 

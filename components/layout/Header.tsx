@@ -5,9 +5,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { products } from "@/lib/products";
-import { categories } from "@/lib/categories";
-import { sizes, formatSize } from "@/lib/sizes";
+
+import { liveCategories, liveProducts } from "@/lib/categories";
+import { sizes, formatSize, sizeSlug } from "@/lib/sizes";
 import { tiers } from "@/lib/tiers";
 import { useCart } from "@/lib/cart";
 
@@ -78,22 +78,36 @@ export function Header() {
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return { products: [], categories: [] };
-    const matchedProducts = products
+    if (!q) return { products: [], categories: [], sizes: [] };
+    const matchedProducts = liveProducts
       .filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.tagline.toLowerCase().includes(q),
       )
       .slice(0, 5);
-    const matchedCategories = categories
+    /* liveCategories, not categories: the full list still holds the
+       collections that are not on sale. */
+    const matchedCategories = liveCategories
       .filter(
         (c) =>
           c.title.toLowerCase().includes(q) ||
           c.description.toLowerCase().includes(q),
       )
       .slice(0, 4);
-    return { products: matchedProducts, categories: matchedCategories };
+    /* The box has always said "sizes" and never searched them — "20x25",
+       "20 x 25" and "20×25×1" all came back empty. Compare on digits only so
+       every way of writing a size lands on the same result. */
+    const digits = q.replace(/[^0-9]/g, "");
+    const matchedSizes =
+      digits.length >= 2
+        ? sizes
+            .filter((sz) => sizeSlug(sz.nominalWidth, sz.nominalHeight, sz.nominalDepth)
+              .replace(/[^0-9]/g, "")
+              .startsWith(digits))
+            .slice(0, 6)
+        : [];
+    return { products: matchedProducts, categories: matchedCategories, sizes: matchedSizes };
   }, [query]);
 
   const closeSearch = () => {
@@ -109,7 +123,13 @@ export function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="container-x flex h-16 items-center gap-3 sm:h-20 sm:gap-6">
+      {/* Hidden while the search panel is open, or the logo, the second
+          search field and the cart show through underneath it. */}
+      <div
+        className={`container-x flex h-16 items-center gap-3 sm:h-20 sm:gap-6 ${
+          searchOpen ? "invisible" : ""
+        }`}
+      >
         <Logo variant="brand" size="md" stacked />
         {/* Inline search bar — filterbuy-style prominent */}
         <button
@@ -166,7 +186,11 @@ export function Header() {
         </div>
       </div>
       {/* Secondary nav row — Shop Filters + Learn megamenus */}
-      <div className="hidden border-t border-sky-100/60 lg:block">
+      <div
+        className={`hidden border-t border-sky-100/60 lg:block ${
+          searchOpen ? "invisible" : ""
+        }`}
+      >
         <div
           className="container-x relative flex h-11 items-center justify-center gap-8"
           onMouseLeave={closeMenuSoon}
@@ -192,13 +216,6 @@ export function Header() {
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-700 transition-colors hover:text-sky-800"
           >
             For HVAC Pros
-          </Link>
-          <Link
-            href="/find-your-filter"
-            onMouseEnter={() => setActiveMenu(null)}
-            className="text-sm font-medium text-charcoal transition-colors hover:text-sky-700"
-          >
-            Find Your Filter
           </Link>
           <Link
             href="/shop"
@@ -291,11 +308,11 @@ export function Header() {
                       Shop all sizes →
                     </Link>
                     <Link
-                      href="/find-your-filter"
+                      href="/shop"
                       onClick={() => setActiveMenu(null)}
                       className="text-charcoal-light hover:text-sky-700"
                     >
-                      Not sure? Take the quiz →
+                      Shop all filters →
                     </Link>
                   </div>
                 </div>
@@ -351,7 +368,11 @@ export function Header() {
         {searchOpen && (
           <motion.div
             key="search-overlay"
-            className="fixed inset-0 z-50"
+            /* Above the launch bar (z-50) as well as the sticky header (z-40).
+               At z-50 the bar punched through the top of this panel and the
+               header stayed visible, blurred, behind it — so the page showed
+               two search fields at once. */
+            className="fixed inset-0 z-[60]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -396,10 +417,11 @@ export function Header() {
                 <div className="border-t border-sky-100 bg-canvas/40">
                   <div className="container-x max-h-[60vh] overflow-y-auto py-4">
                     {results.products.length === 0 &&
-                    results.categories.length === 0 ? (
+                    results.categories.length === 0 &&
+                    results.sizes.length === 0 ? (
                       <p className="py-6 text-center text-sm text-charcoal-mid">
-                        No matches for &ldquo;{query}&rdquo;. Try a concern like
-                        &ldquo;pet&rdquo;, &ldquo;allergy&rdquo;, or a MERV rating.
+                        No matches for &ldquo;{query}&rdquo;. Try a size like
+                        &ldquo;20x25&rdquo;, or &ldquo;MERV 8&rdquo;.
                       </p>
                     ) : (
                       <div className="grid gap-6 sm:grid-cols-2">
@@ -422,6 +444,24 @@ export function Header() {
                                     <span className="mt-0.5 block text-xs text-charcoal-mid">
                                       {p.tagline}
                                     </span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {results.sizes.length > 0 && (
+                          <div>
+                            <p className="text-eyebrow px-1 text-sky-700">Sizes</p>
+                            <ul className="mt-2 flex flex-col gap-1">
+                              {results.sizes.map((sz) => (
+                                <li key={sz.slug}>
+                                  <Link
+                                    href={`/shop?size=${sz.slug}`}
+                                    onClick={closeSearch}
+                                    className="block rounded-2xl px-3 py-2.5 text-sm font-medium text-charcoal transition-colors hover:bg-white"
+                                  >
+                                    {formatSize(sz)}
                                   </Link>
                                 </li>
                               ))}
@@ -463,7 +503,7 @@ export function Header() {
         )}
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-50 lg:hidden"
+            className="fixed inset-0 z-[60] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -518,11 +558,11 @@ export function Header() {
                   Discover
                 </p>
                 <Link
-                  href="/find-your-filter"
+                  href="/shop"
                   onClick={() => setMenuOpen(false)}
                   className="rounded-2xl px-4 py-3 text-sm font-medium text-charcoal transition-colors hover:bg-canvas"
                 >
-                  Find Your Filter
+                  Shop by Size
                 </Link>
                 <Link
                   href="/why-kalero"

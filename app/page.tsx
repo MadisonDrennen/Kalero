@@ -1,12 +1,11 @@
 import { KaleroEverydayHero } from "@/components/hero/KaleroEverydayHero";
 import { PopularSizes } from "@/components/home/PopularSizes";
 import { ShopByAir } from "@/components/home/ShopByAir";
-import { TierComparison } from "@/components/home/TierComparison";
 import { BrandBento } from "@/components/home/BrandBento";
-import { HowItWorks } from "@/components/home/HowItWorks";
 import { Subscription } from "@/components/home/Subscription";
 // import { Testimonials } from "@/components/home/Testimonials"; // held back — see below
 import { AirGuidesTeaser } from "@/components/home/AirGuidesTeaser";
+import { FAQ } from "@/components/home/FAQ";
 import { EmailCapture } from "@/components/home/EmailCapture";
 import { HvacCompatibility } from "@/components/shared/HvacCompatibility";
 
@@ -25,14 +24,8 @@ export default function Home() {
       {/* HVAC brands trust strip */}
       <HvacCompatibility />
 
-      {/* 5 — Which KALERO is right for you? (Standard vs Pro vs Max) */}
-      <TierComparison />
-
       {/* 6 — Brand story as colour tiles */}
       <BrandBento />
-
-      {/* 7 — How KALERO works */}
-      <HowItWorks />
 
       {/* 8 — Subscription */}
       <Subscription />
@@ -47,6 +40,9 @@ export default function Home() {
 
       {/* 10 — Air Guides */}
       <AirGuidesTeaser />
+
+      {/* FAQ */}
+      <FAQ />
 
       {/* 11 — Email capture */}
       <EmailCapture />

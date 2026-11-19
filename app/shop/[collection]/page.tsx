@@ -284,13 +284,13 @@ export default async function CollectionPage({
           <div className="mt-12 flex flex-col items-start gap-3 rounded-card bg-white p-6 ring-1 ring-sky-100 shadow-soft sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-display text-lg font-semibold text-charcoal">
-                Two-minute quiz. One filter, chosen for you.
+                Two levels, every standard size.
               </p>
               <p className="mt-1 text-sm text-charcoal-mid">
                 Answer a few questions about pets, allergies, and where you live.
               </p>
             </div>
-            <LinkButton href="/find-your-filter" arrow>
+            <LinkButton href="/shop" arrow>
               Find my filter
             </LinkButton>
           </div>

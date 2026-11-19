@@ -5,7 +5,7 @@ import { ArrowRight, Boxes, CalendarClock, Flag, Ruler } from "lucide-react";
 import { purchasableTiers } from "@/lib/tiers";
 import { partnerConfig, confirmedPartnerTerms } from "@/lib/business";
 import { PartnerRequestForm } from "@/components/partners/PartnerRequestForm";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
+import { CartonPhoto } from "@/components/ui/CartonPhoto";
 import { IridescentWave } from "@/components/ui/IridescentWave";
 
 export const metadata: Metadata = {
@@ -155,11 +155,7 @@ export default function PartnersPage() {
                   }}
                 >
                   <div className="absolute inset-x-10 bottom-0 top-6 flex items-end justify-center">
-                    <PhotoComingSoon
-                      tint={{ soft: t.softHex, deep: t.deepHex }}
-                      size="lg"
-                      className="h-full w-full"
-                    />
+                    <CartonPhoto alt={`KALERO ${t.name} filter`} />
                   </div>
                 </div>
                 <div className="p-6">

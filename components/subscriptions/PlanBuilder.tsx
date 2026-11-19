@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Minus, Plus } from "lucide-react";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
+import { CartonPhoto } from "@/components/ui/CartonPhoto";
 
 type Cadence = 30 | 60 | 90;
 
@@ -21,8 +21,8 @@ type PlanFilter = {
 
 const catalog: PlanFilter[] = [
   {
-    slug: "everyday-defense",
-    name: "Everyday Defense",
+    slug: "merv-8",
+    name: "MERV 8 · Standard",
     merv: "MERV 8",
     price: 22,
     image: null,
@@ -30,31 +30,13 @@ const catalog: PlanFilter[] = [
     soft: "#CFE8F4",
   },
   {
-    slug: "allergy-defense",
-    name: "Allergy Defense",
+    slug: "merv-13",
+    name: "MERV 13 · Max",
     merv: "MERV 13",
     price: 32,
     image: null,
-    hex: "#2B3238",
-    soft: "#E4E6E8",
-  },
-  {
-    slug: "smoke-defense",
-    name: "Smoke Defense",
-    merv: "MERV 13",
-    price: 34,
-    hex: "#2B3238",
-    soft: "#E4E6E8",
-    image: null,
-  },
-  {
-    slug: "carbon-defense",
-    name: "Carbon Defense",
-    merv: "Carbon",
-    price: 38,
-    hex: "#2B3238",
-    soft: "#E4E6E8",
-    image: null,
+    hex: "#0047B3",
+    soft: "#D6E2F3",
   },
 ];
 
@@ -190,11 +172,7 @@ export function PlanBuilder() {
                           className="object-contain p-1"
                         />
                       ) : (
-                        <PhotoComingSoon
-                          tint={{ soft: f.soft, deep: f.hex }}
-                          size="sm"
-                          className="h-full w-full"
-                        />
+                        <CartonPhoto alt="KALERO filter" sizes="120px" />
                       )}
                     </div>
                   </button>

@@ -34,7 +34,7 @@ export const categories: Category[] = [
     concern: "Everyday Dust",
     description:
       "Fresh air for daily dust, lint, and steady household circulation.",
-    productSlug: "everyday-defense",
+    productSlug: "merv-8",
     gradient: "from-sky-soft via-white to-white",
     chipClass: "bg-sky-100 text-sky-700",
     ringClass: "ring-sky/30",
@@ -70,7 +70,7 @@ export const categories: Category[] = [
     concern: "Allergies & Pollen",
     description:
       "Fresh air through pollen season. Pollen, dust mites, and mold spores at MERV 13.",
-    productSlug: "allergy-defense",
+    productSlug: "merv-13",
     gradient: "from-blush-soft via-white to-white",
     chipClass: "bg-sky-100 text-sky-700",
     ringClass: "ring-blush/30",

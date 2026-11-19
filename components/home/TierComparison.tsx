@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { tiers, type TierId } from "@/lib/tiers";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
+import { CartonPhoto } from "@/components/ui/CartonPhoto";
 
 type Row = {
   label: string;
@@ -84,11 +84,7 @@ export function TierComparison() {
                 {/* The filter itself, so the difference in media colour is seen
                     before it is read about. */}
                 <div className="mx-auto mb-3 w-16 sm:w-24">
-                  <PhotoComingSoon
-                    tint={{ soft: t.softHex, deep: t.deepHex }}
-                    size="sm"
-                    className="aspect-[4/5] w-full"
-                  />
+                  <CartonPhoto alt={`KALERO ${t.name}, MERV ${t.merv}`} sizes="96px" />
                 </div>
                 <p
                   className="text-[11px] font-semibold uppercase tracking-[0.16em]"
@@ -153,10 +149,10 @@ export function TierComparison() {
             <ArrowRight size={14} strokeWidth={2.25} />
           </Link>
           <Link
-            href="/find-your-filter"
+            href="/shop"
             className="text-sm font-medium text-sky-700 hover:text-sky-800"
           >
-            Not sure? Take the quiz →
+            Shop all filters →
           </Link>
         </div>
       </div>
