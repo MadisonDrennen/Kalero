@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Facebook, Instagram, Send } from "lucide-react";
+import { socialProfiles } from "@/lib/business";
 
 const shopLinks = [
   { href: "/shop", label: "Shop All" },
@@ -31,10 +32,13 @@ const accountLinks = [
   { href: "/account/subscriptions", label: "Manage Auto Delivery" },
 ];
 
-const socials = [
-  { href: "https://instagram.com", label: "Instagram", Icon: Instagram },
-  { href: "https://facebook.com", label: "Facebook", Icon: Facebook },
-];
+/* Icons live here; the URLs come from lib/business so the schema and the
+   footer cannot disagree about where the accounts are. */
+const socialIcons = { Instagram, Facebook } as const;
+const socials = socialProfiles.map((p) => ({
+  ...p,
+  Icon: socialIcons[p.label as keyof typeof socialIcons],
+}));
 
 export function Footer() {
   return (

@@ -84,3 +84,17 @@ export function confirmedPartnerTerms(): { label: string; value: string }[] {
     .filter(([, v]) => v != null)
     .map(([label, v]) => ({ label, value: v as string }));
 }
+
+
+/**
+ * The brand's own profiles. One list, read by the footer links and by the
+ * Organization schema's sameAs — which is the property that tells search
+ * engines these accounts are this company, so the two must not drift.
+ */
+export const socialProfiles = [
+  { label: "Instagram", href: "https://www.instagram.com/kalerofilters/" },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61593674104928",
+  },
+] as const;

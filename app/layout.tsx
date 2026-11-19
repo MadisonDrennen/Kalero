@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { socialProfiles } from "@/lib/business";
 import { LaunchBanner } from "@/components/ui/LaunchBanner";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
@@ -100,7 +101,7 @@ const organizationJsonLd = {
   logo: "https://kalero.com/kalero-logo.png",
   description:
     "Premium residential air filters in MERV 8 and MERV 13, made in the USA. Trade pricing for HVAC contractors, and delivery on a schedule for homes.",
-  sameAs: [] as string[],
+  sameAs: socialProfiles.map((p) => p.href),
 };
 
 const websiteJsonLd = {
