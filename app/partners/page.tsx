@@ -6,7 +6,6 @@ import { purchasableTiers } from "@/lib/tiers";
 import { partnerConfig, confirmedPartnerTerms } from "@/lib/business";
 import { PartnerRequestForm } from "@/components/partners/PartnerRequestForm";
 import { CartonPhoto } from "@/components/ui/CartonPhoto";
-import { IridescentWave } from "@/components/ui/IridescentWave";
 
 export const metadata: Metadata = {
   title: "HVAC Trade Program | Wholesale Air Filters for Contractors",
@@ -64,38 +63,61 @@ export default function PartnersPage() {
       >
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[radial-gradient(120%_120%_at_80%_20%,#0047B3_0%,#2B3238_55%,#050708_100%)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(120%_120%_at_78%_18%,#0A57BB_0%,#01399E_32%,#0B1420_68%,#050708_100%)]"
         />
-        <IridescentWave className="absolute inset-x-0 bottom-0 -z-10 h-1/2 w-full opacity-30" />
+        {/* A glow behind the carton instead of the drawn wave that used to run
+            along the base. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[8%] top-1/2 -z-10 hidden h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-sky-500/25 blur-[90px] lg:block"
+        />
 
-        <div className="container-x flex min-h-[520px] flex-col justify-center py-20 sm:min-h-[580px]">
-          <p className="text-eyebrow font-semibold uppercase tracking-[0.2em] text-sky-300">
-            For HVAC contractors
-          </p>
-          <h1
-            id="partners-title"
-            className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,5.5vw,4rem)] font-bold leading-[1.02] tracking-[-0.02em] text-balance"
-          >
-            Become a KALERO preferred supplier.
-          </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75 text-pretty">
-            A filter line built to be stocked, not merchandised. Two MERV levels,
-            every standard size, made in the USA and delivered on your schedule.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              href="#partner-apply"
-              className="inline-flex h-12 items-center gap-2 rounded-full bg-sky-500 px-7 text-sm font-semibold text-charcoal transition-colors hover:bg-sky-400"
+        <div className="container-x grid min-h-[560px] items-center gap-10 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+          <div>
+            <p className="text-eyebrow font-semibold uppercase tracking-[0.2em] text-sky-300">
+              For HVAC contractors
+            </p>
+            <h1
+              id="partners-title"
+              className="mt-4 max-w-xl font-display text-[clamp(2.25rem,4.6vw,3.5rem)] font-bold leading-[1.04] tracking-[-0.025em] text-balance"
             >
-              Request trade pricing
-              <ArrowRight size={16} strokeWidth={2.25} />
-            </Link>
-            <Link
-              href="/shop"
-              className="inline-flex h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white ring-1 ring-white/30 transition-colors hover:bg-white/10"
-            >
-              Shopping for your own home?
-            </Link>
+              Become a KALERO preferred supplier.
+            </h1>
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/75 text-pretty">
+              A filter line built to be stocked, not merchandised. Two MERV
+              levels, every standard size, made in the USA and delivered on your
+              schedule.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              {/* The painted gradient the rest of the site uses, rather than a
+                  flat fill. Carbon on it, since white is 2.4:1 on this blue. */}
+              <Link
+                href="#partner-apply"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-[radial-gradient(130%_160%_at_88%_-12%,rgba(207,232,244,0.85)_0%,rgba(207,232,244,0)_58%),linear-gradient(158deg,#35B2E6_0%,#2693D8_88%)] px-7 text-sm font-semibold text-charcoal shadow-[0_14px_34px_-12px_rgba(53,178,230,0.7),inset_0_1px_0_0_rgba(255,255,255,0.45)] transition-all duration-300 hover:-translate-y-0.5"
+              >
+                Request trade pricing
+                <ArrowRight size={16} strokeWidth={2.25} />
+              </Link>
+              <Link
+                href="/shop"
+                className="inline-flex h-12 items-center gap-2 rounded-full px-7 text-sm font-semibold text-white/90 ring-1 ring-white/25 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                Shopping for your own home?
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative hidden justify-center lg:flex">
+            <Image
+              src="/images/products/carton-v2.png"
+              alt=""
+              aria-hidden="true"
+              width={834}
+              height={1302}
+              priority
+              sizes="(min-width: 1024px) 32vw, 0px"
+              className="h-[clamp(300px,34vw,440px)] w-auto drop-shadow-[0_34px_60px_rgba(0,0,0,0.55)]"
+            />
           </div>
         </div>
       </section>
@@ -113,9 +135,9 @@ export default function PartnersPage() {
             {REASONS.map(({ Icon, title, body }) => (
               <div
                 key={title}
-                className="rounded-2xl bg-white p-6 ring-1 ring-sky-100 sm:p-7"
+                className="group rounded-2xl bg-gradient-to-b from-white to-glacier-soft/50 p-6 ring-1 ring-charcoal/[0.06] shadow-[0_2px_4px_rgba(5,7,8,0.03),0_16px_34px_-26px_rgba(5,7,8,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_8px_rgba(5,7,8,0.04),0_24px_46px_-26px_rgba(0,71,179,0.3)] sm:p-7"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[linear-gradient(150deg,#35B2E6_0%,#0A57BB_100%)] text-white shadow-[0_8px_18px_-8px_rgba(0,71,179,0.7)]">
                   <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
                 </span>
                 <h3 className="mt-5 font-display text-lg font-semibold text-charcoal">
