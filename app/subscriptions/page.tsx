@@ -116,13 +116,21 @@ export default function SubscriptionsPage() {
           aria-hidden="true"
           className="absolute inset-0 -z-20 bg-[linear-gradient(140deg,#FFFFFF_0%,#CFE8F4_55%,#35B2E6_100%)]"
         />
+        {/* Full bleed, with the section tall enough that the crop never
+            reaches the carton. The frame is 1672x941 (1.78); at 1280 wide it
+            renders 719 tall, so a 680px section trims about 20px a side while
+            the carton has roughly 58px of margin there. Covering a 528px
+            section cut 95px a side and sliced the box; letterboxing it instead
+            left a visible vertical seam where the photograph's own pale ground
+            met the hero gradient. */}
         <Image
           src="/images/products/airflow-wide.webp"
           alt=""
           aria-hidden="true"
           fill
           sizes="100vw"
-          className="-z-20 object-cover object-[70%_center]"
+          priority
+          className="-z-20 object-cover object-center"
         />
         <div
           aria-hidden="true"
@@ -133,7 +141,7 @@ export default function SubscriptionsPage() {
           }}
         />
 
-        <div className="container-x relative py-14 sm:py-20 lg:py-24">
+        <div className="container-x relative flex min-h-[520px] flex-col justify-center py-14 sm:min-h-[600px] sm:py-16 lg:min-h-[680px]">
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1 text-eyebrow text-sky-700 ring-1 ring-sky-200 backdrop-blur">
               KALERO subscriptions

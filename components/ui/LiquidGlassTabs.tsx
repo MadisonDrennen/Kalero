@@ -46,13 +46,13 @@ type Props = {
 const PAD = 14;
 
 const CSS = `
-.lg-tabs{--lg-tint:rgba(255,255,255,.16);--lg-fg:#050708;--lg-fg-soft:#5C666E;--lg-rim:rgba(255,255,255,.75);
+.lg-tabs{--lg-tint:rgba(255,255,255,.38);--lg-fg:#050708;--lg-fg-soft:#2B3238;--lg-rim:rgba(255,255,255,.85);
   position:relative;display:inline-flex;align-items:center;gap:2px;padding:5px;border-radius:999px;isolation:isolate;
   font-family:inherit;-webkit-font-smoothing:antialiased;user-select:none;-webkit-tap-highlight-color:transparent;max-width:100%}
 .lg-tabs[data-tone="dark"]{--lg-tint:rgba(5,7,8,.26);--lg-fg:#FFFFFF;--lg-fg-soft:rgba(255,255,255,.68);--lg-rim:rgba(255,255,255,.34)}
 .lg-tabs-glass{position:absolute;inset:0;border-radius:inherit;z-index:-2;overflow:hidden;background:var(--lg-tint);
   -webkit-backdrop-filter:blur(10px) saturate(1.2) brightness(1.06);backdrop-filter:blur(10px) saturate(1.2) brightness(1.06);
-  box-shadow:inset 0 1px 1px var(--lg-rim),inset 0 0 0 1px rgba(255,255,255,.22),0 12px 30px -14px rgba(0,71,179,.45),0 2px 6px rgba(0,71,179,.08)}
+  box-shadow:inset 0 1px 1px var(--lg-rim),inset 0 0 0 1px rgba(255,255,255,.5),0 1px 2px rgba(0,71,179,.06),0 14px 32px -14px rgba(0,71,179,.42)}
 .lg-tabs-water{position:absolute;left:${-PAD}px;top:${-PAD}px;z-index:-1;pointer-events:none}
 .lg-tabs[data-gl="off"] .lg-tabs-water{display:none}
 .lg-tabs-drop{display:none;position:absolute;top:5px;bottom:5px;left:0;border-radius:999px;z-index:-1;pointer-events:none;will-change:transform,width;
