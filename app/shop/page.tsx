@@ -3,8 +3,9 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { products } from "@/lib/products";
-import { liveCategories, liveProducts } from "@/lib/categories";
-import { ProductCard } from "@/components/product/ProductCard";
+import { liveCategories } from "@/lib/categories";
+import { SizeGrid } from "@/components/shop/SizeGrid";
+import { GradientWave } from "@/components/ui/GradientWave";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { productBySlug } from "@/lib/products";
@@ -161,16 +162,27 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <section aria-labelledby="shop-products" className="border-t border-sky-100/70 py-12 sm:py-14">
+      {/* This used to be a second row of the same two filters shown above —
+          the page said "shop by size" and then listed the range twice. The
+          size grid is the shared one from the homepage, so the two cannot
+          drift apart. */}
+      <section
+        aria-labelledby="shop-sizes"
+        className="relative isolate overflow-hidden border-t border-sky-100/70 py-12 sm:py-14"
+      >
+        <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
+          <GradientWave />
+        </div>
+
         <div className="container-x">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="eyebrow">The full lineup</p>
+              <p className="text-eyebrow text-sky-700">Shop by size</p>
               <h2
-                id="shop-products"
-                className="mt-3 font-display text-2xl font-semibold text-charcoal text-balance sm:text-3xl"
+                id="shop-sizes"
+                className="mt-2.5 font-display text-2xl font-semibold text-charcoal text-balance sm:text-3xl"
               >
-                {liveProducts.length} filters. Every standard size.
+                Every standard size, in both levels.
               </h2>
             </div>
             <Link
@@ -181,13 +193,7 @@ export default function ShopPage() {
             </Link>
           </div>
 
-          {/* Three filters sit side by side; a sideways scroller for three
-              items left most of the row empty. */}
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {liveProducts.map((p) => (
-              <ProductCard key={p.slug} product={p} />
-            ))}
-          </div>
+          <SizeGrid />
         </div>
       </section>
 
