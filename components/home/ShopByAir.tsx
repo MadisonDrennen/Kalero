@@ -122,9 +122,9 @@ function TierCard({ tier: t }: { tier: (typeof tiers)[number] }) {
           style={{ backgroundColor: `${t.deepHex}33` }}
         />
         <Image
-          src="/images/products/carton-v2.png"
+          src="/images/products/carton.png"
           alt={`KALERO ${t.name} filter, MERV ${t.merv}`}
-          width={834}
+          width={726}
           height={1302}
           sizes="(min-width: 1024px) 18vw, 42vw"
           className="relative h-full w-auto object-contain drop-shadow-[0_16px_22px_rgba(5,7,8,0.14)] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.03]"

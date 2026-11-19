@@ -109,10 +109,10 @@ export default function PartnersPage() {
 
           <div className="relative hidden justify-center lg:flex">
             <Image
-              src="/images/products/carton-v2.png"
+              src="/images/products/carton.png"
               alt=""
               aria-hidden="true"
-              width={834}
+              width={726}
               height={1302}
               priority
               sizes="(min-width: 1024px) 32vw, 0px"

@@ -32,9 +32,9 @@ export function CartonPhoto({
 }) {
   return (
     <Image
-      src="/images/products/carton-v2.png"
+      src="/images/products/carton.png"
       alt={alt}
-      width={834}
+      width={726}
       height={1302}
       priority={priority}
       sizes={sizes}

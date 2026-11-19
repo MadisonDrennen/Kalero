@@ -49,13 +49,16 @@ export function Logo({
   tagline = false,
   href = "/",
 }: Props) {
+  /* The supplied "white" exports keep the gradient triangle, so on a dark
+     ground the A comes out blue inside white letters. The light variant uses
+     a solid-white render instead, so the lockup reads as one colour. */
   const light = variant === "light";
   const src = tagline
     ? light
-      ? "/images/brand/kalero-wordmark-white.png"
+      ? "/images/brand/kalero-wordmark-solid.png"
       : "/images/brand/kalero-wordmark.png"
     : light
-      ? "/images/brand/kalero-wordmark-white-notag.png"
+      ? "/images/brand/kalero-wordmark-solid-notag.png"
       : "/images/brand/kalero-wordmark-notag.png";
 
   const art = ART[tagline ? "lockup" : "plain"];
