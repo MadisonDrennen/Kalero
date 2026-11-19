@@ -14,22 +14,24 @@ import { CartonPhoto } from "@/components/ui/CartonPhoto";
 
 
 export const metadata: Metadata = {
-  title: "Shop Home Air Filters | MERV 8 & MERV 13 by Concern",
+  /* The page now leads with size, so the title does too. It also sold three
+     lines that no longer exist — the keywords carried pet and smoke filters
+     long after both were pulled. */
+  title: "Shop Air Filters by Size | MERV 8 & MERV 13",
   description:
-    "Shop every KALERO home air filter, sorted by concern: everyday dust and allergies. Available in 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and custom sizes.",
+    "Air filter sizes in MERV 8 and MERV 13, made in the USA. 14x20x1, 16x20x1, 16x25x1, 20x20x1, 20x25x1, 20x30x1 and more standard sizes.",
   alternates: { canonical: "/shop" },
   keywords: [
+    "air filters by size",
     "home air filters",
-    "shop air filters",
     "HVAC air filter",
     "furnace filter",
     "MERV 8 filter",
+    "MERV 13 filter",
     "20x25x1 air filter",
     "16x25x1 air filter",
     "20x20x1 air filter",
-    "pet air filter",
-    "allergy air filter",
-    "smoke air filter",
+    "14x20x1 air filter",
     "KALERO air filters",
   ],
 };
