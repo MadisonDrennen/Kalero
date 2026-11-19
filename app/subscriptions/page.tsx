@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   Bell,
@@ -114,31 +113,18 @@ export default function SubscriptionsPage() {
             white scrim below is what keeps Carbon type legible over it. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-20 bg-[linear-gradient(140deg,#FFFFFF_0%,#CFE8F4_55%,#35B2E6_100%)]"
+          className="absolute inset-0 -z-20 bg-[linear-gradient(112deg,#FFFFFF_0%,#F2F9FC_18%,#CFE8F4_46%,#7ACCEE_72%,#35B2E6_100%)]"
         />
-        {/* Full bleed, with the section tall enough that the crop never
-            reaches the carton. The frame is 1672x941 (1.78); at 1280 wide it
-            renders 719 tall, so a 680px section trims about 20px a side while
-            the carton has roughly 58px of margin there. Covering a 528px
-            section cut 95px a side and sliced the box; letterboxing it instead
-            left a visible vertical seam where the photograph's own pale ground
-            met the hero gradient. */}
-        <Image
-          src="/images/products/airflow-wide.webp"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          priority
-          className="-z-20 object-cover object-center"
-        />
+        {/* The photograph is out for now: at 1920 wide it was upscaled past
+            its native 1672 and cover cropped 200px a side, straight through
+            the carton. A replacement wants to be about 3840x1600 (2.4:1) with
+            the product in the right third and real headroom above and below.
+            Until then this is the kit gradient, and with no busy photograph
+            under the copy the heavy white scrim is no longer needed — it only
+            muted the blue. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 35%, rgba(255,255,255,0.15) 60%, transparent 80%)",
-          }}
+          className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.25)_38%,transparent_70%)]"
         />
 
         <div className="container-x relative flex min-h-[520px] flex-col justify-center py-14 sm:min-h-[600px] sm:py-16 lg:min-h-[680px]">
