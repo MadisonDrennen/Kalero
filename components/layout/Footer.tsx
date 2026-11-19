@@ -42,7 +42,11 @@ const socials = socialProfiles.map((p) => ({
 
 export function Footer() {
   return (
-    <footer className="relative isolate mt-24 overflow-hidden bg-charcoal text-white">
+    <footer /* No top margin. mt-24 left a band of page background above the
+         footer on every route — most obvious under a section that
+         carries its own colour, where the page went coloured, white,
+         then dark. Sections set their own bottom spacing. */
+      className="relative isolate overflow-hidden bg-charcoal text-white">
       {/* The wave bitmap used to sit here at h-56, and it cut straight through
           the last row of links — "Air Guides" and "Manage Auto Delivery" were
           reading on top of it. A radial ground carries the blue instead, with

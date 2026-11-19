@@ -199,6 +199,50 @@ export default function ShopPage() {
         </div>
       </section>
 
+
+      {/* Carbon, so the page runs into the footer rather than stopping at a
+          strip of white. The pairing is the one used on the partner band:
+          KALERO Blue on Carbon measures 8.3:1. */}
+      <section aria-labelledby="when-title" className="bg-charcoal py-16 sm:py-20">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="order-2 lg:order-1">
+            <p className="text-eyebrow text-sky-300">Knowing when</p>
+            <h2
+              id="when-title"
+              className="mt-3 font-display text-3xl font-semibold text-sky-500 text-balance sm:text-4xl"
+            >
+              You can see when it is done.
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/70 text-pretty">
+              Most filters want changing every 30 to 90 days. Pets, nearby
+              construction and wildfire season all shorten that. Once the pleats
+              have gone grey, your system is pulling against the filter rather
+              than through it.
+            </p>
+            <Link
+              href="/subscriptions"
+              className="mt-7 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-charcoal transition-colors hover:bg-sky-50"
+            >
+              Set a replacement cadence
+              <ArrowRight size={16} strokeWidth={2.25} aria-hidden="true" />
+            </Link>
+          </div>
+
+          <figure className="order-1 lg:order-2">
+            <Image
+              src="/images/products/merv-compare.webp"
+              alt="Two KALERO filters side by side: one grey with trapped dust, one clean"
+              width={1122}
+              height={1402}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="h-auto w-full rounded-2xl ring-1 ring-white/10"
+            />
+            <figcaption className="mt-3 text-center text-xs text-white/45">
+              The same filter, used and new.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
     </>
   );
 }

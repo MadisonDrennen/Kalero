@@ -1,6 +1,7 @@
 import { KaleroEverydayHero } from "@/components/hero/KaleroEverydayHero";
 import { PopularSizes } from "@/components/home/PopularSizes";
 import { ShopByAir } from "@/components/home/ShopByAir";
+import { UpClose } from "@/components/home/UpClose";
 import { BrandBento } from "@/components/home/BrandBento";
 import { Subscription } from "@/components/home/Subscription";
 // import { Testimonials } from "@/components/home/Testimonials"; // held back — see below
@@ -23,6 +24,9 @@ export default function Home() {
 
       {/* HVAC brands trust strip */}
       <HvacCompatibility />
+
+      {/* The product up close */}
+      <UpClose />
 
       {/* 6 — Brand story as colour tiles */}
       <BrandBento />
