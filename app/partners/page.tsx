@@ -130,6 +130,27 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      {/* A real install between the pitch and the range — the page had no
+          photography at all. */}
+      <section aria-label="A KALERO filter fitted in a home system" className="relative h-64 overflow-hidden sm:h-80 lg:h-[26rem]">
+        <Image
+          src="/images/products/furnace-home.webp"
+          alt="A KALERO filter seated in a home furnace cabinet"
+          fill
+          sizes="100vw"
+          className="object-cover object-[center_38%]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,8,0.62)_0%,rgba(5,7,8,0.3)_46%,rgba(5,7,8,0)_72%)]"
+        />
+        <div className="container-x relative flex h-full items-end pb-8 sm:pb-10">
+          <p className="max-w-sm font-display text-xl font-semibold text-white text-balance sm:text-2xl">
+            The filter your customer never has to think about again.
+          </p>
+        </div>
+      </section>
+
       {/* ---- the range ---- */}
       <section aria-labelledby="partners-range" className="pb-16 sm:pb-20">
         <div className="container-x">
@@ -179,7 +200,18 @@ export default function PartnersPage() {
       </section>
 
       {/* ---- how it works ---- */}
-      <section aria-labelledby="partners-how" className="bg-white py-16 sm:py-20">
+      <section
+        aria-labelledby="partners-how"
+        className="relative isolate overflow-hidden bg-white py-16 sm:py-20"
+      >
+        <Image
+          src="/images/brand/airflow-waves.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="-z-10 object-cover opacity-[0.07]"
+        />
         <div className="container-x">
           <h2
             id="partners-how"

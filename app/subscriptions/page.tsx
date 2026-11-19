@@ -105,10 +105,20 @@ export default function SubscriptionsPage() {
     <>
       {/* HERO */}
       <section className="relative isolate overflow-hidden bg-sky-100">
-        {/* Was a room shot carrying the retired spectrum wave. */}
+        {/* Was a room shot carrying the retired spectrum wave, then a flat
+            gradient. The photograph is light and the copy sits left, so the
+            white scrim below is what keeps Carbon type legible over it. */}
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-20 bg-[linear-gradient(140deg,#FFFFFF_0%,#CFE8F4_55%,#35B2E6_100%)]"
+        />
+        <Image
+          src="/images/products/airflow-wide.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="-z-20 object-cover object-[70%_center]"
         />
         <div
           aria-hidden="true"
