@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Facebook, Instagram, Send } from "lucide-react";
-import { AirflowLines } from "@/components/ui/AirflowLines";
-import { IridescentWave } from "@/components/ui/IridescentWave";
 
 const shopLinks = [
   { href: "/shop", label: "Shop All" },
@@ -41,20 +39,18 @@ const socials = [
 export function Footer() {
   return (
     <footer className="relative isolate mt-24 overflow-hidden bg-charcoal text-white">
-      {/* The brand wave low in the footer, behind the copyright line, where
-          it reads as atmosphere instead of a band with a visible edge. */}
-      <IridescentWave
-        flip
-        className="absolute inset-x-0 bottom-0 h-56 w-full opacity-60 sm:h-64"
+      {/* The wave bitmap used to sit here at h-56, and it cut straight through
+          the last row of links — "Air Guides" and "Manage Auto Delivery" were
+          reading on top of it. A radial ground carries the blue instead, with
+          nothing crossing the type. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 6%, #050708 46%, rgba(0,71,179,0.38) 78%, rgba(53,178,230,0.28) 100%)",
+        }}
       />
-      <div className="pointer-events-none absolute inset-0 opacity-40">
-        <AirflowLines
-          color="#35B2E6"
-          opacity={0.18}
-          animate={false}
-          className="absolute inset-0 h-full w-full"
-        />
-      </div>
       <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[70vw] -translate-x-1/2 rounded-full bg-sky-500/20 blur-3xl" />
 
       <div className="container-x relative pb-12 pt-16">

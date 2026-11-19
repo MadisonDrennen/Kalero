@@ -91,7 +91,7 @@ export const tiers: FilterTier[] = [
     softHex: "#CFE8F4",
     deepHex: "#0047B3",
     onHex: "#050708",
-    gradient: { glow: "#5BC8F5", base: "#1877CA", deep: "#0047B3" },
+    gradient: { glow: "#7ACCEE", base: "#35B2E6", deep: "#2693D8" },
     heroImage: null,
     angleImage: null,
     filterImage: null,

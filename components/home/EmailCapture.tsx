@@ -3,9 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Check, Send } from "lucide-react";
-import { tiers } from "@/lib/tiers";
-import { PhotoComingSoon } from "@/components/ui/PhotoComingSoon";
-import { IridescentWave } from "@/components/ui/IridescentWave";
+import { SilkGradient } from "@/components/ui/SilkGradient";
 
 /**
  * Homepage close — the email capture as a colour panel with the three cartons
@@ -24,22 +22,11 @@ export function EmailCapture() {
     setEmail("");
   };
 
-  /* fanned left to right: Standard tilted back, Pro upright in front, Max tilted forward */
-  const fan = [
-    "left-[4%] top-[14%] -rotate-[10deg] z-10",
-    "left-1/2 top-[4%] -translate-x-1/2 z-20",
-    "right-[4%] top-[14%] rotate-[10deg] z-10",
-  ];
-
   return (
     <section aria-labelledby="email-capture-title" className="relative isolate py-16 sm:py-20">
       <div className="container-x">
-        <div
-          className="relative grid overflow-hidden rounded-[2rem] lg:grid-cols-[1fr_1.05fr] lg:items-center"
-          style={{ background: "linear-gradient(120deg, #35B2E6 0%, #0047B3 100%)" }}
-        >
-          <IridescentWave className="pointer-events-none absolute inset-0 h-full w-full opacity-45" />
-
+        <div className="relative grid overflow-hidden rounded-[2rem] bg-sky-500 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+          <SilkGradient />
           <div className="relative p-8 sm:p-12 lg:p-14">
             <h2
               id="email-capture-title"
@@ -79,18 +66,17 @@ export function EmailCapture() {
                 </button>
               </form>
             )}
-            <p className="mt-4 text-[11px] text-charcoal-soft">No spam. Unsubscribe any time.</p>
+            <p className="mt-4 text-[11px] text-charcoal/60">No spam. Unsubscribe any time.</p>
           </div>
 
-          <div className="relative h-72 sm:h-96 lg:h-[440px]" aria-hidden="true">
-            {tiers.map((t, i) => (
-              <div key={t.id} className={`absolute w-[38%] ${fan[i]}`}>
-                <PhotoComingSoon
-                  tint={{ soft: t.softHex, deep: t.deepHex }}
-                  className="aspect-[4/5] w-full"
-                />
-              </div>
-            ))}
+          <div className="relative h-72 overflow-hidden sm:h-96 lg:h-[440px]">
+            <Image
+              src="/images/products/install-overhead.webp"
+              alt="A technician fitting a KALERO filter into a return duct"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </div>

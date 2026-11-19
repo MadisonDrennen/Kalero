@@ -1,0 +1,17 @@
+# Deploy payload trimming.
+#
+# public/images is 372MB, of which the live site references about 135MB. A
+# previous production deploy failed part-way through the upload at full size.
+# Nothing is deleted here — these files stay on disk, they are just not
+# uploaded to Vercel.
+#
+# public/images/hero/animated — frames from the retired twelve-frame hero. The
+#   only file any component still names is scent-strip-hero.png, and that
+#   component (ScentUpgradeStrip) is not rendered on any route. If that strip
+#   is ever added to a page, drop this line.
+# public/images/retired-v5-renders — retired v5 packaging renders (MERV 11,
+#   purple), referenced nowhere. Previously named with a trailing space, which
+#   gitignore syntax silently strips, so the ignore rule could never match it.
+
+public/images/hero/animated
+public/images/retired-v5-renders

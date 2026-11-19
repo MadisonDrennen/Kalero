@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { LaunchBanner } from "@/components/ui/LaunchBanner";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { CartProvider } from "@/lib/cart";
@@ -98,7 +99,7 @@ const organizationJsonLd = {
   url: "https://kalero.com",
   logo: "https://kalero.com/kalero-logo.png",
   description:
-    "Premium 1-inch residential air filters in MERV 8 and MERV 13, made in the USA. Trade pricing for HVAC contractors, and delivery on a schedule for homes.",
+    "Premium residential air filters in MERV 8 and MERV 13, made in the USA. Trade pricing for HVAC contractors, and delivery on a schedule for homes.",
   sameAs: [] as string[],
 };
 
@@ -130,6 +131,7 @@ export default function RootLayout({
             Skip to content
           </a>
           <AnnouncementBar />
+          <LaunchBanner />
           <Header />
           <main id="main">{children}</main>
           <Footer />
